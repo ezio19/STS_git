@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<http auto-config="true">
+		<intercept-url pattern="/login.html" access="permitAll"/>
+		<intercept-url pattern="/loginFailed.html" access="permitAll"/>
+		<intercept-url pattern="/logout.html" access="permitAll"/>
+		<intercept-url pattern="/403.html" access="permitAll"/>
+		<intercept-url pattern="/css/**" access="permitAll"/>
+		<intercept-url pattern="/fonts/**" access="permitAll"/>
+		<intercept-url pattern="/img/**" access="permitAll"/>
+		<intercept-url pattern="/js/**" access="permitAll"/>
+		<intercept-url pattern="/media/**" access="permitAll"/>
+		<intercept-url pattern="/vendors/**" access="permitAll"/>
+		<!-- <intercept-url pattern="/**" access="hasRole('ROLE_USER')" /> -->
+		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		
+		<form-login login-page="/login.html" 
+			authentication-failure-url="/loginFailed.html"
+			login-processing-url="/login"
+			username-parameter="username"
+			password-parameter="password"
+			authentication-success-handler-ref="savedRequestAwareAuthenticationSuccessHandler"
+			/>
+		<logout logout-success-url="/logout.html" delete-cookies="JSESSIONID"/>
+		<access-denied-handler error-page="/403.html"/>
+		<csrf disabled="true"/>
+		
+		<session-management session-fixation-protection="newSession">
+		    <concurrency-control max-sessions="1" expired-url="/login" />
+  		</session-management>
+  
+		<remember-me 
+        	token-validity-seconds="28800"
+			remember-me-parameter="remember-me" 
+			data-source-ref="dataSource" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider> 
+			<password-encoder hash="bcrypt" />
+			<jdbc-user-service data-source-ref="dataSource"
+			users-by-username-query=
+		    "select ID_UTILISATEUR,PASSWD, ACTIF from UTILISATEUR where ID_UTILISATEUR=?"
+		  authorities-by-username-query=
+		    "select ID_UTILISATEUR, ROLE_UTILISATEUR from AUTHORITIES where ID_UTILISATEUR=?"/>
+		</authentication-provider>		
+	</authentication-manager>
+	
+	<!-- <beans:bean id="globalExceptionController" class="dz.ifa.security.GlobalExceptionController" parent="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver">
+   </beans:bean> -->
+</beans:beans>
