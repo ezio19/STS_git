@@ -41,7 +41,7 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="addGoal.html">
-            Yo Yo ! Get started
+            Yoo ! Get started
           </a>
           <ul class="nav">
           </ul>
