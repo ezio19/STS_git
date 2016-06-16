@@ -28,10 +28,8 @@ public class Rubrique {
     @JsonBackReference
     private Chapitre chapitre;
 
-
-
-
-
+    @OneToMany(mappedBy = "rubrique")
+    private List<CompteBudgetaire> compteBudgetaires;
 
 
 
