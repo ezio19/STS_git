@@ -1,0 +1,344 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lan="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/material-design-iconic-font.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-select.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="css/sweetalert2.css" rel="stylesheet">
+    <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="css/app.min.1.css" rel="stylesheet">
+    <link href="css/app.min.2.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
+<!--Le sidebar/navigation drawer (android) -->
+<!-- L'interface principale -->
+<section id="main">
+    <!--Le contenu central -->
+    <section id="content">
+        <div class="container">
+            <div class="card list-comptes">
+                <!--L'entete de la page' -->
+                <div class="card-header">
+                    <h2>Nomenclatures Budgétaires
+                        <small>Affichage des nomenclatures Budgétaires.</small>
+                    </h2>
+                </div>
+                <div class="card-contenu">
+                    <div class="m-sm-10 ">
+                        <button class="m-l-20 btn  btn-success  intern waves-effect compte-create">Ajouter un Nouveau Compte</button>
+                    </div>
+
+
+                    <!--Le tableau qui affiche la liste des comptes -->
+                    <table id="data-table-command" class="table table-striped table-vmiddle bootgrid-table" aria-busy="false">
+                        <!--l'entete du tableau' -->
+                        <thead>
+                        <tr>
+                            <th style="" class="text-left" data-column-id="id"><a href="javascript:void(0);"class="column-header-anchor sortable"><span class="text">Id_Section</span><span class="zmdi icon "></span></a></th>
+                            <th data-column-id="CompteLabel" class="text-left" style=""><a href="javascript:void(0);"class="column-header-anchor sortable"><span class="text">Désignation</span><span class="zmdi icon "></span></a></th>
+                            <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
+                        </tr>
+                        </thead>
+
+                        <!--Les lignes du tableau -->
+                        <tbody>
+                        <c:forEach begin="0" end="${listComptes.size()-1}" varStatus="loop">
+                            <tr data-row-id="${loop.index}">
+                                <td class="text-left" style="">${listComptes.get(loop.index).getId()}</td>
+                                <td class="text-left" style="">${listComptes.get(loop.index).getLibelle()}</td>
+                                <td class="text-left" style="">${listComptes.get(loop.index).getType()}</td>
+                                <td class="text-left" style="">${listComptes.get(loop.index).getDescription()}</td>
+
+                            </tr>
+
+                        </c:forEach>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+            <div class="card compte-detail" style="display:none">
+                <!--L'entete de la page' -->
+
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h2>Fiche Compte
+                                <small>Affichage des informations sur le compte</small>
+                            </h2>
+
+                            <div class=""></div>
+                            <button class="btn btn-login compte-mod-save" style="display:none">Enregistrer les
+                                Modifications
+                            </button>
+                            <button class="btn btn-login compte-mod">Modifier</button>
+                            <button class="btn btn-login btn-danger compte-suppr intern">Supprimer le Compte</button>
+
+
+                        </div>
+                        <div class="col-sm-3" dir="rtl">
+                            <a href="#"
+                               class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float compte-return-btn"><i
+                                    class="zmdi zmdi-arrow-left"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="card-contenu compte-detail">
+                    <div class="panel-group p-l-20" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading active" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                       aria-expanded="true" aria-controls="collapseOne" class="">
+                                        Informations de Compabilit�
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne"
+                                 aria-expanded="true">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Classe</label>
+                                            <input placeholder="6" class="form-control compte">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label>Nom</label>
+                                            <input placeholder="6" class="form-control compte">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Affectation du Compte
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Section</label>
+                                            <input id="testspark" placeholder="6" class="form-control compte">
+                                        </div>
+
+                                        <div class="col-sm-8">
+                                            <label>Chapitre</label>
+                                            <input placeholder="6" class="form-control compte">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Rubrique</label>
+                                            <input placeholder="Budgétaire" class="form-control compte"></input>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Détails sur le Compte
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>N= Compte</label>
+                                            <input placeholder="6" class="form-control compte">
+                                        </div>
+
+                                        <div class="col-sm-8">
+                                            <label>Désignation</label>
+                                            <input placeholder="6" class="form-control compte">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Type de Compte</label>
+                                            <input placeholder="Budgétaire" class="form-control compte">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card compte-create" style="display:none">
+                <!--L'entete de la page' -->
+
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h2>Fiche Compte
+                                <small>Affichage des informations sur le compte</small>
+                            </h2>
+
+                            <div class=""></div>
+                            <button class="btn btn-login compte-create-submit">Créer le Compte
+                            </button>
+                            <button class="btn btn-login btn-danger compte-create_cancel">Annuler</button>
+
+
+                        </div>
+                        <div class="col-sm-3" dir="rtl">
+                            <a href="#"
+                               class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float compte-return-btn"><i
+                                    class="zmdi zmdi-arrow-left"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="card-contenu compte-detail">
+                    <div class="panel-group p-l-20" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading active" role="tab" id="headingOne1">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                       aria-expanded="true" aria-controls="collapseOne" class="">
+                                        Informations de Compabilite
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne1" class="collapse in" role="tabpanel" aria-labelledby="headingOne1"
+                                 aria-expanded="true">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Classe</label>
+                                            <input id="creat_input_classe" placeholder="6" class="form-control compte">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label>Nom</label>
+                                            <input id="creat_input_nom" placeholder="6" class="form-control compte">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingTwo1">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Affectation du Compte
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Section</label>
+                                            <input id="creat_input_section" placeholder="Section" class="form-control compte">
+                                        </div>
+
+                                        <div class="col-sm-8">
+                                            <label>Chapitre</label>
+                                            <input id="creat_input_chapitre" placeholder="Chapitre" class="form-control compte">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Rubrique</label>
+                                            <input id="creat_input_rubrique" placeholder="Budgétaire" class="form-control compte">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingThree1">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Détails sur le Compte
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree1" class="collapse" role="tabpanel" aria-labelledby="headingThree1">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>N= Compte</label>
+                                            <input id="creat_input_compte_num" placeholder="Numero compte" class="form-control compte">
+                                        </div>
+
+                                        <div class="col-sm-8">
+
+
+
+                                            <label>Désignation</label>
+                                            <input id="creat_input_designation" placeholder="Désignation" class="form-control compte">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Type de Compte</label>
+                                            <select id="creat_input_type" class="selectpicker">
+                                                <option>Budgétaire</option>
+                                                <option>Comptable</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-growl.min.js"></script>
+<script type="text/javascript" src="js/promise.min.js"></script>
+<script type="text/javascript" src="js/waves.min.js"></script>
+<script type="text/javascript" src="js/typeahead.bundle.js"></script>
+<script type="text/javascript" src="js/bootstrap-select.js"></script>
+<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<!--Bibliotheque pour le sidebar -->
+<script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/functions_nomenclatures_budgetaires.js"></script>
+
+</body>
+
+</html>
