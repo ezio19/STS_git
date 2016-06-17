@@ -24,14 +24,14 @@
 	            <div class="input-group m-b-20">
 	                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
 	                <div class="fg-line">
-	                    <input id="username" name="username" type="text" class="form-control" placeholder="Username">
+	                    <input id="username" name="username" type="text" class="form-control" placeholder="Nom d'utilisateur">
 	                </div>
 	            </div>
 	            
 	            <div class="input-group m-b-20">
 	                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
 	                <div class="fg-line">
-	                    <input id="password" name="password" type="password" class="form-control" placeholder="Password">
+	                    <input id="password" name="password" type="password" class="form-control" placeholder="Mot de passe">
 	                </div>
 	            </div>
 	            
@@ -41,7 +41,7 @@
 	                <label>
 	                    <input type="checkbox" name="remember-me">
 	                    <i class="input-helper"></i>
-	                    Keep me signed in
+	                    Se souvenir de moi
 	                </label>
 	            </div>
 	            

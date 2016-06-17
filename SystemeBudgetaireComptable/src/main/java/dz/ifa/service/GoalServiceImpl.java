@@ -20,7 +20,6 @@ public class GoalServiceImpl implements GoalService{
 	
 	@Transactional
 	public Goal save(Goal goal) {
-		// TODO Auto-generated method stub
 		return goalRepository.save(goal);
 	}
 

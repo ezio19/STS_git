@@ -37,7 +37,7 @@ public class BudgetPermissionEvaluator implements PermissionEvaluator {
 				targetDomainObject.getClass().getName(), 
 				permission.toString()};
 
-		int count = template.queryForObject("select count(*) from FONCTIONNALITE p where " +
+		int count = template.queryForObject("select count(*) from PERMISSION p where " +
 				"p.ID_UTILISATEUR = ? and p.OBJET_CIBLE = ? and p.DESIGNATION = ?", args, Integer.class);
 		
 		if(count == 1) {

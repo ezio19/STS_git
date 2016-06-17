@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -101,6 +102,7 @@ public class DecisionDotationController {
 		return "decisionRubrique";
 	}
 	/*******************************************************************/
+	@PreAuthorize("hasRole('AJOUTER_DOTATION') and hasPermission(#goal, 'createGoal')")
 	@RequestMapping(value = "/index0", method = RequestMethod.GET)
 	public String addIndex(Model model) {
 		if(des==null)

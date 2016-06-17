@@ -977,7 +977,9 @@
                 
                 
             </div>
-            
+             <sec:authorize access="HasRole('AJOUTER_DECISION')">
+
+        
               <form:form class="form-inline" id="form1">
 				 <div class="panel panel-collapse"> 
                                     <div class="panel-heading" role="tab" id="headingThree">
@@ -1023,7 +1025,7 @@
                                 </div>
 				 
 				</form:form>
-            
+            </sec:authorize>
             
             
     </section>

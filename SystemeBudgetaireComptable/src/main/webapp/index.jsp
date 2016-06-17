@@ -67,7 +67,7 @@
           Add Goal »
         </a>
         <!-- hasRole('ROLE_ADMIN')  -->
-        <sec:authorize access="hasPermission(#goal, 'createGoal')">
+        <sec:authorize access="hasPermission(#goal, 'createGoal') and hasRole('ROLE_ADMIN')">
         <a class="btn btn-primary" href="editGoal.html">
           Edit Goal »
         </a>
