@@ -26,7 +26,9 @@
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
         
-        <script type="text/javascript">
+        	
+		   
+        <script language="javascript">
         function deleteRow() {
             try {
             var table = document.getElementById('tableGuide');
@@ -36,29 +38,49 @@
                 var row = table.rows[i];
                 var chkbox = row.cells[0].childNodes[0];
                 if(null != chkbox && true == chkbox.checked) {
+
+                	
+                	var tabledeleted = document.getElementById('tabledeleted');
+
+                	
+                    var rowCounttabledeleted = tabledeleted.rows.length-1;
+                    var rowtabledeleted= tabledeleted.insertRow(rowCounttabledeleted+1);
+        			document.getElementById('deleted').value= rowCounttabledeleted;
+
+        			
+	       			 var cell1 = rowtabledeleted.insertCell(0);
+	     			 var para = document.createElement("P");                      
+	     			 para.name="listdel["+rowCounttabledeleted+"]";
+		             var idcpt=  document.getElementById('tableGuide').getElementsByTagName('tr')[i].cells[1].innerHTML;	             
+	     			 var t = document.createTextNode(rowCounttabledeleted);      
+	     			 para.appendChild(t);                                             			
+	     			 cell1.appendChild(para);   
+
+        	         
+                	
+                     
+
+                	 
                     table.deleteRow(i);
                     rowCount--;
-                    i--;
+                    i--; 
+          
                 }
-            }
+            }      
+            
             }catch(e) {
                 alert(e);
+                
             }
-
-            var table = document.getElementById('tableGuide');
+          var table = document.getElementById('tableGuide');
             var rowCount = table.rows.length;
 
             for(var i=1; i<rowCount; i++) {
-    //        	document.getElementById("tableGuide").rows[i].cells[1].innerHTML = i;                                   
-				
-				for(var i=0; i<rowCount; i++) {
-                var row = table.rows[i];
-                var chkbox = row.cells[0].childNodes[0];
-                if(null != chkbox && true == chkbox.checked) {
-                	document.getElementById("tableGuide").rows[i].cells[1].innerHTML = i;  
-                }
-            }
-                } 
+              	document.getElementById("tableGuide").rows[i].cells[1].innerHTML = i;                                   
+    		
+                    }
+
+		
 
       		  }
 
@@ -232,6 +254,19 @@
 			
 			<section id="content">
 				<div class="container">
+			
+			<form name="deletedguides" method="post" style="visibility: collapse;">
+					<input type="text" name="iddeleted" id="iddeleted"> </input>
+					<input type="text" name="namedeleted" id="namedeleted"> </input>
+					<input type="text" name="typeGuidedeleted" id="typeGuidedeleted"> </input>
+					<input type="text" name="desciptiondeleted" id="desciptiondeleted"> </input>
+					<input type="text" name="datedeleted" id="datedeleted"> </input>
+					<input type="text" name="typeop" id="typeop"> </input>
+					
+			</form>
+			
+				
+			<form  name="formguides" method="post">
 					<div class="card">
 						<div class="card-body card-padding" >
 							<div style="display:inline; margin:10px; width: 301px; padding:10px; position: absolute;top:16px;right:4px;">
@@ -244,67 +279,59 @@
 										<input type="text" id="nb_element" name="nb_element">1</input> 
 							</div> 
 							
+							<div style="visibility: collapse;">
+							<input type="text" id="deleted" name="deleted">1</input> 
+							</div>
+					
+							<div class="table-responsive" style="padding-bottom:16px">
+										
 							<table id="tableGuide" class="table table-bordered" style="margin-top: 65px;">
 									<thead>
 								
 										<tr>
-											<th data-column-id="check" data-type="checkbox" ></th>
 											<th data-column-id="id" data-type="numeric">N°</th>
-											<th data-column-id="nom" data-type="numeric">Nom du guide</th>
-											<th data-column-id="typGuide">Type du guide</th>
-											<th data-column-id="option">Description</th>
-											<th data-column-id="sender">Date de création</th>
-											
+											<th data-column-id="nom_guide" data-type="numeric">Nom du guide</th>
+											<th data-column-id="typeGuide">Type du guide</th>
+											<th data-column-id="desciption">Description</th>
+											<th data-column-id="date">Date de création</th>
+											<th data-column-id="option">Opérations</th>
 											
 										</tr>
 									</thead>
 									
 									
 									<tbody >
-									
-							
-									
-									
-									<c:forEach items="${guides}" var="gui">
-							        <tr>
-							       			<td >
-													<input type="checkbox" >
-											</td>
 										
-											<td>
-									            <c:out value="${gui.id}" />
-									        </td>
-									        <td>
-									            <c:out value="${gui.nom_guide}" />
-									        </td>
-									        <td>
-									        	<c:out value="${gui.type_facture}" />
-									        </td>
-									        <td>
-									            <c:out value="${gui.descriptionguide}" />
-									        </td>
-									        <td>
-									            <c:out value="${gui.date}" />
-									        </td>
-							        </tr>
-							    </c:forEach>
-						
-						
-						
-						
+									<c:forEach items="${guides}" var="gui">
+                           			 <tr>
+				                            <td id="id" class="text-left" style=""> ${gui.id}</td> 
+				                            <td id="nom_guide" class="text-left" style="">${gui.nom_guide}</td>
+				                            <td id="type_facture" class="text-left" style="">${gui.type_facture}</td>
+				                            <td id="descriptionguide" class="text-left" style="">${gui.descriptionguide}</td>
+				                            <td id="date" class="text-left" style=""> ${gui.date}</td>
+											<td class="text-left" style="">
+											
+				                            <button type="button"  name="deleteguide" class="editingInfors btn btn-icon command-edit waves-effect waves-circle" ><span class="zmdi zmdi-edit" data-row-id="${gui.id}"></span></button>
+				                            <button type="button" name="modifierguide"  class="compte-suppr extern btn btn-icon command-delete waves-effect waves-circle" ><span class="zmdi zmdi-delete" data-row-id="${gui.id}"></span></button>
+											 
+											</td>	 
+                       				 </tr>
+
+  
+                   				  </c:forEach>	
 									
 									</tbody>
 								</table>
+								</div>
 								<br>
 								<br>
 								
 								<div style="position: absolute;bottom: 16px;right: 16px;">
-									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Modifier la selection</button>
-									<button type="button" class="btn btn-danger btn-primary waves-effect" onClick="deleteRow()"><i class="zmdi zmdi-close zmdi-hc-fw"></i>Supprimer Selection</button>
 									<a href="NewGuide.html"><button class="btn bgm-green btn-primary waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Ajouter guide</button></a>
 								</div>			
 						</div>
 					</div>	
+					</form>
 				</div>	
 			</section>
 
@@ -488,6 +515,70 @@
             });
 
         </script>
+        
+        
+        <script type="text/javascript">                 
+		   $('button.compte-suppr.extern').on('click',function(){
+
+				 
+		    var x=$(this.closest('tr')).attr('data-row-id');
+		  	var id= $(this.closest('tr')).find('td').eq(0).text();
+		  	var nom_guide= $(this.closest('tr')).find('td').eq(1).text();
+		   	var type_facture= $(this.closest('tr')).find('td').eq(2).text();
+		   	var descriptionguide= $(this.closest('tr')).find('td').eq(3).text();
+		   	var date= $(this.closest('tr')).find('td').eq(4).text();
+			var op="suppresison";
+			
+
+		   	document.getElementById('iddeleted').value=id;
+			document.getElementById('namedeleted').value=nom_guide;
+			document.getElementById('typeGuidedeleted').value=type_facture;
+			document.getElementById('desciptiondeleted').value=descriptionguide;
+			document.getElementById('datedeleted').value=date;
+			document.getElementById('typeop').value=op;
+
+			$( "form:first" ).submit();
+				        this.closest('tr').remove();
+		
+		});
+			
+		   
+		   </script>
+		   
+		   <script type="text/javascript">                 
+		   $('button.editingInfors').on('click',function(){
+
+				 
+		    var x=$(this.closest('tr')).attr('data-row-id');
+		  	var id= $(this.closest('tr')).find('td').eq(0).text();
+		  	var nom_guide= $(this.closest('tr')).find('td').eq(1).text();
+		   	var type_facture= $(this.closest('tr')).find('td').eq(2).text();
+		   	var descriptionguide= $(this.closest('tr')).find('td').eq(3).text();
+		   	var date= $(this.closest('tr')).find('td').eq(4).text();
+			var op="modification";
+
+		   
+
+		   	document.getElementById('iddeleted').value= id;
+			document.getElementById('namedeleted').value= nom_guide;
+			document.getElementById('typeGuidedeleted').value= type_facture;
+			document.getElementById('desciptiondeleted').value= descriptionguide;
+			document.getElementById('datedeleted').value= date;
+			document.getElementById('typeop').value= op;
+			
+
+			$( "form:first" ).submit();
+				     
+		
+			});
+			
+		   
+		   </script>
+		        
+		        
+		       
+		        
+	
     
     
 </body>

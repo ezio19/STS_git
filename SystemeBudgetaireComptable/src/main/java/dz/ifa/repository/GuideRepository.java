@@ -29,6 +29,12 @@ public interface GuideRepository extends JpaRepository<Guide, Long> {
 	@Query("select g from Goal g where g.minutes = :#{#goal.minutes}")
 	List<Goal> findGoalsByGoalMinutes(@Param("goal") Goal goal);
 	
+
+	
+	@Query("delete From Guide where GUIDE_ID=?#{[0]}")
+	void supprimerGuide(long id);
+	
+	
 	
 	
 

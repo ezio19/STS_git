@@ -18,7 +18,9 @@ public interface GuideService {
 	
 	Guide findGuidebyId (long id);
 
-	
+	 void deleteGuide(Guide guide);	
+	 void deleteGuideById(Long id);
+
 	
 	
 

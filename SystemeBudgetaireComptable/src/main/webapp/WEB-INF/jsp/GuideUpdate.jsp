@@ -110,8 +110,8 @@
 
 
 			var elOption = new Array(
-                    new Option("Débit", "Débit", false, false),
-                    new Option("Crédit", "Crédit", false, false)
+                    new Option("Debit", "Debit", false, false),
+                    new Option("Credit", "Credit", false, false)
                           );
 
 			for (i=0;i<elOption.length;i++)
@@ -205,14 +205,17 @@
 			<section id="content">
 				<div class="container">
 					<div class="block-header">
-						<h2>Saisie guide</h2>
+						<h2>Modifier le guide n° ${guide.id} </h2>						
 					</div>
 					
 				<form  name="formguide" method="post">
 					
 					<div class="card">
 						<div class="card-header">
-						<h2>Ajout du nouveau guide <small>Creer les guides pour les operations comptable </small></h2>
+						<h2>Modification Guide comptable<small>${guide.id} </small></h2>
+						<div class="fg-line">
+									<input name="idguide"  type="text" class="form-control input-lg" placeholder="guide facture" value= "${guide.id} "/>
+						</div>
 						</div>
 						
 						<div class="card-body card-padding">
@@ -222,7 +225,7 @@
 									<h2>Nom du guide :</h2>
 								</div>
 								<div class="fg-line">
-									<input name="nameguide"  type="text" class="form-control input-lg" placeholder="guide facture" />
+									<input name="nameguide"  type="text" class="form-control input-lg" placeholder="guide facture" value= "${guide.nom_guide}"/>
 								</div>
 							</div>
 							
@@ -231,7 +234,8 @@
 									<h2>Description du guide :</h2>
 								</div>
 								<div class="fg-line">
-									<input name="descriptionguide"  type="text" class="form-control input-lg" placeholder="Description" />
+									<input name="descriptionguide"  type="text" class="form-control input-lg" placeholder="Description" value= "${guide.descriptionguide}"/>
+
 								</div>
 							</div>
 							
@@ -244,6 +248,7 @@
 								<div class="fg-line" style="width:83%; margin-right:15px;">
 									<div class="select">
 										<select name="type_facture"  class="form-control">
+										<option>${guide.type_facture} </option>
 										  <c:forEach items="${listtype}" var="list">
 									        <option>
 									       
@@ -272,55 +277,107 @@
 										<th data-column-id="check" data-type="checkbox" ></th>
 										<th data-column-id="num" data-type="numeric" >N°</th>
 										<th data-column-id="id" data-type="numeric">numero de compte</th>
-										<th data-column-id="option">Debiteur/Créditeur</th>
+										<th data-column-id="option">Debiteur/Crediteur</th>
 										<th data-column-id="sender">Pourcentage %</th>
 										
 									</tr>
 								</thead>
 								<tbody >
-									<tr>
-									<td >
-										<input type="checkbox" >
-									</td>
-									<td>
-											<div class="fg-line">
-												1
-											</div>
-									</td>
-										
-										
-										<td>
+									<c:forEach items="${list}" var="list">
+									<script>
+
+						            var table = document.getElementById('tableAddguide');
+									var rowCount = table.rows.length-1;
+						            var row = table.insertRow(rowCount+1);
+
+
+									 var cell1 = row.insertCell(0);
+							         var checkb = document.createElement("input");
+							         checkb.type = "checkbox";
+							         checkb.name="chkbox[]";
+							         checkb.style="padding-left:10px;"
+							         cell1.appendChild(checkb);
+
+							            
+
+									 var cell1 = row.insertCell(1);
+							    
+									var para = document.createElement("P");                       // Create a <p> element
+									para.id="listcpt["+rowCount+"].numligne";
+									var t = document.createTextNode("${list.pos}");       // Create a text node
+									para.appendChild(t);                                          // Append the text to <p>
+									cell1.appendChild(para);   
+											 
+
+						            var cell2 = row.insertCell(2);
+						            
+						            var element1 = document.createElement("input");
+						            element1.type = "text";
+						            element1.style="display:inline-flex; width:86%; margin-right:5px;";
+						            element1.className="form-control";
+						            element1.placeholder="Numero de compte";
+						            element1.name="listcpt["+rowCount+"].nomcpt";
+						            element1.value="${list.cpt}";
+						            cell2.appendChild(element1);
+
+						            var element2 = document.createElement("button");
+						            element2.type = "button";
+						            element2.style="width:10%";
+						            element2.className="btn bgm-lightgreen waves-effect";
+						            element2.icone="zmdi zmdi-menu";
+						            element2.name="add";
+						            
+
+									var element= document.createElement("i");
+									element.className="zmdi zmdi-menu";
+									element2.appendChild(element);
+									cell2.appendChild(element2);
+
+						            
+						          
+						            var cell3 = row.insertCell(3);
+						            var divselect= document.createElement("div");
+						            divselect.className="select";
+						            
+						            var element3 = document.createElement("select");
+									element3.className=" select form-group fg-line  form-control";
+						            element3.name = "listcpt["+rowCount+"].rolecpt";
+
+								    
+
+									var elOption = new Array(
+
 											
-											<div class="form-group" style="display:inline-flex; width:86%; margin-right:5px;">
-												<div class="fg-line">
-													<input type="text" class="form-control" name="listcpt[0].nomcpt" placeholder="Numero de compte" vk_1fb3d="subscribed">
-												</div>
-											</div>
-											<button class="btn bgm-lightgreen waves-effect" style="width:10%"><i class="zmdi zmdi-menu"></i></button>
-										
-										</td>
-										<td>
-										<div class="form-group">
-											<div class="fg-line">
-												<div class="select">
-													<select class="form-control" name="listcpt[0].rolecpt">
-														<option>Débit</option>
-														<option>Crédit</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										
-										</td>	
-										<td>
-										<div class="form-group">
-											<div class="fg-line">
-												<input type="text" name="listcpt[0].pourcentage" class="form-control input-mask" data-mask="00,00%" placeholder="ex: 00,00%" maxlength="9" autocomplete="off" vk_129f4="subscribed">
-											</div>
-										</div>
-										</td>
-									</tr>
-								
+											new Option("${list.rolecpt}", "${list.rolecpt}", false, false),
+						                    new Option("Debit", "Debit", false, false),
+						                    new Option("Credit", "Credit", false, false)
+						                          );
+
+									for (i=0;i<elOption.length;i++)
+									{
+										element3.options.add(elOption[i]);
+									} 
+
+									divselect.appendChild(element3);
+						            cell3.appendChild(divselect);
+
+
+						            
+						            var cell4 = row.insertCell(4);
+						            var element4 = document.createElement("input");
+						            element4.className="form-control input-mask";
+						            element4.placeholder="ex: 00,00%";
+						            element4.type = "text";
+						            element4.name = "listcpt["+rowCount+"].pourcentage";
+						            element4.value= "${list.pourcentage}";
+						            cell4.appendChild(element4);
+		
+
+									</script>
+									
+									</c:forEach>	
+									
+																	
 								</tbody>
 							</table>
 							</br>
@@ -365,7 +422,7 @@
 							bottom: 16px;
 							right: 16px;">
 						<button type="reset" class="btn btn-danger btn-lg waves-effect" onclick="document.forms.formguide.reset()"><i class="zmdi zmdi-undo zmdi-hc-fw"></i>Annuler</button>
-						<button type="submit" name="addguide" class="btn bgm-green btn-lg waves-effect" style="align" id="sa-success"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>Valider</button>
+						<button type="submit" name="addguide" class="btn bgm-green btn-lg waves-effect" style="align" id="sa-success"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>Modifier</button>
 					</div>
 					
 		
@@ -507,7 +564,7 @@
 
             //Success Message
             $('#sa-success').click(function(){
-                swal("guide Ajouté!", "Le guide a été ajouté a la base!", "success")
+                swal("guide Ajoute!", "Le guide a ete ajoute a la base!", "success")
             });
 
             //Warning Message
