@@ -1,10 +1,20 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/material-design-iconic-font.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-select.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="css/sweetalert2.css" rel="stylesheet">
+    <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="css/app.min.1.css" rel="stylesheet">
+    <link href="css/app.min.2.css" rel="stylesheet">
     <title>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +40,12 @@
     </style>
   </head>
   <body>
+  
+  <c:import url="./WEB-INF/jsp/header.jsp"></c:import>
+
+<c:import url="./WEB-INF/jsp/sidebar.jsp"></c:import>
+  
+  
 	  <sec:authorize access="isRememberMe()">
 			<h1>login avec "Remember Me Cookies".</h1>
 		</sec:authorize>
@@ -75,6 +91,9 @@
         
         <a class="btn btn-primary" href="addMinutes.html">
           Add Exercise Minutes »
+        </a>
+        <a class="btn btn-primary" href="FicheFournisseur.html">
+          Ajouter fournisseur »
         </a>
         
         <a class="btn btn-primary" href="getGoals.html">

@@ -20,6 +20,16 @@ $(document).ready(function () {
         ajax: 'true'
     }, function (result) {
         var htln = "";
+       /* result.sectionList[0].code_section="sect123";
+        result.sectionList[0].designation="Exploitation";
+
+        result.sectionList[1].code_section="sec23";
+        result.sectionList[1].designation="Immobilisations Corporelles";
+
+
+        result.sectionList[2].code_section="sect12";
+        result.sectionList[2].designation="Dettes";*/
+
         for (var i = 0; i < result.sectionList.length; i++) {
             //alert("taille de la liste : "+result.sectionList.length+"taille du result :"+result.length+"  la section "+i+" "+result.sectionList[i].codeSection+" "+result.sectionList[i].designation);
             console.log("Section " + i);
@@ -108,7 +118,9 @@ $(document).ready(function () {
         //part=JSON.stringify(part);
         //[data-findme]
         //afficherSupprMessage2(self.closest('tr'));
-        afficherSupprChapitre( self.closest('tr').attr('data-row-id'));
+        //afficherSupprChapitre( self.closest('tr').attr('data-row-id'));
+        afficherSupprChapitre( );
+
 
     });
 

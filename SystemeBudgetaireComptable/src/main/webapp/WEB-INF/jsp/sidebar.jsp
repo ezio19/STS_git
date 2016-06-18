@@ -32,24 +32,33 @@
                     </ul>
                 </div>
 
+
+
                 <ul class="main-menu">
                     <li><a href=""><i class="zmdi zmdi-home"></i> Acceuil</a></li>
+                    <li><a href="gestion_utilisateurs_utilisateurs.html"><i class="zmdi zmdi-home"></i> Gestion des Utilisateurs</a></li>
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-view-compact"></i> Nomenclatures</a>
-
                         <ul>
-                            <li><a href="nomenclatures_sections.html">Sections</a></li>
-                            <li><a href="nomenclatures_chapitres.html">Chapitres</a></li>
-                            <li><a href="">Rubriques</a></li>
-                            <li><a  href="nomenclatures_budget.html">Comptes Budgetaires</a></li>
-                            <li><a href="">Comptes Comptables</a></li>
-
+                            <li><a href="nomenclatures_strcutures.html"><i class="zmdi  zmdi-city "></i> Structures</a></li>
+                            <li><a href="nomenclatures_sections.html"><i class="zmdi zmdi-view-carousel zmdi-hc-fw"></i> Sections</a></li>
+                            <li><a href="nomenclatures_chapitres.html"><i class="zmdi zmdi-view-day zmdi-hc-fw"></i> Chapitres</a></li>
+                            <li><a href="nomenclatures_rubriques.html"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i> Rubriques</a></li>
+                            <li><a href="nomenclatures_comptables.html"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Nomenclatures Comptables</a></li>
+                            <li><a  href="nomenclatures_budgetaires.html"><i class="zmdi zmdi-labels zmdi-hc-fw"></i> Comptes Budgetaires</a></li>
                         </ul>
                     </li>
-
-
-
                 </ul>
+                <li><a href="engagement_ajouter.html"><i class="zmdi zmdi-home"></i> Ajouter Engagement</a></li>
+
+
+
+
+
+
+
+
+
             </div>
         </div>
 

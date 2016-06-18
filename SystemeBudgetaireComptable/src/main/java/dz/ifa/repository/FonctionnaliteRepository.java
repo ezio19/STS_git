@@ -1,11 +1,10 @@
 package dz.ifa.repository;
 
+import dz.ifa.model.gestion_utilisateurs.Fonctionnalite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import dz.ifa.model.Fonctionnalite;
-
-@Repository("fonctionnaliteRepository")
-public interface FonctionnaliteRepository extends JpaRepository<Fonctionnalite, String>{
-
+@Repository
+public interface FonctionnaliteRepository extends JpaRepository<Fonctionnalite,String> {
+	Fonctionnalite save(Fonctionnalite fonctionnalite);
 }

@@ -47,5 +47,12 @@ public class EcritureComptableElementaire {
 	public void setMontant(float montant) {
 		this.montant = montant;
 	}
+	public OperationComptable getOperationComptable() {
+		return operationComptable;
+	}
+	public void setOperationComptable(OperationComptable operationComptable) {
+		this.operationComptable = operationComptable;
+	}
+	
 	
 }

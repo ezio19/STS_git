@@ -3,14 +3,13 @@
 <div class="card list-sections">
     <!--L'entete de la page' -->
     <div class="card-header">
-        <h2>Comptes Utilisateurs
-            <small>Affichage des comptes utilisateurs.</small>
+        <h2>Chapitres
+            <small>Affichage des Utilisateur.</small>
         </h2>
     </div>
     <div class="card-contenu">
         <div class="m-sm-10 ">
-            <button class="m-l-20 btn  btn-success  intern waves-effect section-create">Ajouter un nouveau
-                Utilisateur
+            <button class="m-l-20 btn  btn-success  intern waves-effect section-create">Ajouter un nouveau utilisateur
             </button>
         </div>
 
@@ -21,26 +20,24 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
-                <th style="" class="text-left" data-column-id="id">Id</th>
-                <th data-column-id="CompteLabel" class="text-left" style="">Nom</th>
-                <th data-column-id="CompteType" class="text-left" style="">Prénom</th>
-                <th data-column-id="CompteDescription" class="text-left" style="">Email</th>
-                <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
+                <th data-column-id="code_chapitre"   >Id Utilisateur</th>
+                <th data-column-id="CompteLabel" class="text-left" >Nom</th>
+                <th data-column-id="user_prenom" class="text-left" >Prénom</th>
+                <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
             </tr>
             </thead>
 
             <!--Les lignes du tableau -->
             <tbody>
-            <c:forEach begin="0" end="5" varStatus="loop">
+            <c:if test="${listUtilisateurs.size()>0}">
+            <c:forEach begin="0" end="${listUtilisateurs.size()-1}" varStatus="loop">
                 <tr data-row-id="${loop.index}">
-                    <td class="text-left" style=""></td>
-                    <td class="text-left" style=""></td>
-                    <td class="text-left" style=""></td>
-                    <td class="text-left" style=""></td>
-
+                    <td class="text-left " style="">${listUtilisateurs.get(loop.index).getId()}</td>
+                    <td class="text-left" style="">${listUtilisateurs.get(loop.index).getNom()}</td>
+                    <td class="text-left" style="">${listUtilisateurs.get(loop.index).getPrenom()}</td>
                 </tr>
-
             </c:forEach>
+            </c:if>
             </tbody>
         </table>
 

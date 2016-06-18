@@ -9,6 +9,8 @@ import javax.persistence.TableGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dz.ifa.model.nomenclature.Rubrique;
+
 @Entity
 public class EngagementElementaire {
 	@TableGenerator(name="engagementElemGen",allocationSize=1)

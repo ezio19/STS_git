@@ -13,6 +13,38 @@ var selectedSection=-1;
 $(document).ready(function(){
 
 
+    //Initialisation
+    $.getJSON('/nomenclatures_structures_list.json', {
+        ajax: 'true'
+    }, function (result) {
+        var htln = "";
+        for (var i = 0; i < result.structureList.length; i++) {
+            console.log("Section " + i);
+            console.log("Code Strcuture " + result.structureList[i].codeStructure);
+            console.log("Designation" + result.structureList[i].nom);
+            htln += '<option value=';
+            htln += "" + result.structureList[i].codeStructure;
+            htln += '>';
+            htln += "" + result.structureList[i].nom;
+            htln += '</option>';
+        }
+        $("#structure-select-section")
+            .html(htln)
+            .selectpicker('refresh');
+
+    }).done(function () {
+        console.log("apres success");
+    })
+        .fail(function () {
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete toujours succes ou erreur");
+        });
+
+
+
+
 
     $("#data-table-command").bootgrid({
       css: {
@@ -243,6 +275,9 @@ function afficherCreateSectionMessage() {
 
     var code_sect= $('#creat_input_code_sect ').val();
     var designation_sect = $('#creat_input_designation').val();
+    var code_struct = $('#structure-select-section').val();
+
+
     ///alert(code_sect+"\n"+designation_sect);
     //alert("code chapitre : "+code_chap+"\n"+"designation chapitre :"+designation_chap+"code section :"+code_sect );
     swal({
@@ -258,7 +293,7 @@ function afficherCreateSectionMessage() {
             {
                 type: "POST",
                 url: "/nomenclatures_section_create.html",
-                data: {code_section: code_sect, designation_section: designation_sect},
+                data: {code_section: code_sect, designation_section: designation_sect,code_structure:code_struct},
                 success: function (data) {
                     if (JSON.parse(data) == "100")
                         swal("Succès!", "La section a été ajoutée avec succès", "success");

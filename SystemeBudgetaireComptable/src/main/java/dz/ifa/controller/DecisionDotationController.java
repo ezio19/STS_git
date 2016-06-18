@@ -102,7 +102,7 @@ public class DecisionDotationController {
 		return "decisionRubrique";
 	}
 	/*******************************************************************/
-	@PreAuthorize("hasRole('AJOUTER_DOTATION') and hasPermission(#goal, 'createGoal')")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/index0", method = RequestMethod.GET)
 	public String addIndex(Model model) {
 		if(des==null)

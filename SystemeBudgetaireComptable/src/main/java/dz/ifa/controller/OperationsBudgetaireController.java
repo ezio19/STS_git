@@ -56,6 +56,7 @@ public class OperationsBudgetaireController {
 		if((nbParams=requete.getParameter("nb_element")).compareTo("")==0) nbParams="1";
 		int nombreEcriture = Integer.parseInt(nbParams);
 		OperationComptable operationComptable = new OperationComptable();
+		OperationBudgetaire operationBudgetaire = new OperationBudgetaire();
 		//Numéro de l'opération
 		operationComptable.setNumOperation("");
 		operationComptable.setDate(Calendar.getInstance().getTime());
@@ -85,7 +86,8 @@ public class OperationsBudgetaireController {
 			else ecritureElementaire.setDebiteur(false);
 			//Montant 
 			ecritureElementaire.setMontant(Float.parseFloat(montant));
-			
+			operationService.save(operationComptable);
+			ecritureElementaire.setOperationComptable(operationComptable);
 			operationComptable.getEcrituresElementaire().add(ecritureElementaire);
 		}
 		//Récupération de la pieceComptable
@@ -102,7 +104,7 @@ public class OperationsBudgetaireController {
 			e.printStackTrace();
 		}**/
 		
-		OperationBudgetaire operationBudgetaire = new OperationBudgetaire();
+		
 		operationBudgetaire.setOperationComptable(operationComptable);
 		Tier tier = engagementService.findTierByPieceId(idPiece);
 		Engagement engagement = engagementService.findEngagementByTierId(tier.getId());

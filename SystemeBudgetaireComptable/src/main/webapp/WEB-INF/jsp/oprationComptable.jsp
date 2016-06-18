@@ -24,6 +24,11 @@
         <!-- CSS -->
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
+        
+        <!-- Validation du formulaire -->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
+        <script src="js/operation-form.js"type="text/javascript"></script>
     </head>
 <body>
         <header id="header" class="clearfix" data-current-skin="blue">
@@ -192,15 +197,16 @@
 			
 			<section id="content">
 				<div class="container">
-					<form  method="post">
+					<form  method="post" id="opComptForm" name="opComptForm">
+					
 						<div class="card">
-							
+							<div id='opComptForm_errorloc' class='error_strings'></div>
 							<div class="card-body card-padding">
 								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
 									<h2>Journée comptable</h2>
 								</div>
 								<div class="dtp-container fg-line">
-									<input type="date" class="form-control date-picker"  placeholder="Choose a date"  name="dateOperation"/>
+									<input type="date" class="form-control date-picker date"  placeholder="Choose a date"  id ="dateOperation" name="dateOperation"/>
 								</div>
 								
 								
@@ -213,7 +219,7 @@
 									<div class="fg-line">
 										<div class="select">
 											<select class="form-control"  id="tierSelection">
-												<option value="0">Selectionner un fournisseur</option>
+												<option value="0">-- Choisir un fournisseur --</option>
 												<c:forEach items="${listTiers}" var="tier">
 													<option value="${tier.id}">${tier.NIF}-${tier.NIS}</option>
 												</c:forEach>
@@ -232,6 +238,7 @@
 									<div class="fg-line">
 										<div class="select">
 											<select class="form-control" name="pieceSelection" id="selectPiece">
+												<option value="0">-- Choisir une piece --</option>
 											</select>
 										</div>
 									</div>
@@ -270,7 +277,8 @@
 											<td>
 												<div class="form-group">
 													<div class="fg-line">
-														<input name ="idCompte0" type="text" class="form-control" placeholder="Numero de compte" vk_1fb3d="subscribed"">
+														<input name ="idCompte0" type="text" class="form-control compte" placeholder="Numero de compte" vk_1fb3d="subscribed"">
+														<div id='opComptForm_idCompte0_errorloc' class='error_strings'></div>
 													</div>
 												</div>
 											</td>
@@ -278,7 +286,7 @@
 											<div class="form-group">
 												<div class="fg-line">
 													<div class="select">
-														<select name="type0" class="form-control">
+														<select name="type0" class="form-control typecompte">
 															<option>D/C</option>
 															<option>Débit</option>
 															<option>Crédit</option>
@@ -291,7 +299,7 @@
 											<td>
 											<div class="form-group">
 												<div class="fg-line">
-													<input name="montant0" type="text" class="form-control input-mask"  placeholder="eg: 300 000.00" maxlength="9" autocomplete="off" vk_129f4="subscribed">
+													<input name="montant0" type="text" class="form-control input-mask montant"  placeholder="eg: 300 000.00" maxlength="9" autocomplete="off" vk_129f4="subscribed">
 												</div>
 											</div>
 											</td>
@@ -322,11 +330,15 @@
 											bottom: 16px;
 											right: 16px;">
 										<button class="btn btn-danger btn-lg waves-effect"><i class="zmdi zmdi-undo zmdi-hc-fw"></i>Annuler</button>
-										<button class="btn bgm-green btn-lg waves-effect" style="align" id="sa-success" type="submit"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>Valider</button>
+										<button class="btn bgm-green btn-lg waves-effect" style="align" type="submit"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>Valider</button>
 									</div>
 							</div>	
 						</div>
+						
 					</form>
+					<script type="text/javascript">
+						
+					</script>
 				</div>
 					
 				
@@ -347,8 +359,6 @@
 		</footer>
 		
 		
-		<!-- Javascript Libraries -->	
-		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         
                 <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -357,8 +367,7 @@
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
 		
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
-		<!---new JS-->
-		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         
         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -376,13 +385,75 @@
 
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
-		<script>function addRow() {
+        <script>
+
+	    	$("#opComptForm").validate();
+	    	
+	    	//Méthodes de validation
+	    	$.validator.addMethod("valueNotEquals", function(value, element, arg){
+	    		return arg != jQuery(element).find('option:selected').text();;
+	   		}, "Value must not equal arg.");
+	    	
+	    	//Ajout des règles
+	        $("#dateOperation").rules("add", {
+	            required: true,
+	            messages:{
+	            	required:"Veuillez indiquer une date pour l'opération !"	
+	            }
+	        	});
+	    	
+	        $("#tierSelection").rules("add", {
+	            valueNotEquals: "-- Choisir un fournisseur --",
+	            messages:{
+	            	valueNotEquals:"Veuillez choisir un fournisseur !"	
+	            }
+	        	});
+	        $("#selectPiece").rules("add", {
+	        	valueNotEquals: "-- Choisir une piece --",
+	            messages:{
+	            	valueNotEquals:"Veuillez choisir une piece !"	
+	            }
+	        	});
+		function addValidationRules(){
+		    $('.compte').each(function () { 
+		        $(this).rules("add", {
+		            required: true,
+		            minlength:12,
+		            maxlength:12,
+		            messages:{
+		            	required:"Veuillez indiquer un numéro de compte !",
+			            minlength:"Le numéro de compte doit être sur 12 positions!",
+			            maxlength:"Le numéro de compte doit être sur 12 positions!",				        		
+		            }
+		        });
+		    });
+		    $('.montant').each(function () { 
+		        $(this).rules("add", {
+		            required: true,
+		            number:true,
+		            messages:{
+		            	required:"Vous devez indiquer un montant !",
+		            	number:"La valeur saisie doit être un chiffre valide !"
+		            }
+		        });
+		    });
+		    $('.typecompte').each(function () { 
+		        $(this).rules("add", {
+		            valueNotEquals: "D/C",
+		            messages:{
+		            	valueNotEquals:"Veuillez indiquer un type !"
+		            }
+		        });
+		    });
+		}
+		addValidationRules();
+		function addRow() {
 						
 					var element= document.getElementById('tableAddGuide');
 					var tr = document.createElement('tr');
 					var row = element.rows.length;
 					document.getElementById('nb_element').value=row + 1;
-					tr.innerHTML='<tr><td><div class="form-group"><div class="fg-line"><input type="text" name="idCompte'+row+'" class="form-control" placeholder="Numero de compte" vk_1fb3d="subscribed">'
+					tr.innerHTML='<tr><td><div class="form-group"><div class="fg-line"><input  type="text" name="idCompte'+row+'" class="form-control compte" placeholder="Numero de compte" vk_1fb3d="subscribed">'
 						+'						</div>'
 						+'					</div>'
 						+'				</td>'
@@ -390,7 +461,7 @@
 						+'				<div class="form-group">'
 						+'					<div class="fg-line">'
 						+'						<div class="select">'
-						+'							<select class="form-control" name="type'+row+'">'
+						+'							<select class="form-control typecompte" name="type'+row+'">'
 						+'								<option>D/C</option>'
 						+'								<option>Débit</option>'
 						+'								<option>Crédit</option>'
@@ -403,9 +474,9 @@
 						+'				<td>'
 						+'				<div class="form-group">'
 						+'					<div class="fg-line">'
-						+'						<input type="text"'
+						+'						<input  type="text"'
 						+'name="montant'+row+'"'
-						+'class="form-control input-mask" data-mask="00,00%" placeholder="eg: 00,00%" maxlength="9" autocomplete="off" vk_129f4="subscribed">'
+						+'class="form-control input-mask montant" data-mask="00,00%" placeholder="eg: 00,00%" maxlength="9" autocomplete="off" vk_129f4="subscribed">'
 						+'					</div>'
 						+'				</div>'
 						+'				</td>'
@@ -413,8 +484,10 @@
 				
 					
 					element.appendChild(tr);
+					addValidationRules();
+
 				}
-		
+			
 		
 		</script>
         <!-- Data Table -->
@@ -493,7 +566,7 @@
 
             //Success Message
             $('#sa-success').click(function(){
-                swal("Transaction Réussis!", "L'opération s'est bien effectuée!", "success")
+                swal("Opération ajouté au broulliard !", "L'opération comptable est crée avec succès!", "success")
             });
 
             //Warning Message
@@ -585,6 +658,8 @@ selectElement.onchange = function (){
 }
 </script>
 <script type="text/javascript">
+
+
 </script>
     
 </body>

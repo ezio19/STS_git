@@ -521,12 +521,12 @@
 		   $('button.compte-suppr.extern').on('click',function(){
 
 				 
-		    var x=$(this.closest('tr')).attr('data-row-id');
-		  	var id= $(this.closest('tr')).find('td').eq(0).text();
-		  	var nom_guide= $(this.closest('tr')).find('td').eq(1).text();
-		   	var type_facture= $(this.closest('tr')).find('td').eq(2).text();
-		   	var descriptionguide= $(this.closest('tr')).find('td').eq(3).text();
-		   	var date= $(this.closest('tr')).find('td').eq(4).text();
+		    var x=$($(this).closest('tr')).attr('data-row-id');
+		  	var id= $($(this).closest('tr')).find('td').eq(0).text();
+		  	var nom_guide= $($(this).closest('tr')).find('td').eq(1).text();
+		   	var type_facture= $($(this).closest('tr')).find('td').eq(2).text();
+		   	var descriptionguide= $($(this).closest('tr')).find('td').eq(3).text();
+		   	var date= $($(this).closest('tr')).find('td').eq(4).text();
 			var op="suppresison";
 			
 
@@ -549,12 +549,12 @@
 		   $('button.editingInfors').on('click',function(){
 
 				 
-		    var x=$(this.closest('tr')).attr('data-row-id');
-		  	var id= $(this.closest('tr')).find('td').eq(0).text();
-		  	var nom_guide= $(this.closest('tr')).find('td').eq(1).text();
-		   	var type_facture= $(this.closest('tr')).find('td').eq(2).text();
-		   	var descriptionguide= $(this.closest('tr')).find('td').eq(3).text();
-		   	var date= $(this.closest('tr')).find('td').eq(4).text();
+		    var x=$($(this).closest('tr')).attr('data-row-id');
+		  	var id= $($(this).closest('tr')).find('td').eq(0).text();
+		  	var nom_guide= $($(this).closest('tr')).find('td').eq(1).text();
+		   	var type_facture= $($(this).closest('tr')).find('td').eq(2).text();
+		   	var descriptionguide= $($(this).closest('tr')).find('td').eq(3).text();
+		   	var date= $($(this).closest('tr')).find('td').eq(4).text();
 			var op="modification";
 
 		   

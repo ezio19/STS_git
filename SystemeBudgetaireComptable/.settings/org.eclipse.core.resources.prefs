@@ -2,3 +2,4 @@ eclipse.preferences.version=1
 encoding//src/main/resources/messages_ar.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/Guide.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/addMinutes.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/listeGuides.jsp=UTF-8
