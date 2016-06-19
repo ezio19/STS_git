@@ -414,6 +414,18 @@
     		return arg != jQuery(element).find('option:selected').text();;
    		}, "Value must not equal arg.");
     	
+    	$.validator.addMethod("compteNumExists", function(value, element, arg){
+    		var result;
+    		$.ajaxSetup({async: false});
+			$.getJSON(	'${home}compteExists.json'+'?num='+value,
+						{ajax : 'true'}, 
+						function(data){result=data;}
+					);
+			$.ajaxSetup({async: true});
+    			return result;
+   			}, "Compte n'existe pas.");
+    	
+    	
     	//Ajout des règles
         $("#dateOperation").rules("add", {
             required: true,
@@ -440,10 +452,12 @@
 	            required: true,
 	            minlength:12,
 	            maxlength:12,
+	            compteNumExists:true,
 	            messages:{
 	            	required:"Veuillez indiquer un numéro de compte !",
 		            minlength:"Le numéro de compte doit être sur 12 positions!",
-		            maxlength:"Le numéro de compte doit être sur 12 positions!",				        		
+		            maxlength:"Le numéro de compte doit être sur 12 positions!",
+		            compteNumExists:"Le compte n'existe pas!"
 	            }
 	        });
 	    });
@@ -640,7 +654,13 @@
             });
 
         </script>
+        <script type="text/javascript">
+        function testerCompte(handler,numCompte){
+
+        }
+        </script>
         <script>
+
 			var selectElement = document.getElementById("engaSelection");
 			selectElement.onchange = function (){
 				var tierId = document.getElementById("engaSelection").value;
