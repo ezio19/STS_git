@@ -695,8 +695,8 @@
             <div class="card list-comptes">
                 <!--L'entete de la page' -->
                 <div class="card-header">
-                    <h2>Dotation Intiial
-                        <small>Affichage des Dotation Initial.</small>
+                    <h2>Dotation Supplémentaire
+                        <small>Affichage des Dotation Supplémentaire.</small>
                     </h2>
                 </div>
                 <div class="card-contenu">
@@ -712,7 +712,7 @@
 								 
 								<div class="col-sm-6" >
 								
-                                 <a  href="formu.html"><button class=" btn btn-login">Ajouter Dotation</button> </a>
+                                 <a  href="formu1.html"><button class=" btn btn-login">Ajouter Dotation</button> </a>
 								</div>
 							 </div>
 							  
@@ -946,7 +946,8 @@
                                              <br/>
                                              <br/>
                                             
-												   <button type="submit" value="Valider" class="btn btn-login btn-danger " onclick="window.location='AfficherDecisionIntiale.html';" > Valider</button>
+                                           
+												   <button type="submit" value="Valider" class="btn btn-login btn-danger "  onclick="window.location='AfficherDecisionSupp.html';"style="margin-left:300p;">Valider</button>
 											 
 												    
                                         </div>
@@ -983,7 +984,7 @@
 		var	obs		 =$('#Observation_dot1').val();
 		var json = {"date":date,"numDecision":num,"objet":objet,"observation":obs};
 		$.ajax({
-			url: '<spring:url value="searchA.json"/>'/*$('#JsonPostForm').action*/,
+			url: '<spring:url value="searchA1.json"/>'/*$('#JsonPostForm').action*/,
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -1026,7 +1027,7 @@
   	var section= $(this.closest('tr')).eq(0).val();*/
 	var json = {"section":section,"chapitre":chapitre,"rubrique":rubrique,"montant":montant,"codeMonnais":codeMonnaie};
 	$.ajax({
-		url: '<spring:url value="searchSupp.json"/>'/*$('#JsonPostForm').action*/,
+		url: '<spring:url value="searchSupp1.json"/>'/*$('#JsonPostForm').action*/,
 		type: 'POST',
 		dataType: 'json',
 		contentType: 'application/json',

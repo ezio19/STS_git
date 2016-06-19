@@ -44,8 +44,8 @@ public class DotationRubrique {
 		this.montant = montant;
 		this.codeMonnais = codeMonnais;
 	}
-	public boolean equals(DotationRubrique d) {
-		if (this.chapitre==d.getChapitre()&&this.montant==d.getMontant()&&this.codeMonnais==d.getCodeMonnais()&&this.rubrique==d.getRubrique()&&this.section==d.getSection()){
+	public boolean eq(DotationRubrique d) {
+		if (chapitre==d.getChapitre()){
 			return true;
 		}
 		else return false;

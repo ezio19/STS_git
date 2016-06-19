@@ -7,7 +7,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,20 +22,97 @@ import dz.ifa.model.Criteria;
 import dz.ifa.model.DecisionDotation;
 import dz.ifa.model.DotationRubrique;
 import dz.ifa.model.Goal;
+import dz.ifa.model.decisionDotationSupp;
 import dz.ifa.repository.DotationDecisionRepository;
+import dz.ifa.repository.DotationDecisionSuppRepository;
 import dz.ifa.service.DecisionDotationService;
+import dz.ifa.service.DecisionDotationSuppService;
 import dz.ifa.service.DotationRubriqueService;
 @Controller
+
 public class DecisionDotationController {
 	@Autowired
 	private DecisionDotationService dotaDecRep;
+	@Autowired
+	private DotationRubriqueService dotRub;
+	@Autowired
+	private DecisionDotationSuppService dotaSupp;
 	private DecisionDotation des=null;
+	List<DotationRubrique> liste;
+	List<DecisionDotation> list =new ArrayList<DecisionDotation>();
+
 	int val=0;
-	@RequestMapping(value = "/addDecision", method = RequestMethod.GET)
-	public String addDotationDecision(@ModelAttribute("dD") DecisionDotation descisionDotation) {
-	
-		return "addDecision";
+	@RequestMapping(value = "/AfficherDecisionIntiale", method = RequestMethod.GET)
+	public String aficherDecision(@ModelAttribute("dD") DecisionDotation descisionDotation,Model model) {
+		list =new ArrayList<DecisionDotation>();
+		List<DecisionDotation> listeDotation=null;
+		if(listeDotation==null){
+		listeDotation=dotaDecRep.loadAll();
+		}
+		model.addAttribute("lis",listeDotation);
+		return "index111";	
 	}
+	//-------------------------------------------------------------------------//
+	@RequestMapping(value = "/formu2", method = RequestMethod.GET)
+	public String modifierDotationRubriques (Model model,@RequestParam String section,
+			@RequestParam String chapitre,@RequestParam String rubrique,@RequestParam String montant
+			,@RequestParam String codeMonnais) {
+		System.out.println(section);
+		System.out.println(chapitre);
+		System.out.println(rubrique);
+		System.out.println(montant);
+		System.out.println(codeMonnais);
+		model.addAttribute("numDecision", section);
+		model.addAttribute("chapitre", chapitre);
+		model.addAttribute("rubrique", rubrique);
+		model.addAttribute("montant", montant);
+		model.addAttribute("codeMonnais", codeMonnais);
+		return "formu2";
+	}
+	//-------------------------------------------------------------------------//
+	@RequestMapping(value = "/AfficherListeRubriques", method = RequestMethod.GET)
+	public String afficherDotationRubrique(Model model,@RequestParam String numero) {
+		System.out.println("le numero est: "+ numero);
+		List<DotationRubrique> liste1= new ArrayList<DotationRubrique>();
+		if(liste==null){
+		liste = dotRub.loadAll();
+		}
+		Iterator i = liste.iterator();
+		DotationRubrique x;
+		while(i.hasNext())
+		{
+			x=(DotationRubrique)i.next();
+			if(x.getNumDecision().equals((String)numero)){
+				liste1.add(x);
+			}
+		}
+		 model.addAttribute("lis",liste1);
+		 i=liste.iterator();
+		 while(i.hasNext()){
+			 x=(DotationRubrique)i.next();
+			// System.out.println(x.getNumDecision());
+		 }
+		return "index222";
+	}
+	
+	//-----------------------------------------------------------------------------//
+	@RequestMapping(value = "/AfficherDecisionSupp", method = RequestMethod.GET)
+	public String aficherDecisionSupp(@ModelAttribute("dD") DecisionDotation descisionDotation,Model model) {
+		
+		List<decisionDotationSupp> listeDotation=null;
+		if(listeDotation==null){
+		listeDotation=dotaSupp.loadAll();
+		}
+		model.addAttribute("lis",listeDotation);
+		return "index333";	
+	}
+	//-----------------------------------------------------------------------------//
+	@RequestMapping(value = "/AjoutDecisi", method = RequestMethod.GET)
+	public String afficheDotationRub(Model model)
+	{
+		 		return "AjoutDecisi";
+	}
+	//--------------------------------------------------------------------------//
 	
 	@RequestMapping(value = "/addDecision", method = RequestMethod.POST)
 	public String updateGoal(@Valid @ModelAttribute("dD") DecisionDotation descisionDotation, BindingResult result,Model model) {
@@ -49,9 +125,7 @@ public class DecisionDotationController {
 		List<DecisionDotation> l = dotaDecRep.loadAll();
 		
 		model.addAttribute("l", l);
-		System.out.println("c'est la merde quoi mon pote");
-		System.out.println(descisionDotation.getObjet());
-		System.out.println(descisionDotation.getDate());
+		
 		System.out.println("result has errors: " + result.hasErrors());
 		des=descisionDotation;
 	
@@ -102,7 +176,6 @@ public class DecisionDotationController {
 		return "decisionRubrique";
 	}
 	/*******************************************************************/
-	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(value = "/index0", method = RequestMethod.GET)
 	public String addIndex(Model model) {
 		if(des==null)
@@ -122,7 +195,7 @@ public class DecisionDotationController {
 	}
 /****************************************************/
 	@RequestMapping(value = "/searchA.json", method = RequestMethod.POST)
-	public @ResponseBody void findActivit(@RequestBody DecisionDotation De) {
+	public @ResponseBody String findActivit(@RequestBody DecisionDotation De) {
 		
 		des.setDate(De.getDate());
 		des.setNumDecision(De.getNumDecision());
@@ -139,18 +212,27 @@ public class DecisionDotationController {
 		}
 		des.setListeRubrique(l);
 		dotaDecRep.save(des);
+		return "AfficherDecisionIntiale";
 	}
 /***************************************************************/
 	@RequestMapping(value = "/searchSupp.json", method = RequestMethod.POST)
-	public @ResponseBody void findActivities3(@RequestBody DotationRubrique De) {
-		Iterator i = des.getListeRubrique().iterator();
+	public @ResponseBody void suppLigne(@RequestBody DotationRubrique De) {
+		List<DotationRubrique> l =des.getListeRubrique();
+		Iterator i = l.iterator();
+		DotationRubrique d1,d2;
 		int j=0;
-		while(i.hasNext()&&!((DotationRubrique)i.next()).equals(De))
+		while(i.hasNext())
 		{
-			des.getListeRubrique().remove(j);
+			d2=(DotationRubrique)i.next();
+			if(d2.getRubrique().equals(De.getRubrique())&&d2.getChapitre().equals(De.getChapitre())){ 
+				l.remove(j);
+			}
 			j++;
 		}
-		System.out.println("la supp marche");		
+		while(i.hasNext())
+		{
+			d1=(DotationRubrique)i.next();
+		}
+		des.setListeRubrique(l);
 	}
-	
 }

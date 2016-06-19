@@ -13,15 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-
-import org.hibernate.validator.constraints.Range;
 @Entity
-@Table(name="decisionDotation")
-public class DecisionDotation {
-	@TableGenerator(name="dDec",allocationSize=1)
+@Table(name="decisionDotationSupp")
+public class decisionDotationSupp {
+	@TableGenerator(name="dDe",allocationSize=1)
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="dDec")
-	@Column(name="Decision_ID")
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="dDe")
+	@Column(name="Decision_Supp_ID")
 	private long id;
 	@Column(name="DATE")
 	private String  date;
@@ -74,4 +72,5 @@ public class DecisionDotation {
 	{
 		listeRubrique.add(ds);
 	}
+
 }

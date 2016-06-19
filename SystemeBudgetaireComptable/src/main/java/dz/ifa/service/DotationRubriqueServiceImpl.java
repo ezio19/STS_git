@@ -29,4 +29,8 @@ public class DotationRubriqueServiceImpl implements DotationRubriqueService{
 	public List<DotationRubrique> loadAll() {
 		return dotaDeRe.findAll();
 	}
+	/*
+	public List<DotationRubrique> findDotationRubriqueByNumero(String decision){
+		return dotaDeRe.findDotationRubriqueByNumero(decision);
+	}*/
 }

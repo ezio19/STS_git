@@ -8,13 +8,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link href="css/material-design-iconic-font.css" rel="stylesheet">
+    <link href="css/material-design-iconic-font.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
     <link href="css/sweetalert2.css" rel="stylesheet">
     <link href="css/app.min.1.css" rel="stylesheet">
     <link href="css/app.min.2.css" rel="stylesheet">
+    
     
 
     <title></title>
@@ -695,31 +696,25 @@
             <div class="card list-comptes">
                 <!--L'entete de la page' -->
                 <div class="card-header">
-                    <h2>Dotation Intiial
-                        <small>Affichage des Dotation Initial.</small>
+                    <h2>Decision Dotation Supplementaire
+                        <small>Affichage Les Decision Dotation Supplementaire </small>
                     </h2>
                 </div>
                 <div class="card-contenu">
                     <div id="data-table-command-header" class="bootgrid-header container-fluid">
                         
                         
+                        
                         <div class="row">
                             <div class="form-inline">
 							  
 							
-							<div class="row">
-								 
-								 
-								<div class="col-sm-6" >
-								
-                                 <a  href="formu.html"><button class=" btn btn-login">Ajouter Dotation</button> </a>
-								</div>
-							 </div>
+							
 							  
 							
 
                                
-							</div>
+	</div>
                             
                         </div>
                         
@@ -732,39 +727,32 @@
                     <!--Le tableau qui affiche la liste des comptes -->
                     <table id="data-table-command" class="table table-striped table-vmiddle bootgrid-table" aria-busy="false">
                         <!--l'entete du tableau' -->
-                        
-                        
-                        
-                        
+
                         <thead>
                         <tr>
-                            <th style="" class="text-left" data-column-id="id"><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Section</span><span class="zmdi icon "></span></a></th>
-                            <th data-column-id="CompteLabel" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Chapitre</span><span class="zmdi icon "></span></a></th>
-                            <th data-column-id="CompteType" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Rubrique</span><span class="zmdi icon "></span></a></th>
-                            <th data-column-id="CompteDescription" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Montant</span><span class="zmdi icon zmdi-expand-more"></span></a></th>
-                             <th data-column-id="CompteDescription" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Code Monnaie</span><span class="zmdi icon zmdi-expand-more"></span></a></th>
-                            
+                            <th style="" class="text-left" data-column-id="id"><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Numero</span><span class="zmdi icon "></span></a></th>
+                            <th data-column-id="CompteLabel" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Date</span><span class="zmdi icon "></span></a></th>
+                            <th data-column-id="CompteType" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Objet</span><span class="zmdi icon "></span></a></th>
+                            <th data-column-id="CompteDescription" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Observation</span><span class="zmdi icon zmdi-expand-more"></span></a></th>                            
                             <th data-column-id="commands" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor "><span class="text">Commandes</span><span class="zmdi icon "></span></a></th>
                         </tr>
                         </thead>
                         
                         <!--Les ligne du tableau -->
                          
-                       <c:forEach items="${liste}" var="c" varStatus="statut">
-                            <tr data-row-id="${statut.count}">
-                            <td id="Section" class="text-left" style=""> ${c.section}</td> 
-                            <td id="Chapitre" class="text-left" style="">${c.chapitre}</td>
-                            <td id="Rubrique" class="text-left" style="">${c.rubrique}</td>
-                            <td id="Montant" class="text-left" style="">${c.montant}</td>
-                            <td id="Monnaie" class="text-left" style=""> ${c.codeMonnais}</td>
+                       <c:forEach items="${lis}" var="c" >
+                            <tr data-row-id="1">
+                            <td id="Section" class="text-left" style=""> ${c.numDecision}</td> 
+                            <td id="Chapitre" class="text-left" style="">${c.date}</td>
+                            <td id="Rubrique" class="text-left" style="">${c.objet}</td>
+                            <td id="Montant" class="text-left" style="">${c.observation}</td>
 							<td class="text-left" style="">
-                            <button type="button"  class="editingInfors1 btn btn-icon command-edit waves-effect waves-circle" onclick="document.location.href='formu2.html?section=${c.section}&chapitre=${c.chapitre}&rubrique=$${c.rubrique}&montant=${c.montant}&codeMonnais=${c.codeMonnais}';" ><span class="zmdi zmdi-edit" data-row-id="${c.id}"></span></button>
-                     
-                            <button type="button" class="compte-suppr extern btn btn-icon command-delete waves-effect waves-circle" ><span class="zmdi zmdi-delete" data-row-id="${c.rubrique}"></span></button>
+							  <button type="button" class="<  showingInfos1 btn btn-icon command-edit waves-effect waves-circle" data-row-id="" onclick="document.location.href='AfficherListeRubriques.html?numero=${c.numDecision}';"><span class="zmdi zmdi-assignment"  ></span></button>
+                            
 							 
 							</td>	 
                         </tr>
-
+						
   
                       </c:forEach>
                         
@@ -781,12 +769,9 @@
                     
                     
                     <!--le pied du tableau -->
-                     	
+                   
                 </div>
-                
 
-                
-                
             </div>
             
              <div class="card compte-detail" style="display:none">
@@ -828,11 +813,11 @@
                                     <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
                                         <div class="panel-body">
                                             <div class="row">
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-4">
                                                     <label>Classe</label>
                                                     <input placeholder="6" class="form-control compte"></input>        
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-8">
                                                       <label>Nom</label>
                                                       <input placeholder="6" class="form-control compte"></input>        
                                                 </div>
@@ -911,49 +896,7 @@
                 
             </div>
             
-              <form:form class="form-inline" id="form1">
-				 <div class="panel panel-collapse"> 
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                Détails sur la décision
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="collapse in" role="tabpanel" aria-labelledby="headingThree">
-                                        <div class="panel-body">
-                                              <div class="row">
-                                                <div class="col-sm-3">
-                                                    <label>Numero</label>
-                                                    <input id="Numero_dot1" placeholder="6" class="form-control compte" required="required" pattern="[0-9]{1,}"></input>        
-                                                </div>
-                                                
-                                                <div class="col-sm-3">
-                                                    <label>Objet</label>
-                                                    <input id="Objet_dot1" placeholder="6" class="form-control compte" required="required" pattern="[a-zA-Z]*+[ ]*" ></input>        
-                                                </div>
-                                                
-                                                <div class="col-sm-3">
-                                                    <label>Date</label>
-                                                    <input id="Date_dot1"  type="date" class="form-control compte" required="required"></input>        
-                                                </div>
-												
-												<div class="col-sm-3">
-                                                    <label>Observation</label>
-                                                    <input id="Observation_dot1"  class="form-control compte" required="required" pattern="[a-zA-Z]*+[ ]*"></input>        
-                                                </div>
-                                            </div>
-                                             <br/>
-                                             <br/>
-                                            
-												   <button type="submit" value="Valider" class="btn btn-login btn-danger " onclick="window.location='AfficherDecisionIntiale.html';" > Valider</button>
-											 
-												    
-                                        </div>
-                                    </div>
-                                </div>
-				 
-				</form:form>
+             
             
             
             
@@ -971,7 +914,7 @@
 <!--Bibliothèque pour le sidebar -->
 <script type="text/javascript" src="./js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
-<script type="text/javascript" src="./js/functions.js"></script>
+<script type="text/javascript" src="./js/functions01.js"></script>
 
 <script type="text/javascript">
     $("#form1").submit(function(event){	
@@ -983,7 +926,7 @@
 		var	obs		 =$('#Observation_dot1').val();
 		var json = {"date":date,"numDecision":num,"objet":objet,"observation":obs};
 		$.ajax({
-			url: '<spring:url value="searchA.json"/>'/*$('#JsonPostForm').action*/,
+			url: '<spring:url value="searchA1.json"/>'/*$('#JsonPostForm').action*/,
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -1011,7 +954,7 @@
       //  selectedCompte=-1;
     //event.preventDefault();
     //alert("mchaat");
-    //var x=$(this.closest('tr')).attr('data-row-id');
+    var x=$(this.closest('tr')).attr('data-row-id');
   	var section= $(this.closest('tr')).find('td').eq(0).text();
   	var chapitre= $(this.closest('tr')).find('td').eq(1).text();
    	var rubrique= $(this.closest('tr')).find('td').eq(2).text();
@@ -1026,7 +969,7 @@
   	var section= $(this.closest('tr')).eq(0).val();*/
 	var json = {"section":section,"chapitre":chapitre,"rubrique":rubrique,"montant":montant,"codeMonnais":codeMonnaie};
 	$.ajax({
-		url: '<spring:url value="searchSupp.json"/>'/*$('#JsonPostForm').action*/,
+		url: '<spring:url value="searchSupp1.json"/>'/*$('#JsonPostForm').action*/,
 		type: 'POST',
 		dataType: 'json',
 		contentType: 'application/json',
@@ -1044,7 +987,7 @@
 			$('#resultActivities').html(html);*/
 		}
 	});
-        this.closest('tr').remove();
+        //this.closest('tr').remove();
 
         //afficherSupprMessage(this.closest('tr'));
 });

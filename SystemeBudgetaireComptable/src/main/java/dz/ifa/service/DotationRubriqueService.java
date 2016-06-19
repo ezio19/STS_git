@@ -9,4 +9,5 @@ import dz.ifa.model.Goal;
 public interface DotationRubriqueService {
 	Goal save(DotationRubrique desDO);
 	List<DotationRubrique> loadAll();
+	//List<DotationRubrique> findDotationRubriqueByNumero(String decision);
 }
