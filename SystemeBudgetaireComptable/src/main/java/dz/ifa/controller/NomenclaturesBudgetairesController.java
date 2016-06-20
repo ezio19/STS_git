@@ -75,7 +75,7 @@ public class NomenclaturesBudgetairesController {
 
         if (service.getNomenclatureComptableByNumeroNomenclature(code_strcuture).size() > 0) {
             System.out.println("Strcuture Exist");
-            return "902";
+            return "909";
         }
         Structure structure=new Structure();
         structure.setAdresse(address_strcuture);
