@@ -131,6 +131,16 @@
             element4.type = "text";
             element4.name = "listcpt["+rowCount+"].pourcentage";
             cell4.appendChild(element4);
+
+            var element4 = document.createElement("input");
+            element4.className="form-control input-mask";
+            element4.type = "text";
+            element4.name = "listcpt["+rowCount+"].idligne";
+        
+            element4.style="visibility: collapse;"
+                cell4.appendChild(element4);
+            
+	            
            
         }
 
@@ -264,6 +274,8 @@
 													
 							<div style="visibility: collapse;">
 							<input type="text" id="nb_element" name="nb_element">1</input> 
+							<input type="text" name="typeop" id="typeop">update</input>
+							
 							</div>
 							<div class="card-header">
 							<h2>Compte Debiteur :</h2>
@@ -289,6 +301,8 @@
 						            var table = document.getElementById('tableAddguide');
 									var rowCount = table.rows.length-1;
 						            var row = table.insertRow(rowCount+1);
+									document.getElementById('nb_element').value= rowCount;
+						            
 
 
 									 var cell1 = row.insertCell(0);
@@ -373,6 +387,17 @@
 						            cell4.appendChild(element4);
 		
 
+						            var element4 = document.createElement("input");
+						            element4.className="form-control input-mask";
+						            element4.type = "text";
+						            element4.name = "listcpt["+rowCount+"].idligne";
+						            element4.value= "${list.id}";
+						            element4.style="visibility: collapse;"
+							            
+						            cell4.appendChild(element4);
+											
+						            
+						            
 									</script>
 									
 									</c:forEach>	

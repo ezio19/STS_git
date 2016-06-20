@@ -52,7 +52,7 @@ public class GuideServiceImpl implements GuideService{
 	
 	public void deleteGuideById(Long id)
 	{
-		guideRepository.delete(id);;
+		guideRepository.delete(id);
 	}
    
 	

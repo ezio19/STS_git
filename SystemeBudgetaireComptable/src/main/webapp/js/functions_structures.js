@@ -345,7 +345,7 @@ function afficherCreateAccountMessage(){
             $.ajax(
                 {
                     type: "POST",
-                    url: "/nomenclatures_budget_create.html",
+                    url: "nomenclatures_budget_create.html",
                     data: { classe:classe1, nom:nom1 ,section:section1 ,chapitre:chapitre1,rubrique:rubrique1,numero:numero1,designagtion:designagtion1 , type:type1 },
                     success: function(data){
                         if(data==100)
@@ -386,7 +386,7 @@ function afficherModifAccountMessage(){
             $.ajax(
                 {
                     type: "POST",
-                    url: "/nomenclatures_budget_edit.html",
+                    url: "nomenclatures_budget_edit.html",
                     data: { classe:classe1, nom:nom1 ,section:section1 ,chapitre:chapitre1,rubrique:rubrique1,numero:numero1,designagtion:designagtion1 , type:type1 },
                     success: function(data){
                         if(data==100)
@@ -423,7 +423,7 @@ function afficherCreateChapitreMessage() {
         $.ajax(
             {
                 type: "POST",
-                url: "/nomenclatures_chapitre_create.html",
+                url: "nomenclatures_chapitre_create.html",
                 data: { code_chapitre:code_chap, designation_chapitre:designation_chap},
                 success: function(data){
                     if(data==100)
@@ -467,7 +467,7 @@ function afficherSupprChapitre(selectedRow) {
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "/nomenclatures_chapitre_delete.json",
+                        url: "nomenclatures_chapitre_delete.json",
                         data: {code_chapitre: selectedRow},
                         success: function (data) {
                             if (JSON.parse(data) == "100")

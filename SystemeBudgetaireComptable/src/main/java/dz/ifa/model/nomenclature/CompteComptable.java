@@ -18,7 +18,7 @@ public class CompteComptable {
 	@Column
 	private String libelleCompte;
 
-	@Column
+	@Column(unique = true)
 	private String numCompte;
 
 	//nomenclatureComptable comptecomptable

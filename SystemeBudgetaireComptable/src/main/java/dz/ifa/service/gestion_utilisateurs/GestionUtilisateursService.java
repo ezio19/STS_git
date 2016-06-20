@@ -16,6 +16,11 @@ public interface GestionUtilisateursService {
 
     public List<Fonctionnalite> getAllFonctionnalites();
     public Fonctionnalite creerFonctionnalite(Fonctionnalite fonctionnalite);
+    public List<Fonctionnalite> getFonctionnalite(String nom);
+    public List<Fonctionnalite> getFonctionnaliteById(Integer id);
+
+    public List<Utilisateur> getUtilisateurByIdUtilisateur(String id);
+    public List<Utilisateur> getUtilisateursByIdNomPrenom();
 
     public List<Notification> getAllNotifications();
     public Notification creerNotification(Notification notification);

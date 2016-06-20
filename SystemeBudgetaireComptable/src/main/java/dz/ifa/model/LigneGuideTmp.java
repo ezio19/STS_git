@@ -12,17 +12,27 @@ public class LigneGuideTmp {
 		this.pos = pos;
 	}
 
-	private Long cpt;
+	private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	private String cpt;
 	
 	private String rolecpt;
 
 	private float pourcentage;
 
-	public Long getCpt() {
+	public String getCpt() {
 		return cpt;
 	}
 
-	public void setCpt(Long cpt) {
+	public void setCpt(String cpt) {
 		this.cpt = cpt;
 	}
 

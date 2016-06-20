@@ -60,8 +60,9 @@
 <script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
 <script type="text/javascript" src="js/sugar.min.js"></script>
 <script type="text/javascript" src="js/jquerymy-1.2.4.min.js"></script>
+<script type="text/javascript" src="js/papaparse.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
-<script type="text/javascript" src="js/functions_rubriques.js"></script>
+<script type="text/javascript" src="js/functions_gestion_utilisateurs.js"></script>
 
 </body>
 

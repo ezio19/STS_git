@@ -51,9 +51,7 @@
 
                             <div class="col-sm-4">
 
-                                <select class="selectpicker" title="Classe" id="class-select"
-                                        data-live-search="true">
-                                </select>
+                                <select class="selectpicker" title="Classe" id="class-select" data-live-search="true"></select>
                             </div>
 
                             <div class="row">
@@ -79,8 +77,8 @@
                             <div class="col-sm-8">
                                 <br/>
                                 <select class="selectpicker" title="Type du Compte" id="compte-type">
-                                    <option value="budgetaire">Budgétaire</option>
-                                    <option value="analytique">Analytique</option>
+                                    <option value="Budgetaire">Budgétaire</option>
+                                    <option value="Analytique">Analytique</option>
                                 </select>
                             </div>
 

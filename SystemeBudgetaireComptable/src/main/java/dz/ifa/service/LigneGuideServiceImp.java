@@ -20,5 +20,11 @@ public class LigneGuideServiceImp implements LigneGuideService{
 	}
 	
 
+	public void deleteLigneById(Long id)
+	{
+		ligneRepository.delete(id);
+		//ligneRepository.delete(ligne);
+	}
+   
 
 }

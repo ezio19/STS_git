@@ -311,8 +311,8 @@
 				                            <td id="date" class="text-left" style=""> ${gui.date}</td>
 											<td class="text-left" style="">
 											
-				                            <button type="button"  name="deleteguide" class="editingInfors btn btn-icon command-edit waves-effect waves-circle" ><span class="zmdi zmdi-edit" data-row-id="${gui.id}"></span></button>
-				                            <button type="button" name="modifierguide"  class="compte-suppr extern btn btn-icon command-delete waves-effect waves-circle" ><span class="zmdi zmdi-delete" data-row-id="${gui.id}"></span></button>
+				                            <button type="button"  name="modifierguide" class="editingInfors btn btn-icon command-edit waves-effect waves-circle" ><span class="zmdi zmdi-edit" data-row-id="${gui.id}"></span></button>
+				                            <button type="button" name="deleteguide"  class="compte-suppr extern btn btn-icon command-delete waves-effect waves-circle" ><span class="zmdi zmdi-delete" data-row-id="${gui.id}"></span></button>
 											 
 											</td>	 
                        				 </tr>
@@ -327,7 +327,7 @@
 								<br>
 								
 								<div style="position: absolute;bottom: 16px;right: 16px;">
-									<a href="NewGuide.html"><button class="btn bgm-green btn-primary waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Ajouter guide</button></a>
+									<a href="NewGuide.html"><button class="new-guide btn bgm-green btn-primary waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Ajouter guide</button></a>
 								</div>			
 						</div>
 					</div>	
@@ -527,7 +527,7 @@
 		   	var type_facture= $($(this).closest('tr')).find('td').eq(2).text();
 		   	var descriptionguide= $($(this).closest('tr')).find('td').eq(3).text();
 		   	var date= $($(this).closest('tr')).find('td').eq(4).text();
-			var op="suppresison";
+			var op="suppression";
 			
 
 		   	document.getElementById('iddeleted').value=id;
@@ -554,7 +554,7 @@
 		  	var nom_guide= $($(this).closest('tr')).find('td').eq(1).text();
 		   	var type_facture= $($(this).closest('tr')).find('td').eq(2).text();
 		   	var descriptionguide= $($(this).closest('tr')).find('td').eq(3).text();
-		   	var date= $($(this).closest('tr')).find('td').eq(4).text();
+		   	var date= $(this.closest('tr')).find('td').eq(4).text();
 			var op="modification";
 
 		   
@@ -565,12 +565,28 @@
 			document.getElementById('desciptiondeleted').value= descriptionguide;
 			document.getElementById('datedeleted').value= date;
 			document.getElementById('typeop').value= op;
-			
 
+			
+           
 			$( "form:first" ).submit();
 				     
 		
 			});
+			
+		   
+		   </script>
+		   
+		   
+		  <script type="text/javascript">                 
+		   $('button.new-guide').on('click',function(){
+
+				 
+		
+			var op="new";
+			document.getElementById('typeop').value=op
+			$( "form:first" ).submit();
+		
+		});
 			
 		   
 		   </script>

@@ -21,6 +21,15 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur,String>
 public List<Utilisateur> getUtilisateurByIdUtilisateur(@Param("user_id") String user_id);
 
 
+        @Query("SELECT c.idUtilisateur,c.nom,c.prenom FROM Utilisateur c ")
+        public List<Utilisateur> getUtilisateursByIdNomPrenom();
+
+
+/*
+        @Query("select b from Book b " +
+                "where b.from between ?1 and ?2
+        List<Book> findByDatesBetween(Date departure, Date arrival);
+*/
 
 
 

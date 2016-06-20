@@ -3,8 +3,8 @@
 <div class="card list-sections">
     <!--L'entete de la page' -->
     <div class="card-header">
-        <h2>Sections
-            <small>Affichage des sections .</small>
+        <h2>Nomenclatures Comptables
+            <small>Affichage des Nomenclatures Comptables .</small>
         </h2>
     </div>
     <div class="card-contenu">

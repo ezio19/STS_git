@@ -11,6 +11,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Rubrique {
 
+
+
+
+
     @TableGenerator(name = "rubriqueGen", allocationSize = 1)
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "rubriqueGen")
@@ -23,6 +27,10 @@ public class Rubrique {
     private String designation;
     @Column
     private Double montant;
+
+    @Column
+    private String code_monnaie;
+
 
     @ManyToOne
     @JsonManagedReference

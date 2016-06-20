@@ -131,28 +131,12 @@
                         <div class="row">
 
                             <div class="col-sm-4 m-b-20">
-                                <div class="toggle-switch" data-ts-color="green">
-                                    <label for="ts2" class="ts-label">Droit 1</label>
-                                    <input id="ts2" type="checkbox" hidden="hidden">
-                                    <label for="ts2" class="ts-helper"></label>
-                                </div>
+                                <br/>
+                                <select class="selectpicker" title="Rubrique" id="rubrique-select-section"
+                                        data-live-search="true">
+                                </select>
                             </div>
 
-                            <div class="col-sm-4 m-b-20">
-                                <div class="toggle-switch" data-ts-color="green">
-                                    <label for="ts3" class="ts-label">Droit 2</label>
-                                    <input id="ts3" type="checkbox" hidden="hidden">
-                                    <label for="ts3" class="ts-helper"></label>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 m-b-20">
-                                <div class="toggle-switch" data-ts-color="green">
-                                    <label for="ts4" class="ts-label">Droit 3 </label>
-                                    <input id="ts4" type="checkbox" hidden="hidden">
-                                    <label for="ts4" class="ts-helper"></label>
-                                </div>
-                            </div>
 
                         </div>
 

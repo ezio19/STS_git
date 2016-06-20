@@ -110,8 +110,8 @@
 
 
 			var elOption = new Array(
-                    new Option("Débit", "Débit", false, false),
-                    new Option("Crédit", "Crédit", false, false)
+                    new Option("Debit", "Debit", false, false),
+                    new Option("Credit", "Credit", false, false)
                           );
 
 			for (i=0;i<elOption.length;i++)
@@ -272,7 +272,7 @@
 										<th data-column-id="check" data-type="checkbox" ></th>
 										<th data-column-id="num" data-type="numeric" >N°</th>
 										<th data-column-id="id" data-type="numeric">numero de compte</th>
-										<th data-column-id="option">Debiteur/Créditeur</th>
+										<th data-column-id="option">Debiteur/Crediteur</th>
 										<th data-column-id="sender">Pourcentage %</th>
 										
 									</tr>
@@ -304,8 +304,8 @@
 											<div class="fg-line">
 												<div class="select">
 													<select class="form-control" name="listcpt[0].rolecpt">
-														<option>Débit</option>
-														<option>Crédit</option>
+														<option>Debit</option>
+														<option>Credit</option>
 													</select>
 												</div>
 											</div>
@@ -507,7 +507,7 @@
 
             //Success Message
             $('#sa-success').click(function(){
-                swal("guide Ajouté!", "Le guide a été ajouté a la base!", "success")
+                swal("guide Ajoute!", "Le guide a ete ajoute a la base!", "success")
             });
 
             //Warning Message

@@ -16,33 +16,17 @@ var data_section = {
 $(document).ready(function () {
 
     //Initialisation
-    $.getJSON('/nomenclatures_chapitres_list.json', {
+    $.getJSON('nomenclatures_chapitres_list.json', {
         ajax: 'true'
     }, function (result) {
         var htln = "";
-       /* result.sectionList[0].code_section="sect123";
-        result.sectionList[0].designation="Exploitation";
 
-        result.sectionList[1].code_section="sec23";
-        result.sectionList[1].designation="Immobilisations Corporelles";
-
-
-        result.sectionList[2].code_section="sect12";
-        result.sectionList[2].designation="Dettes";*/
 
         for (var i = 0; i < result.chapitreList.length; i++) {
             //alert("taille de la liste : "+result.sectionList.length+"taille du result :"+result.length+"  la section "+i+" "+result.sectionList[i].codeSection+" "+result.sectionList[i].designation);
             console.log("Section " + i);
             console.log("Code Section " + result.chapitreList[i].codeChapitre);
             console.log("Designation" + result.chapitreList[i].designation);
-
-            //$('#chapitre-select-section').selectpicker(result.sectionList[i].codeSection, result.sectionList[i].designation);
-
-            /*
-             $('#chapitre-select-section')
-             .append($('<option>', { value : result.sectionList[i].codeSection })
-             .text(result.sectionList[i].designation));
-             */
             htln += '<option value=';
             htln += "" + result.chapitreList[i].codeChapitre;
             htln += '>';
@@ -300,7 +284,7 @@ function afficherModifAccountMessage() {
         $.ajax(
             {
                 type: "POST",
-                url: "/nomenclatures_chapitre_edit.html",
+                url: "nomenclatures_chapitre_edit.html",
                 data: {code_chapitre: codeChap, designation: designationChap},
                 success: function (data) {
                     if (data == 100)
@@ -340,7 +324,7 @@ function afficherCreateChapitreMessage() {
         $.ajax(
             {
                 type: "POST",
-                url: "/nomenclatures_rubrique_create.html",
+                url: "nomenclatures_rubrique_create.html",
                 data: {code_rubrique: code_rubr, designation_rubrique: designation_rubr,code_rubrique:code_rubr},
                 success: function (data) {
                     if (JSON.parse(data) == "100")
@@ -383,7 +367,7 @@ function afficherSupprChapitre(selectedRow) {
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "/nomenclatures_chapitre_delete.json",
+                        url: "nomenclatures_chapitre_delete.json",
                         data: {code_chapitre: selectedRow},
                         success: function (data) {
                             if (JSON.parse(data) == "100")

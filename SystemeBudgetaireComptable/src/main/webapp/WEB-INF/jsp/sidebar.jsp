@@ -35,8 +35,16 @@
 
 
                 <ul class="main-menu">
-                    <li><a href=""><i class="zmdi zmdi-home"></i> Acceuil</a></li>
-                    <li><a href="gestion_utilisateurs_utilisateurs.html"><i class="zmdi zmdi-home"></i> Gestion des Utilisateurs</a></li>
+                    <li ><a href=""><i class="zmdi zmdi-home"></i> Acceuil</a></li>
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="zmdi zmdi-home"></i> Gestion des Utilisateurs</a>
+                        <ul>
+                            <li><a href="gestion_utilisateurs_utilisateurs.html"><i class="zmdi zmdi-face zmdi-hc-fw "></i> Utilisateurs</a></li>
+                            <li><a href="gestion_utilisateurs_fonctionnalites.html"><i class="zmdi zmdi-lamp zmdi-hc-fw"></i> Fonctionnalites</a></li>
+                        </ul>
+                    </li>
+
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-view-compact"></i> Nomenclatures</a>
                         <ul>
@@ -45,13 +53,23 @@
                             <li><a href="nomenclatures_chapitres.html"><i class="zmdi zmdi-view-day zmdi-hc-fw"></i> Chapitres</a></li>
                             <li><a href="nomenclatures_rubriques.html"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i> Rubriques</a></li>
                             <li><a href="nomenclatures_comptables.html"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Nomenclatures Comptables</a></li>
-                            <li><a  href="nomenclatures_budgetaires.html"><i class="zmdi zmdi-labels zmdi-hc-fw"></i> Comptes Budgetaires</a></li>
+                            <li><a href="nomenclatures_budgetaires.html"><i class="zmdi zmdi-labels zmdi-hc-fw"></i> Comptes Budgetaires</a></li>
                         </ul>
                     </li>
-                </ul>
+
+
+                    <li class="sub-menu">
+                        <a href="#"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Transfert</a>
+                        <ul>
+                            <li ><a href="addDemandeTransfertInterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a></li>
+                            <li ><a href="addDemandeTransfertExterne.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Demande Transfert Externe</a></li>
+                        </ul>
+                    </li>
+
+
                 <li><a href="engagement_ajouter.html"><i class="zmdi zmdi-home"></i> Ajouter Engagement</a></li>
 
-
+                </ul>
 
 
 

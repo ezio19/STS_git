@@ -46,6 +46,24 @@ public class GestionUtilisateursImpl implements GestionUtilisateursService {
         return fonctionnaliteRepository.save(fonctionnalite);
     }
 
+    public List<Fonctionnalite> getFonctionnalite(String nom) {
+        return fonctionnaliteRepository.getFonctionnaliteByDesignation(nom);
+    }
+
+    public List<Fonctionnalite> getFonctionnaliteById(Integer id) {
+        return fonctionnaliteRepository.getFonctionnaliteById(id);
+    }
+
+    public List<Utilisateur> getUtilisateurByIdUtilisateur(String id) {
+        return utilisateurRepository.getUtilisateurByIdUtilisateur(id);
+    }
+
+    @Override
+    public List<Utilisateur> getUtilisateursByIdNomPrenom() {
+        return utilisateurRepository.getUtilisateursByIdNomPrenom();
+    }
+
+
     public List<Notification> getAllNotifications() {
         return notificationRepository.findAll();
     }

@@ -16,7 +16,7 @@ var data_section = {
 $(document).ready(function () {
 
     //Initialisation
-    $.getJSON('/nomenclatures_rubriques_list.json', {
+    $.getJSON('nomenclatures_rubriques_list.json', {
         ajax: 'true'
     }, function (result) {
         var htln = "";
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     //compteComptable
     //Initialisation select Classes
-    $.getJSON('/nomenclatures_comptables_list.json', {
+    $.getJSON('nomenclatures_comptables_list.json', {
         ajax: 'true'
     }, function (result) {
         var htln = "";
@@ -313,7 +313,7 @@ function afficherModifAccountMessage() {
         $.ajax(
             {
                 type: "POST",
-                url: "/nomenclatures_chapitre_edit.html",
+                url: "nomenclatures_chapitre_edit.html",
                 data: {code_chapitre: codeChap, designation: designationChap},
                 success: function (data) {
                     if (data == 100)
@@ -353,7 +353,7 @@ function afficherCreateChapitreMessage() {
         $.ajax(
             {
                 type: "POST",
-                url: "/nomenclatures_budgetaires_create.html",
+                url: "nomenclatures_budgetaires_create.html",
                 data: {numero_compte: num_cpt, designation_compte: designation_cpt,type_compte:type_cpt,code_rubrique:rub_cpt,numero_classe:classe_cpt},
                 success: function (data) {
                     if (JSON.parse(data) == "100")
@@ -378,7 +378,7 @@ function afficherSupprChapitre(selectedRow) {
 
     swal({
             title: 'Ete Vous Sure ?',
-            text: "Voulez vous vraiment supprimer Ce Chapitre!",
+            text: "Voulez vous vraiment supprimer Ce Compte!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -396,7 +396,7 @@ function afficherSupprChapitre(selectedRow) {
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "/nomenclatures_chapitre_delete.json",
+                        url: "nomenclatures_chapitre_delete.json",
                         data: {code_chapitre: selectedRow},
                         success: function (data) {
                             if (JSON.parse(data) == "100")

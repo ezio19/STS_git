@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dz.ifa.model.commun.Structure;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -43,7 +44,8 @@ public class Utilisateur {
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinTable(name="AUTORITE",
     joinColumns = @JoinColumn (name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR"),
-        inverseJoinColumns = @JoinColumn(name="FONCTIONNALITE", referencedColumnName="DESIGNATION"))
+        inverseJoinColumns = @JoinColumn(name="designation", referencedColumnName="designation"))
+	@JsonManagedReference
 	private List<Fonctionnalite> foncts;
 
 
@@ -52,7 +54,7 @@ public class Utilisateur {
 	private List<Preference> preferences;
 
 
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinTable(name = "users_taches",
 			joinColumns = @JoinColumn(name ="ID_UTILISATEUR",referencedColumnName = "ID_UTILISATEUR"),
 			inverseJoinColumns = @JoinColumn(name = "idTache",referencedColumnName = "idTache"))
@@ -72,6 +74,10 @@ public class Utilisateur {
 	private Structure structure;
 
 
+
+	public void prepareList(){
+		this.foncts=new ArrayList<Fonctionnalite>();
+	}
 
 
 	public String getCodeStructure() {

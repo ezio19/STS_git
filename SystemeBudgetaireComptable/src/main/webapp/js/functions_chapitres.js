@@ -16,7 +16,7 @@ var data_section = {
 $(document).ready(function () {
 
     //Initialisation
-    $.getJSON('/nomenclatures_sections_list.json', {
+    $.getJSON('nomenclatures_sections_list.json', {
         ajax: 'true'
     }, function (result) {
         var htln = "";
@@ -300,7 +300,7 @@ function afficherModifAccountMessage() {
         $.ajax(
             {
                 type: "POST",
-                url: "/nomenclatures_chapitre_edit.html",
+                url: "nomenclatures_chapitre_edit.html",
                 data: {code_chapitre: codeChap, designation: designationChap},
                 success: function (data) {
                     if (data == 100)
@@ -338,7 +338,7 @@ function afficherCreateChapitreMessage() {
         $.ajax(
             {
                 type: "POST",
-                url: "/nomenclatures_chapitre_create.html",
+                url: "nomenclatures_chapitre_create.html",
                 data: {code_chapitre: code_chap, designation_chapitre: designation_chap,code_section:code_sect},
                 success: function (data) {
                     if (JSON.parse(data) == "100")
@@ -381,7 +381,7 @@ function afficherSupprChapitre(selectedRow) {
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "/nomenclatures_chapitre_delete.json",
+                        url: "nomenclatures_chapitre_delete.json",
                         data: {code_chapitre: selectedRow},
                         success: function (data) {
                             if (JSON.parse(data) == "100")

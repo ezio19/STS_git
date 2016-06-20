@@ -3,7 +3,7 @@
 <div class="card list-sections">
     <!--L'entete de la page' -->
     <div class="card-header">
-        <h2>Chapitres
+        <h2>Utilisateurs
             <small>Affichage des Utilisateur.</small>
         </h2>
     </div>
@@ -20,25 +20,13 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
-                <th data-column-id="code_chapitre"   >Id Utilisateur</th>
-                <th data-column-id="CompteLabel" class="text-left" >Nom</th>
-                <th data-column-id="user_prenom" class="text-left" >Prénom</th>
+                <th data-column-id="id"   >Id Utilisateur</th>
+                <th data-column-id="actif" class="text-left" >Nom</th>
+                <th data-column-id="designation" class="text-left" >Prénom</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
             </tr>
             </thead>
-
             <!--Les lignes du tableau -->
-            <tbody>
-            <c:if test="${listUtilisateurs.size()>0}">
-            <c:forEach begin="0" end="${listUtilisateurs.size()-1}" varStatus="loop">
-                <tr data-row-id="${loop.index}">
-                    <td class="text-left " style="">${listUtilisateurs.get(loop.index).getId()}</td>
-                    <td class="text-left" style="">${listUtilisateurs.get(loop.index).getNom()}</td>
-                    <td class="text-left" style="">${listUtilisateurs.get(loop.index).getPrenom()}</td>
-                </tr>
-            </c:forEach>
-            </c:if>
-            </tbody>
         </table>
 
     </div>

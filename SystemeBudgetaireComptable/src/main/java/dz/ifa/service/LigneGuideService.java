@@ -7,5 +7,5 @@ import dz.ifa.model.LigneGuide;
 public interface LigneGuideService {
 	
 	
-
+	public void deleteLigneById(Long ligne);
 }
