@@ -17,10 +17,12 @@ public interface OperationService {
 	//Les opérations qui concernent les opérations comptables
 	public OperationComptable save(OperationComptable operationComptable);
 	public List<OperationComptable> getListOperationsComptables(Date date1,Date date2);
+	public List<OperationComptable> getAllOperationsComptables();
 	
 	
 	//Opération qui concerne les opérations budgétaires
 	public OperationBudgetaire save(OperationBudgetaire operationBudgetaire);
 	public List<OperationBudgetaire> getListOperationsBudgetaires(Date date1,Date date2);
+	public List<OperationBudgetaire> getAllOperationsBudgetaires();
 	
 }

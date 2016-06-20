@@ -40,18 +40,29 @@ public class OperationServiceImpl implements OperationService {
 		return  operationComptableRepository.save(operationComptable);
 	}
 	
+	public List<OperationBudgetaire> getAllOperationsBudgetaires() {
+		
+		return operationBudgetaireRepository.findAll();
+	}
+	
 	public List<OperationBudgetaire> getListOperationsBudgetaires(Date date1, Date date2) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return operationBudgetaireRepository.findOpBugetaire(date1, date2);
 	}
 	
 	
 	public List<OperationComptable> getListOperationsComptables(Date date1, Date date2) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return operationComptableRepository.findOpCompt(date1, date2);
 	}
 
 	public OperationBudgetaire save(OperationBudgetaire operationBudgetaire) {
 		return operationBudgetaireRepository.save(operationBudgetaire);
+	}
+
+	@Override
+	public List<OperationComptable> getAllOperationsComptables() {
+		
+		return operationComptableRepository.findAll();
 	}
 }

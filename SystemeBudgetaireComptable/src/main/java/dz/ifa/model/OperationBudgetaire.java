@@ -32,6 +32,9 @@ public class OperationBudgetaire  {
 	public OperationBudgetaire(){
 
 	}
+	public void setDebitCreditCompt(){
+    	this.operationComptable.setCreditdebit();
+    }
 	
 	public void setId(Long id) {
 		this.id = id;

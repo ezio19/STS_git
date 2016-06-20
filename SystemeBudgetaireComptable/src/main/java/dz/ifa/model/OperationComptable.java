@@ -24,6 +24,11 @@ public class OperationComptable {
 	
 	private Date dateOperation;
 	private String numOperation;
+	// new code juba
+	private float debit=0;
+	private float credit=0;
+		
+	///---------------------
 	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private PieceComptable pieceComptable;
@@ -35,7 +40,18 @@ public class OperationComptable {
 	public OperationComptable(){
 
 	}
-
+	public void setCreditdebit(){
+		this.debit=0;
+		this.credit=0;
+		for (EcritureComptableElementaire ecritureComptableElementaire : ecrituresElementaire) {
+			if (ecritureComptableElementaire.isDebiteur()){
+				this.debit+=ecritureComptableElementaire.getMontant();
+				System.out.println(this.debit+"---------------->debit");
+			}else
+				this.credit+=ecritureComptableElementaire.getMontant();
+			System.out.println(this.credit+"---------------->credit");
+			}
+		}
 	
 
 	public Date getJourneeComptable() {
@@ -76,6 +92,30 @@ public class OperationComptable {
 
 	public void setEcrituresElementaire(List<EcritureComptableElementaire> ecrituresElementaire) {
 		this.ecrituresElementaire = ecrituresElementaire;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Date getDateOperation() {
+		return dateOperation;
+	}
+	public void setDateOperation(Date dateOperation) {
+		this.dateOperation = dateOperation;
+	}
+	public float getDebit() {
+		return debit;
+	}
+	public void setDebit(float debit) {
+		this.debit = debit;
+	}
+	public float getCredit() {
+		return credit;
+	}
+	public void setCredit(float credit) {
+		this.credit = credit;
 	}
 	
 	

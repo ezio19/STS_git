@@ -50,7 +50,7 @@
 			users-by-username-query=
 		    "select ID_UTILISATEUR,PASSWD, ACTIF from UTILISATEUR where ID_UTILISATEUR=?"
 		  authorities-by-username-query=
-		    "select ID_UTILISATEUR, DESIGNATION from AUTORITE where ID_UTILISATEUR=?"/>
+		    "select ID_UTILISATEUR, designation from AUTORITE where ID_UTILISATEUR=?"/>
 		</authentication-provider>		
 	</authentication-manager>
 	
