@@ -81,24 +81,6 @@ $(document).ready(function () {
      }}, data_section);
      */
     var grid = $("#data-table-command").bootgrid({
-
-        ajax:true,
-        loadOnce:true,
-        ajaxSettings: {
-            method: "GET",
-            cache: false
-        },
-        url: "gestion_utilisateurs_utilisateurs_list.json",
-        responseHandler: function(data) {
-            var response = {
-                current: 1,  // instead of data.current,
-                rowCount: 10,
-                rows: data.utilisateurList,
-                total: data.utilisateurList.length
-            };
-
-            return response;
-        },
         css: {
             icon: 'zmdi icon',
             iconColumns: 'zmdi-view-module',

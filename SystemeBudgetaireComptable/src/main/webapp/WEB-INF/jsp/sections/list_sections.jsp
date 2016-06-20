@@ -18,8 +18,8 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
-                <th style="" class="text-left" data-column-id="id"><a href="javascript:void(0);"class="column-header-anchor sortable"><span class="text">ID_Section</span><span class="zmdi icon "></span></a></th>
-                <th data-column-id="CompteLabel" class="text-left" style=""><a href="javascript:void(0);"class="column-header-anchor sortable"><span class="text">Désignation</span><span class="zmdi icon "></span></a></th>
+                <th style="" class="text-left" data-column-id="id">ID_Section</th>
+                <th data-column-id="CompteLabel" class="text-left" style="">Désignation</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
             </tr>
             </thead>
