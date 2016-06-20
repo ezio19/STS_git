@@ -24,27 +24,14 @@
         
     </head>
     <body>
-        <header id="header" class="clearfix" data-current-skin="blue">
-            <ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
+        <c:import url="/WEB-INF/jsp/header.jsp"></c:import>
+        <c:import url="WEB-INF/jsp/sidebar.jsp"></c:import>
 
-                <li class="logo hidden-xs">
-                    <a href="index-2.html">IFA</a>
-                </li>
 
-              </ul>
-        </header>
-        
+
+
+
         <section id="main" data-layout="layout-1">
-          
-            
-            
             <section id="content">
                 <div class="container">
                     
