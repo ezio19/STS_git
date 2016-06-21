@@ -38,6 +38,18 @@ public class GestionUtilisateursImpl implements GestionUtilisateursService {
         return utilisateurRepository.save(utilisateur);
     }
 
+    public String supprimerUtilisateur(Utilisateur utilisateur) {
+        try{
+            utilisateurRepository.delete(utilisateur);
+            return utilisateur.getId();
+        }catch (Exception e){
+                e.printStackTrace();
+                return null;
+        }
+
+
+    }
+
     public List<Fonctionnalite> getAllFonctionnalites() {
         return fonctionnaliteRepository.findAll();
     }
@@ -60,6 +72,7 @@ public class GestionUtilisateursImpl implements GestionUtilisateursService {
 
     @Override
     public List<Utilisateur> getUtilisateursByIdNomPrenom() {
+            //utilisateurRepository.de
         return utilisateurRepository.getUtilisateursByIdNomPrenom();
     }
 

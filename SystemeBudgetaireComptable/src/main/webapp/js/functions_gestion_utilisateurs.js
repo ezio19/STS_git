@@ -97,14 +97,18 @@ $(document).ready(function () {
         },
 
 
-
-
     }).on("loaded.rs.jquery.bootgrid", function () {
 
-        grid.find('button.compte-suppr.extern').on("click", function () {
-            alert("you pressed delete on row " + $(this).data("data-row-id "));
-        }).end().find("button.showingInfos").on("click", function () {
-            alert("you pressed edit on row " + $(this).data("data-row-id"));
+
+        grid.find('button.compte-suppr.extern').on("click", function (e) {
+            var rows = Array();
+            rows[0] = $(this).data("row-id");
+            var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+            afficherSupprChapitre(idUtilisateur, rows);
+
+        })
+            .end().find("button.showingInfos").on("click", function (e) {
+            alert("you pressed edit on row " + $(this).data("row-id"));
         });
 
 
@@ -126,19 +130,6 @@ $(document).ready(function () {
             afficherSection();
         });
 
-//Click sur le bouton de supprimer
-        $('button.compte-suppr.extern').on('click', function () {
-            var self = $(this);
-            var part;
-            //part=;
-            //part=JSON.stringify(part);
-            //[data-findme]
-            //afficherSupprMessage2(self.closest('tr'));
-            //afficherSupprChapitre( self.closest('tr').attr('data-row-id'));
-            afficherSupprChapitre();
-
-
-        });
 
         //Click sur le bouton modifier (interne)
         $('button.compte-mod').on('click', function () {
@@ -189,52 +180,6 @@ $(document).ready(function () {
     });
 
 
-//Configuration du tableau contenant les rubrique
-    $(document).ready(function () {
-        $("#chapitre-data-table-command").bootgrid({
-            css: {
-                icon: 'zmdi icon',
-                iconColumns: 'zmdi-view-module',
-                iconDown: 'zmdi-expand-more',
-                iconRefresh: 'zmdi-refresh',
-                iconUp: 'zmdi-expand-less'
-            },
-            formatters: {
-                "commands": function (column, row) {
-                    return "<button type=\"button\" class=\"rubrique-suppr extern btn btn-icon command-delete waves-effect waves-circle\" data-row-id=\"" + row.id + "\"><span class=\"zmdi zmdi-delete\"></span></button> ";
-                }
-            }
-
-        });
-    }).on("loaded.rs.jquery.bootgrid", function () {
-
-
-        //Click sur le bouton  supprimer un chapitre
-        $('button.rubrique-create').on('click', function () {
-            afficherCreateChapitre();
-
-
-        });
-
-
-        //Click sur le bouton  supprimer un chapitre
-        $('button.rubrique-suppr').on('click', function () {
-            /* var rows=Array();
-             rows[0] = $(this).data("row-id");
-             afficherSupprChapitre(rows);
-             alert("You pressed edit on row: " + $(this).data("row-id"));*/
-
-            var rows = Array();
-            rows[0] = $(this).data("data-row-id");
-            $("#chapitre-data-table-command").bootgrid('remove', rows);
-
-
-        });
-
-
-    });
-
-
     function afficherCreateChapitre() {
 
         //$( "input.compte" ).prop( "readonly", false );
@@ -269,12 +214,6 @@ $(document).ready(function () {
         $('.card.list-sections').css('display', 'none');
 
     }
-
-
-//Click sur le bouton  supprimer
-    $('button.compte-suppr.intern').on('click', function () {
-        afficherSupprMessage(this.closest('tr'));
-    });
 
 //Click sur le bouton de retour
     $('a.btn-login.section-return-btn').on('click', function () {
@@ -403,51 +342,60 @@ $(document).ready(function () {
         });
     }
 
-    function afficherSupprChapitre(selectedRow) {
-
-        $('#data-table-command').bootgrid().data('.rs.jquery.bootgrid').get
+    function afficherSupprChapitre(idUtilisateur, selectedRow) {
 
 
-        console.log("the chapitre code is :" + selectedRow);
-        /*
-         swal({
-         title: 'Ete Vous Sure ?',
-         text: "Voulez vous vraiment supprimer Ce Chapitre!",
-         type: 'warning',
-         showCancelButton: true,
-         confirmButtonColor: '#d33',
-         confirmButtonText: 'Oui, Confirmer!',
-         cancelButtonText: 'Annuler',
-         confirmButtonClass: 'btn btn-danger',
-         cancelButtonClass: 'btn',
-         buttonsStyling: false,
-         closeOnConfirm: true,
 
-         },
-         function (isConfirm) {
-         if (isConfirm)
-         $.ajax(
-         {
-         type: "POST",
-         dataType: 'json',
-         url: "nomenclatures_chapitre_delete.json",
-         data: {code_chapitre: selectedRow},
-         success: function (data) {
-         if (JSON.parse(data) == "100")
-         swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-         else
-         swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-         }
-         }
-         ).done(function (data) {
-         swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-         })
-         .error(function (data) {
-         swal("Erreur", "Chapitre non  Supprimé", "error");
-         });
 
-         });
-         */
+
+
+
+        //console.log("the chapitre code is :" + selectedRow);
+
+        swal({
+                title: 'Ete Vous Sure ?',
+                text: "Voulez vous vraiment supprimer Ce Chapitre!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Oui, Confirmer!',
+                cancelButtonText: 'Annuler',
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn',
+                buttonsStyling: false,
+                closeOnConfirm: true,
+
+            },
+            function (isConfirm) {
+
+
+                if (isConfirm)
+
+                $.ajax(
+                    {
+                        type: "POST",
+                        dataType: 'json',
+                        url: "gestion_utilisateurs_utilisateur_remove.html",
+                        data: {id_utilisateur: idUtilisateur},
+                    }
+                ).done(function (data) {
+                    if (JSON.parse(data) == "100"){
+
+                        $('#data-table-command').bootgrid("remove", selectedRow);
+                        swal("Succès!", "L'Utilisateur est supprimé avec Succès", "success");
+                    }
+
+                    else
+                        swal("Erreur", "Utilisateur non  Supprimé", "error");
+                })
+                    .error(function (data) {
+                        swal("Erreur", "Utilisateur non  Supprimé", "error");
+                    });
+
+            });
+
 
     }
+
+
 });
