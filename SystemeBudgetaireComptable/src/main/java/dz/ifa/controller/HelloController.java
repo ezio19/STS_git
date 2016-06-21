@@ -14,12 +14,5 @@ public class HelloController {
 		
 		return "hello";
 	}
-	
-	@RequestMapping(value ="/gestionUtilisateurs")
-	public String users (Model model) {
-		
-		//model.addAttribute("greeting", "Hello World");
-		
-		return "gestionUtilisateurs";
-	}
+
 }

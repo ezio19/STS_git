@@ -24,8 +24,8 @@
     
     <body class="four-zero-content">        
         <div class="four-zero">
-            <h2>405!</h2>
-            <small>Méthode de requête non autorisée !</small>
+            <h2>404!</h2>
+            <small>Ressource non trouvée !</small>
             <footer>
                 <a onclick="goBack()"><i class="zmdi zmdi-arrow-back"></i></a>
                 <a href="index.jsp"><i class="zmdi zmdi-home"></i></a>

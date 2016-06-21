@@ -11,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,7 @@ public class OperationsBudgetaireController {
 	@Autowired
 	CompteService compteService; 
 	
+	@PreAuthorize("hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')")
 	@RequestMapping(value="/opbudg",method=RequestMethod.GET)
 	public String afficherOperationsBudgetaires(Model model){
 		List<Engagement> listEngagement = engagementService.recupererListEngagements();
@@ -48,6 +50,8 @@ public class OperationsBudgetaireController {
 		
 		return "operationBudgetaire";
 	}
+	
+	@PreAuthorize("hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')")
 	@RequestMapping(value="/opbudg",method=RequestMethod.POST)
 	public String validerOperationBudgetaire(HttpServletRequest requete){
 		

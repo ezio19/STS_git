@@ -20,7 +20,7 @@
 		<intercept-url pattern="/media/**" access="permitAll"/>
 		<intercept-url pattern="/vendors/**" access="permitAll"/>
 		<!-- <intercept-url pattern="/**" access="hasRole('ROLE_USER')" /> -->
-		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/**" access="hasAuthority('ROLE_USER')" />
 		
 		<form-login login-page="/login.html" 
 			authentication-failure-url="/loginFailed.html"
