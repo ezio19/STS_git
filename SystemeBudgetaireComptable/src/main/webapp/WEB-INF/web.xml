@@ -65,6 +65,11 @@
 	    <session-timeout>30</session-timeout>
 	    <tracking-mode>COOKIE</tracking-mode>
 	</session-config>
+	
+	<error-page>
+	 <error-code>404</error-code>
+	 <location>/404.html</location>
+	</error-page>
 
 	<display-name>Systeme budgetaire et comptable</display-name>
 </web-app>

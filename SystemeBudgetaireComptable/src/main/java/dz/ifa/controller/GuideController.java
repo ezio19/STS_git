@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -60,7 +61,7 @@ public class GuideController {
 	private LigneGuideService ligneGuideService;
 
 	
-	
+	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@RequestMapping(value="/NewGuide", method=RequestMethod.GET)
 	public ModelAndView getGuide(HttpServletRequest request, HttpSession session)  {
 		List <TypeFacture> listtype = typeFactureService.findAllTypeFacture();
@@ -78,7 +79,7 @@ public class GuideController {
 
 	
 	
-	
+	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@RequestMapping(value = "/NewGuide", params="addguide", method = RequestMethod.POST)
 	public ModelAndView handleLogin(HttpServletRequest request, HttpSession session)
 		    throws AuthenticationException {
@@ -144,7 +145,7 @@ public class GuideController {
 	
 	
 	
-	
+	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@RequestMapping(value = "/AllGuides", method = RequestMethod.POST)
 	public ModelAndView deleteGuide2(HttpServletRequest request, HttpSession session)
 		    throws AuthenticationException {

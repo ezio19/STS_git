@@ -46,9 +46,13 @@ public class Fonctionnalite {
 	}
 
 
-	@ManyToMany(mappedBy="foncts")
+	@ManyToMany(mappedBy="foncts",cascade = CascadeType.ALL)
 	@JsonBackReference
 	private List<Utilisateur> utilisateurs;
+
+
+
+
 	
 	public Fonctionnalite() {
 	}

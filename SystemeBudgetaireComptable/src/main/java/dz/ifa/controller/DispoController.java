@@ -62,7 +62,7 @@ public class DispoController {
 	   System.out.println("montant de la rubrique:");
 	   System.out.println(montantRubrique);
 	   
-	 return "redirect:http://localhost:8061/SystemeBudgetaireComptable/disponibilite.html";
+	 return "redirect:disponibilite.html";
 		
 
 		}
@@ -88,7 +88,7 @@ public class DispoController {
 		   System.out.println("montant de la rubrique:");
 		   System.out.println(montantRubrique);
 		   
-		 return "redirect:http://localhost:8061/SystemeBudgetaireComptable/disponibilite.html";
+		 return "redirect:disponibilite.html";
 			
 
 			}

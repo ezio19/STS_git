@@ -33,6 +33,11 @@ public class LoginController {
 		return "403";
 	}
 	
+	@RequestMapping(value="/404", method=RequestMethod.GET)
+	public String error404(ModelMap model) {
+		return "404";
+	}
+	
 	@RequestMapping(value="/405", method=RequestMethod.GET)
 	public String error405(ModelMap model) {
 		return "405";

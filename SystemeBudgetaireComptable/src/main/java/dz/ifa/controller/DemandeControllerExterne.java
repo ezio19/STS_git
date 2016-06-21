@@ -34,7 +34,7 @@ public class DemandeControllerExterne {
 	public String montant_T;
 	
 /*********Ajouter une demande de transfert externe ***********************/
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@RequestMapping(value = "/addDemandeTransfertExterne", method = RequestMethod.GET)
 	public String addDemande(Model model, HttpSession session) {
 		
@@ -51,7 +51,7 @@ public class DemandeControllerExterne {
 	}	
 	
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@RequestMapping(value = "/addDemandeTransfertExterne", method = RequestMethod.POST)
 	public String updateDemande(@Valid @ModelAttribute("demandeTransfertExterne") DemandeTransfertExterne demandeTransfertExterne, BindingResult result) 
 	
@@ -73,7 +73,7 @@ public class DemandeControllerExterne {
 	
 	/*********All demandes transfert externe ***********************/
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @RequestMapping(value="/AllDemandesExterne", method=RequestMethod.GET)
     public ModelAndView listDemandesExterne() {
         
@@ -101,7 +101,7 @@ public class DemandeControllerExterne {
     /**********get  demandes transfert externe ***********************/
 	
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @RequestMapping(value = "/getDemandeExterne", method = RequestMethod.GET)
 	public String getDemande(Model model){
     

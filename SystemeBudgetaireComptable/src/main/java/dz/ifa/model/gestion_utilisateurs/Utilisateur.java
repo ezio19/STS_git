@@ -29,8 +29,7 @@ public class Utilisateur {
 	private String eMail;
 	@Column
 	private String hashPasswd;
-	@Column
-	private String idUtilisateur;
+
 	@Column
 	private String nom;
 	@Column
@@ -144,13 +143,7 @@ public class Utilisateur {
 		this.hashPasswd = hashPasswd;
 	}
 
-	public String getIdUtilisateur() {
-		return idUtilisateur;
-	}
 
-	public void setIdUtilisateur(String idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
 
 	public String getNom() {
 		return nom;

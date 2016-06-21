@@ -36,6 +36,7 @@ public class OperationComptable {
 	@OneToMany(mappedBy="operationComptable",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private List<EcritureComptableElementaire> ecrituresElementaire = new ArrayList<EcritureComptableElementaire>();
 	
+	boolean valide=false;
 	
 	public OperationComptable(){
 
@@ -118,6 +119,13 @@ public class OperationComptable {
 		this.credit = credit;
 	}
 	
+	public void setValide(boolean valide) {
+		this.valide = valide;
+	}
+	
+	public boolean isValide() {
+		return valide;
+	}
 	
 
 }

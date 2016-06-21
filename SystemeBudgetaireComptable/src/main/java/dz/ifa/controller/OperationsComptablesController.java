@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,7 @@ public class OperationsComptablesController {
 	
 	
     //Methodes de traitement
+	@PreAuthorize("hasAnyAuthority('ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')")
 	@RequestMapping(value="/opcompt",method=RequestMethod.GET)
 	public String afficherOperationsComptables(Model model){
 		Printer.printObject(pieceComptableService.findPiecesByTierId(1));
@@ -54,6 +56,7 @@ public class OperationsComptablesController {
 		return "oprationComptable";
 	}
 	
+	@PreAuthorize("hasAnyAuthority('ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')")
 	@RequestMapping(value="/opcompt",method=RequestMethod.POST)
 	public String validerOperationComptable(HttpServletRequest requete){
 		
@@ -63,8 +66,8 @@ public class OperationsComptablesController {
 		int nombreEcriture = Integer.parseInt(nbParams);
 		OperationComptable operationComptable = new OperationComptable();
 		//Numéro de l'opération
-		operationComptable.setNumOperation("");
-		operationComptable.setDate(Calendar.getInstance().getTime());
+		String numOperation = requete.getParameter("numOperation");
+		operationComptable.setNumOperation(numOperation);
 		try {
 			//Date de l'opération
 			String date = requete.getParameter("dateOperation");
@@ -91,25 +94,22 @@ public class OperationsComptablesController {
 			else ecritureElementaire.setDebiteur(false);
 			//Montant 
 			ecritureElementaire.setMontant(Float.parseFloat(montant));
-			
 			operationComptable.getEcrituresElementaire().add(ecritureElementaire);
+			ecritureElementaire.setOperationComptable(operationComptable);
 		}
 		//Récupération de la pieceComptable
 		long idPiece = Long.parseLong(requete.getParameterValues("pieceSelection")[0]);
 		PieceComptable pieceComptable = pieceComptableService.findPieceById(idPiece);
 		operationComptable.setPieceComptable(pieceComptable);
-		//Affichage de l'objet
-		/**try {
-			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			String json = ow.writeValueAsString(operationComptable);
-			System.out.print(json);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}**/
 		
 		operationService.save(operationComptable);
 		
 	   return "oprationComptable";
 	}  
+	
+	@RequestMapping(value="operations",method=RequestMethod.GET)
+	public String afficherOperations(HttpServletRequest requete){
+		requete.setAttribute("listOperations", operationService.getListOperationsBrouillard());
+		return "operations";
+	}
 }

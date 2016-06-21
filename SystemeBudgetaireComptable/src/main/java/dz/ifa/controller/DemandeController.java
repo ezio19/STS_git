@@ -35,7 +35,7 @@ public class DemandeController {
 	public String num_demande_T;
 	
 	public String montant_T;
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@RequestMapping(value = "/addDemandeTransfert", method = RequestMethod.GET)
 	public String addDemande(Model model, HttpSession session) {
 		
@@ -51,7 +51,7 @@ public class DemandeController {
 	}	
 	
 	
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@RequestMapping(value = "/addDemandeTransfert", method = RequestMethod.POST)
 	public String updateDemande(@Valid @ModelAttribute("demandeTransfert") DemandeTransfert demandeTransfert, BindingResult result) 
 	
@@ -71,7 +71,7 @@ public class DemandeController {
 	
 	
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @RequestMapping(value="/AllDemandes", method=RequestMethod.GET)
     public ModelAndView listDemandes() {
         
@@ -79,7 +79,7 @@ public class DemandeController {
             return new ModelAndView("listeDemandes", "liste", demandes);
     }
     
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @RequestMapping(value = "/AllDemandes", method = RequestMethod.POST)
 	public String deleteGuide2(HttpServletRequest request, HttpSession session)
 		    throws AuthenticationException {

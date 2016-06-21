@@ -79,6 +79,10 @@ public class GestionUtilisateurController {
     }
 
 
+
+
+
+
     @RequestMapping(
             value = {"/gestion_utilisateurs_utilisateurs_list.json"},
             method = {RequestMethod.GET}
@@ -106,6 +110,37 @@ public class GestionUtilisateurController {
             utilisateurs = new ArrayList<>();
         model.addAttribute("listUtilisateurs", utilisateurs);
         return "gestion_utilisateurs";
+    }
+
+
+
+    @RequestMapping(
+            value = {"/gestion_utilisateurs_utilisateur_remove"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postRemoveUtilisateur(@RequestParam("id_utilisateur") String id_utilisateur ) {
+
+        System.out.println("Utilisateur Remove : ");
+        System.out.println("id_utilisateur :" + id_utilisateur);
+
+        List<Utilisateur>  utilisateurs= gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
+        if(utilisateurs.size()==0)
+            return "102";
+        Utilisateur utilisateur=utilisateurs.get(0);
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("Suppression de l'utilisateur "+utilisateur.getId());
+
+        String result=gestionUtilisateursService.supprimerUtilisateur(utilisateur);
+        if(result !=null){
+            System.out.println("Utilisateur Removed "+result);
+            return "100";
+        }
+        else
+            return "101";
+
     }
 
 

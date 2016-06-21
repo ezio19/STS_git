@@ -2,8 +2,10 @@ package dz.ifa.repository;
 
 import dz.ifa.model.gestion_utilisateurs.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,12 +19,17 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur,String>
 
 
 
-@Query("SELECT c FROM Utilisateur c WHERE LOWER(c.idUtilisateur) = LOWER(:user_id)")
+@Query("SELECT c FROM Utilisateur c WHERE c.id = (:user_id)")
 public List<Utilisateur> getUtilisateurByIdUtilisateur(@Param("user_id") String user_id);
 
 
-        @Query("SELECT c.idUtilisateur,c.nom,c.prenom FROM Utilisateur c ")
+        @Query("SELECT c.id,c.nom,c.prenom FROM Utilisateur c ")
         public List<Utilisateur> getUtilisateursByIdNomPrenom();
+
+
+        @Query("delete From Utilisateur u where u.id =   (:id_user) ")
+        public void deleteById(@Param("id_user") String id_user);
+
 
 
 /*

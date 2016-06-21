@@ -13,6 +13,9 @@ import java.util.List;
 public interface GestionUtilisateursService {
     public List<Utilisateur> getAllUtilisateurs();
     public Utilisateur creerUtilisateur(Utilisateur utilisateur);
+    public String supprimerUtilisateur(Utilisateur utilisateur);
+
+
 
     public List<Fonctionnalite> getAllFonctionnalites();
     public Fonctionnalite creerFonctionnalite(Fonctionnalite fonctionnalite);

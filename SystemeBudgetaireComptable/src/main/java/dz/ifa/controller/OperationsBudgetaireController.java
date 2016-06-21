@@ -11,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,7 @@ public class OperationsBudgetaireController {
 	@Autowired
 	CompteService compteService; 
 	
+	@PreAuthorize("hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')")
 	@RequestMapping(value="/opbudg",method=RequestMethod.GET)
 	public String afficherOperationsBudgetaires(Model model){
 		List<Engagement> listEngagement = engagementService.recupererListEngagements();
@@ -48,6 +50,8 @@ public class OperationsBudgetaireController {
 		
 		return "operationBudgetaire";
 	}
+	
+	@PreAuthorize("hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')")
 	@RequestMapping(value="/opbudg",method=RequestMethod.POST)
 	public String validerOperationBudgetaire(HttpServletRequest requete){
 		
@@ -58,8 +62,8 @@ public class OperationsBudgetaireController {
 		OperationComptable operationComptable = new OperationComptable();
 		OperationBudgetaire operationBudgetaire = new OperationBudgetaire();
 		//Numéro de l'opération
-		operationComptable.setNumOperation("");
-		operationComptable.setDate(Calendar.getInstance().getTime());
+		String numOperation = requete.getParameter("numOperation");
+		operationComptable.setNumOperation(numOperation);
 		try {
 			//Date de l'opération
 			String date = requete.getParameter("dateOperation");
@@ -86,33 +90,23 @@ public class OperationsBudgetaireController {
 			else ecritureElementaire.setDebiteur(false);
 			//Montant 
 			ecritureElementaire.setMontant(Float.parseFloat(montant));
-			operationService.save(operationComptable);
-			ecritureElementaire.setOperationComptable(operationComptable);
 			operationComptable.getEcrituresElementaire().add(ecritureElementaire);
+			ecritureElementaire.setOperationComptable(operationComptable);
 		}
 		//Récupération de la pieceComptable
 		long idPiece = Long.parseLong(requete.getParameterValues("pieceSelection")[0]);
 		PieceComptable pieceComptable = pieceComptableService.findPieceById(idPiece);
-		operationComptable.setPieceComptable(pieceComptable);
-		//Affichage de l'objet
-		/**try {
-			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			String json = ow.writeValueAsString(operationComptable);
-			System.out.print(json);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}**/
-		
-		
+		operationComptable.setPieceComptable(pieceComptable);		
 		operationBudgetaire.setOperationComptable(operationComptable);
-		Tier tier = engagementService.findTierByPieceId(idPiece);
-		Engagement engagement = engagementService.findEngagementByTierId(tier.getId());
+		long engaId = Long.parseLong(requete.getParameterValues("engaSelection")[0]);
+		Engagement engagement = engagementService.findEngagementById(engaId);
 		operationBudgetaire.setM_Engagement(engagement);
 		Printer.printObject(operationBudgetaire);
 		operationService.save(operationBudgetaire);
 		return "operationBudgetaire";
 	}
+	
+
 }
 	
 
