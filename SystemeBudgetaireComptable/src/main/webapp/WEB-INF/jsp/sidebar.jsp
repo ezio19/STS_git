@@ -94,7 +94,7 @@
                         </ul>
                    </li>
                    
-                   <li><a href="logout.html"><i class="zmdi"></i> Déconnexion</a></li>
+                   <li><a href="logout"><i class="zmdi"/> Déconnexion</a></li>
 
                 </ul>
 
