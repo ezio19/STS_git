@@ -20,6 +20,7 @@ public interface OperationService {
 	public List<OperationComptable> getAllOperationsComptables();
 	public OperationComptable getOperationComptableByNum(String numOperation);
 	public List<OperationComptable> getListOperationsBrouillard();
+	public void deleteOperationComptById(long id);
 	
 	
 	//Opération qui concerne les opérations budgétaires

@@ -3,13 +3,13 @@
 <div class="card list-sections">
     <!--L'entete de la page' -->
     <div class="card-header">
-        <h2>Sections
-            <small>Affichage des sections .</small>
+        <h2>Structure
+            <small>Affichage des Structure .</small>
         </h2>
     </div>
     <div class="card-contenu">
         <div class="m-sm-10 ">
-            <button class="m-l-20 btn  btn-success  intern waves-effect section-create">Ajouter une Nouvelle section</button>
+            <button class="m-l-20 btn  btn-success  intern waves-effect section-create">Ajouter une Nouvelle Structure</button>
         </div>
 
 
@@ -18,6 +18,7 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
+                <th data-column-id="id" data-identifier="true" data-type="numeric">Id</th>
                 <th style="" class="text-left" data-column-id="id">Code Structure</th>
                 <th data-column-id="CompteLabel" class="text-left" style="">Nom</th>
                 <th data-column-id="CompteLabel" class="text-left" style="">Addresse</th>
@@ -30,6 +31,7 @@
             <c:if test="${listStructures.size() >0}">
                 <c:forEach begin="0" end="${listStructures.size()-1}" varStatus="loop">
                     <tr data-row-id="${loop.index}" class="147">
+                        <td class="text-left" style="">${loop.index+1}</td>
                         <td class="text-left" style="">${listStructures.get(loop.index).getCodeStructure()}</td>
                         <td class="text-left" style="">${listStructures.get(loop.index).getNom()}</td>
                         <td class="text-left" style="">${listStructures.get(loop.index).getAdresse()}</td>

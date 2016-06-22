@@ -31,6 +31,18 @@ public class RubriqueServiceImpl implements RubriqueService{
         return rubriqueRepository.getRubriqueByCodeRubrique(code_rubrique);
     }
 
+    public String removeRubrique(Rubrique rubrique) {
+
+        try {
+            rubriqueRepository.delete(rubrique);
+            return rubrique.getCodeRubrique();
+        }
+        catch (Exception e){
+            return null;
+        }
+
+    }
+
     public Rubrique modifierRubrique(Rubrique rubrique) {
         Rubrique rubrique1=rubriqueRepository.findOne(rubrique.getCodeRubrique());
         rubrique1.setChapitre(rubrique.getChapitre());

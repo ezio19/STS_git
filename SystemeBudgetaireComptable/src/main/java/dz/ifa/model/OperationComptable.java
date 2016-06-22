@@ -30,7 +30,7 @@ public class OperationComptable {
 		
 	///---------------------
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.DETACH},fetch=FetchType.LAZY)
 	private PieceComptable pieceComptable;
 	
 	@OneToMany(mappedBy="operationComptable",cascade=CascadeType.ALL,fetch=FetchType.LAZY)

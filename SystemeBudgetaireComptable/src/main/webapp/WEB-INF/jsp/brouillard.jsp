@@ -15,7 +15,6 @@
 	    <link href="css/app.min.1.css" rel="stylesheet">
 	    <link href="css/app.min.2.css" rel="stylesheet">
         <title></title>
-
        	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-growl.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-select.js"></script>
@@ -39,59 +38,58 @@
 		<section id="main">			
 			<section id="content">
 				<div class="container">
-						<div class="card">
-							<div class="card-body card-padding">
+					<div class="card">
+						<div class="card-header">
+							<h2>
+								Brouillard<small>Opérations comptables non valider.</small>
+							</h2>
+						</div>
+						<div class="card-body card-padding">
 									<div style="width: 100%;" >
-										
-										<div class="card list-sections">
-										    <!--L'entete de la page' -->
-										    <div class="card-header">
-										        <h2>Brouillard
-										            <small>Opérations comptables non valider.</small>
-										        </h2>
-										    </div>
-										    <div class="card-contenu">
-										        <div class="m-sm-10 ">
-										            <button class="m-l-20 btn  btn-success  intern waves-effect section-create">Ajouter une Nouvelle section</button>
-										        </div>
+										<div style="display:inline; margin:10px; width: 301px; padding:10px; position: absolute;top:16px;right:4px;">
+											<input type="text" class="search-field form-control" placeholder="Search" style="display:inline;     width: 86%;">
+											<button class="btn btn-info waves-effect"><i class="zmdi zmdi-search"></i></button>
+										</div>
+										<table  class="table table-bordered" style="margin-top: 65px;">
+											<thead>
+												<tr>
+													<th data-column-id="selct">
+														<label class="checkbox checkbox-inline m-r-20">
+															Séléction
+														</label>
+													</th>
+													<th data-column-id="id" data-type="numeric">Numéro de l'opération</th>
+													<th data-column-id="date" >Journée comptable</th>
+													<th data-column-id="idPiece">Piece corréspondante</th>
+													<th data-column-id="montant">Montant global</th>
 
-									        <!--Le tableau qui affiche la liste des comptes -->
-									        <table id="data-table-command" class="table table-striped table-vmiddle bootgrid-table" aria-busy="false">
-									            <!--l'entete du tableau' -->
-									            <thead>
-									            <tr>
-									                <th style="" class="text-left" data-column-id="id">Code Structure</th>
-									                <th data-column-id="CompteLabel" class="text-left" style="">Nom</th>
-									                <th data-column-id="CompteLabel" class="text-left" style="">Addresse</th>
-									                <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
-									            </tr>
-									            </thead>
-									
-									            <!--Les lignes du tableau -->
-									            <tbody>
-									            <c:if test="${listOperations.size() >0}">
-									                <c:forEach begin="0" end="${listOperations}" varStatus="operation">
-									                    <tr data-row-id="${operation.id}" class="147">
-									                        <td class="text-left" style="">${operation.dateOperation }</td>
-									                        <td class="text-left" style="">${operation.numOperation }</td>
-									                        <td class="text-left" style="">${operation.pieceComptable.montantGlobal}</td>
-									                        <td class="text-left" style="">${operation.pieceComptable }</td>
-									                    </tr>
-									
-									                </c:forEach>
-									            </c:if>
-									
-									            </tbody>
-									        </table>
-									        </div>
-									        </div>
-									        
-									        <br>
-								<br>
+												</tr>
+										</thead>
+										<tbody id="tableAddGuide">
+											<c:forEach items="${listOperations}" var="operation">
+												<tr>
+													<td>
+														<label class="radio radio-inline m-r-20">
+															<input type="radio" value="option2">
+															<i class="input-helper"></i>
+														</label>
+													</td>
+													<td>${operation.numOperation }</td>
+													<td>${operation.dateOperation }</td>		
+													<td>${operation.pieceComptable.objet}</td>
+													<td>${operation.pieceComptable.montantGlobal }</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+								</table>
+								<br/>
+								<br/>
+								<br/>
+								<br/>
 								<div style="position: absolute;bottom: 16px;right: 16px;">
-									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Modifier la selection</button>
-									<button class="btn btn-danger btn-primary waves-effect"><i class="zmdi zmdi-close zmdi-hc-fw"></i>Spprimer la selection</button>
-									<button class="btn bgm-green btn-primary waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Consulter la selection</button>
+									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Consulter les écritures</button>
+									<button class="btn btn-danger btn-primary waves-effect"><i class="zmdi zmdi-close zmdi-hc-fw"></i>Supprimer l'opération</button>
+									<button class="btn bgm-green btn-primary waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Valider l'opération</button>
 								</div>			
 						</div>
 									</div>		
@@ -106,6 +104,10 @@
 
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
+        <!-- Script de selection -->
+        <script type="text/javascript">
+        	$('.radio').onSelect
+        </script>
         <!-- Data Table -->
 		<script type="text/javascript">
             /*
@@ -241,5 +243,6 @@
             });
 
         </script>
+
 </body>
 </html>

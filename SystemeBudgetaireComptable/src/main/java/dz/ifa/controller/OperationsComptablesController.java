@@ -107,9 +107,9 @@ public class OperationsComptablesController {
 	   return "oprationComptable";
 	}  
 	
-	@RequestMapping(value="operations",method=RequestMethod.GET)
+	@RequestMapping(value="brouillard",method=RequestMethod.GET)
 	public String afficherOperations(HttpServletRequest requete){
 		requete.setAttribute("listOperations", operationService.getListOperationsBrouillard());
-		return "operations";
+		return "brouillard";
 	}
 }

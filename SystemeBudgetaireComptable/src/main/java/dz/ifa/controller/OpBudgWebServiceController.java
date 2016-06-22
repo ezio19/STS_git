@@ -45,5 +45,10 @@ public class OpBudgWebServiceController {
 		if(operationService.getOperationComptableByNum(num)==null) return false;
 		else return true;
 	}
+	
+	@RequestMapping(value = "/deleteOpComptById", method = RequestMethod.GET)
+	public void deleteOpById(@RequestParam(name="opId") long opId) {
+		operationService.deleteOperationComptById(opId);
+	}
 
 }

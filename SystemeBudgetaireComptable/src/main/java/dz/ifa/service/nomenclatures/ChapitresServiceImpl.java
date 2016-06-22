@@ -40,8 +40,20 @@ public class ChapitresServiceImpl implements ChapitresService {
         return chapitreRepository.findAll();
     }
 
-    @Override
     public List<Chapitre> getChapitreByCodeChapitre(String codeChapitre) {
         return this.chapitreRepository.getChapitreByCodeChapitre(codeChapitre);
+    }
+
+    public String removeChapitre(Chapitre chapitre) {
+
+        try {
+            chapitreRepository.delete(chapitre);
+            return chapitre.getCodeChapitre();
+
+        }catch (Exception e){
+            return null;
+        }
+
+
     }
 }

@@ -81,4 +81,9 @@ public class OperationServiceImpl implements OperationService {
 	public List<OperationComptable> getListOperationsBrouillard() {
 		return operationComptableRepository.getListOperationsBrouillard();
 	}
+	
+	@Override
+	public void deleteOperationComptById(long id) {
+		operationComptableRepository.delete(id);
+	}
 }

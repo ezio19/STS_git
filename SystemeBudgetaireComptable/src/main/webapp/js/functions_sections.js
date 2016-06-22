@@ -65,6 +65,25 @@ $(document).ready(function(){
 });}).on("loaded.rs.jquery.bootgrid", function()
 {
 
+    $("#data-table-command").find('button.compte-suppr.extern').on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        afficherSupprChapitre(idUtilisateur, rows);
+
+    })
+        .end().find("button.showingInfos").on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        //window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
+        //alert("you pressed edit on row " + $(this).data("row-id"));
+    });
+
+
+
+
+
     //Click le bouton creer une section
     $('button.section-create').on('click',function(){
         compteCreationMode=true;
@@ -83,18 +102,7 @@ $('button.showingInfos').on('click',function(){
     afficherSection();
 });
 
-//Click sur le bouton de supprimer
-$('button.compte-suppr.extern').on('click',function(){
-    var self=$(this)
-    var rows = Array();
-    rows[0] = $(this).data("data-ro)w-id");
-    //var closes=$(this.closest('tr').attr('class');
-    alert('rows  ::: '+closes);
-    //alert(self.closest('tr').attr('data-row-id'));
-    //$("#chapitre-data-table-command").bootgrid('remove', rows);
-    //afficherSupprChapitre(self.closest('tr').attr('data-row-id'))
 
-});
 
     //Click sur le bouton modifier (interne)
     $('button.compte-mod').on('click',function(){
@@ -478,14 +486,10 @@ function afficherCreateChapitreMessage() {
     });
 }
 
-function afficherSupprChapitre(selectedRow) {
-
-
-    console.log("the chapitre code is :" +selectedRow);
-
+function afficherSupprChapitre(code_sect, selectedRow) {
     swal({
             title: 'Ete Vous Sure ?',
-            text: "Voulez vous vraiment supprimer Ce Chapitre!",
+            text: "Voulez vous vraiment supprimer Cette Section!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -498,25 +502,28 @@ function afficherSupprChapitre(selectedRow) {
 
         },
         function (isConfirm) {
-            if(isConfirm)
+
+
+            if (isConfirm)
+
                 $.ajax(
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "nomenclatures_chapitre_delete.json",
-                        data: {code_chapitre: selectedRow},
-                        success: function (data) {
-                            if (JSON.parse(data) == "100")
-                                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                            else
-                                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                        }
+                        url: "nomenclatures_section_remove.html",
+                        data: {code_section: code_sect},
                     }
                 ).done(function (data) {
-                    swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
+                    if (JSON.parse(data) == "100"){
+                        $('#data-table-command').bootgrid("remove", selectedRow);
+                        swal("Succès!", "La est supprimée avec Succès", "success");
+                    }
+
+                    else
+                        swal("Erreur", "La Section n'est pas  Supprimée", "error");
                 })
                     .error(function (data) {
-                        swal("Erreur", "Chapitre non  Supprimé", "error");
+                        swal("Erreur", "La Section n'est pas  Supprimée", "error");
                     });
 
         });
