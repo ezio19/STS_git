@@ -21,4 +21,10 @@ public interface OperationComptableRepository extends JpaRepository<OperationCom
 	/**@Query("select o from OperationComptable o where o.dateOperation>=?#{[0 ]} and o.dateOperation<=?#{[1]}")
 	List<OperationComptable> getListOperationsComptables(Date date1,Date date2);**/
 	
+	@Query("select o from OperationComptable o where o.numOperation=?#{[0]}")
+	OperationComptable getOperationComptableByNum(String num);
+	
+	@Query("select o from OperationComptable o where o.valide=false")
+	List<OperationComptable> getListOperationsBrouillard();
+	
 }

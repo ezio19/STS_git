@@ -65,4 +65,25 @@ public class OperationServiceImpl implements OperationService {
 		
 		return operationComptableRepository.findAll();
 	}
+	
+	@Override
+	public OperationBudgetaire getOperationBudgetaireByNum(String numOperation) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public OperationComptable getOperationComptableByNum(String numOperation) {
+		return operationComptableRepository.getOperationComptableByNum(numOperation);
+	}
+	
+	@Override
+	public List<OperationComptable> getListOperationsBrouillard() {
+		return operationComptableRepository.getListOperationsBrouillard();
+	}
+	
+	@Override
+	public void deleteOperationComptById(long id) {
+		operationComptableRepository.delete(id);
+	}
 }

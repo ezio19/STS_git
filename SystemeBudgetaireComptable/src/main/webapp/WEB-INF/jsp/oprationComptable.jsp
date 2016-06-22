@@ -1,212 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
-    <!--[if IE 9 ]>
-	<html class="ie9"><![endif]-->
-    
-<!--powered by ESI IFA Project 2016 -->
-<head>
-        <meta charset="utf-8">
-		 <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Opération Comptable</title>
-        
-        <!-- Vendor CSS -->
-        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
-        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
-            
-        <!-- CSS -->
-        <link href="css/app.min.1.css" rel="stylesheet">
-        <link href="css/app.min.2.css" rel="stylesheet">
-        
-        <!-- Validation du formulaire -->
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link href="css/material-design-iconic-font.css" rel="stylesheet">
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/bootstrap-select.css" rel="stylesheet">
+	    <link href="css/animate.min.css" rel="stylesheet">
+	    <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+	    <link href="css/sweetalert2.css" rel="stylesheet">
+	    <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
+	    <link href="css/app.min.1.css" rel="stylesheet">
+	    <link href="css/app.min.2.css" rel="stylesheet">
+        <title></title>
+
+       	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-growl.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-select.js"></script>
+		<script type="text/javascript" src="js/waves.min.js"></script>
+		<script type="text/javascript" src="js/typeahead.bundle.js"></script>
+		<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+		<!--Bibliotheque pour le sidebar -->
+		<script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<!-- Validation du formulaire -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
-        <script src="js/operation-form.js"type="text/javascript"></script>
+        
     </head>
 <body>
-        <header id="header" class="clearfix" data-current-skin="blue">
 		
-			<ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
-
-                <li class="logo hidden-xs">
-                    <a href="index-2.html">Opération comptable</a>
-                </li>
-				 <!-- Top Search Content -->
-            <div id="top-search-wrap">
-                <div class="tsw-inner">
-                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
-                    <input type="text">
-                </div>
-            </div>
-			</ul>
-        </header>
+		<!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
+		<c:import url="./header.jsp"></c:import>
+        <!--Le sidebar/navigation drawer (android) -->
+		<c:import url="./sidebar.jsp"></c:import> 
+		
+		
 		<section id="main">
-			
-            <aside id="sidebar" class="sidebar c-overflow">
-                <div class="profile-menu">
-                    <a href="#">
-                        <div class="profile-pic">
-                            <img src="img/profile-pics/1.jpg" alt="">
-                        </div>
-
-                        <div class="profile-info">
-                            Malinda Hollaway
-
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </a>
-
-                    <ul class="main-menu">
-                        <li>
-                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-time-restore"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <ul class="main-menu">
-                    <li><a href="index-2.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Headers</a>
-
-                        <ul>
-                            <li><a href="textual-menu.html">Textual menu</a></li>
-                            <li><a href="image-logo.html">Image logo</a></li>
-                            <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-widgets"></i> Widgets</a>
-
-                        <ul>
-                            <li><a href="widget-templates.html">Templates</a></li>
-                            <li><a href="widgets.html">Widgets</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-list"></i> Tables</a>
-
-                        <ul>
-                            <li><a href="tables.html">Normal Tables</a></li>
-                            <li><a href="data-tables.html">Data Tables</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu active toggled">
-                        <a href="#"><i class="zmdi zmdi-collection-text"></i> Forms</a>
-
-                        <ul>
-                            <li><a href="form-elements.html">Basic Form Elements</a></li>
-                            <li><a href="form-components.html">Form Components</a></li>
-                            <li><a href="form-examples.html">Form Examples</a></li>
-                            <li><a href="form-validations.html">Form Validation</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-swap-alt"></i>User Interface</a>
-                        <ul>
-                            <li><a href="colors.html">Colors</a></li>
-                            <li><a href="animations.html">Animations</a></li>
-                            <li><a href="box-shadow.html">Box Shadow</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="icons.html">Icons</a></li>
-                            <li><a href="alerts.html">Alerts</a></li>
-                            <li><a href="preloaders.html">Preloaders</a></li>
-                            <li><a href="notification-dialog.html">Notifications & Dialogs</a></li>
-                            <li><a href="media.html">Media</a></li>
-                            <li><a href="components.html">Components</a></li>
-                            <li><a href="other-components.html">Others</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-trending-up"></i>Charts</a>
-                        <ul>
-                            <li><a href="flot-charts.html">Flot Charts</a></li>
-                            <li><a href="other-charts.html">Other Charts</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="calendar.html"><i class="zmdi zmdi-calendar"></i> Calendar</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-image"></i>Photo Gallery</a>
-                        <ul>
-                            <li><a href="photos.html">Default</a></li>
-                            <li><a href="photo-timeline.html">Timeline</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="generic-classes.html"><i class="zmdi zmdi-layers"></i> Generic Classes</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-collection-item"></i> Sample Pages</a>
-                        <ul>
-
-                            <li><a href="profile-about.html">Profile</a></li>
-                            <li><a href="list-view.html">List View</a></li>
-                            <li><a href="messages.html">Messages</a></li>
-                            <li><a href="pricing-table.html">Pricing Table</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="wall.html">Wall</a></li>
-                            <li><a href="invoice.html">Invoice</a></li>
-                            <li><a href="login.html">Login and Sign Up</a></li>
-                            <li><a href="lockscreen.html">Lockscreen</a></li>
-                            <li><a href="404.html">Error 404</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="form-examples.html"><i class="zmdi zmdi-menu"></i> 3 Level Menu</a>
-
-                        <ul>
-                            <li><a href="form-elements.html">Level 2 link</a></li>
-                            <li><a href="form-components.html">Another level 2 Link</a></li>
-                            <li class="sub-menu">
-                                <a href="form-examples.html">I have children too</a>
-
-                                <ul>
-                                    <li><a href="#">Level 3 link</a></li>
-                                    <li><a href="#">Another Level 3 link</a></li>
-                                    <li><a href="#">Third one</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="form-validations.html">One more 2</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </aside>
-			
 			<section id="content">
 				<div class="container">
 					<form  method="post" id="opComptForm" name="opComptForm">
 					
 						<div class="card">
-							<div id='opComptForm_errorloc' class='error_strings'></div>
 							<div class="card-body card-padding">
+								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+									<h2>Numéro de l'opération</h2>
+								</div>
+								<div class="dtp-container fg-line">
+									<input type="text" class="form-control"  placeholder="Numero d'opération"  id ="numOperation" name="numOperation"/>
+								</div>
+								
 								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
 									<h2>Journée comptable</h2>
 								</div>
 								<div class="dtp-container fg-line">
-									<input type="date" class="form-control date-picker date"  placeholder="Choose a date"  id ="dateOperation" name="dateOperation"/>
+									<input type="date" class="form-control date-picker"  placeholder="Choisir une date"  id ="dateOperation" name="dateOperation"/>
 								</div>
 								
 								
@@ -227,9 +78,6 @@
 										</div>
 									</div>
 								</div>
-								
-								
-								
 								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
 										<h2>Piéce:</h2>
 								</div>
@@ -242,17 +90,15 @@
 											</select>
 										</div>
 									</div>
-								</div>
-								<br>
-								<br>
-								<br>
+								</div><br><br><br>
+								
 								<div class="btn-group btn-group-lg" role="group" style=" width:100%">
 									<button type="button" style="width:33%" class="btn bgm-teal waves-effect"><i class="zmdi zmdi-account zmdi-hc-fw"></i>   Saisie Mannuelle </button>
 									<button type="button" style="width:34%" class="btn bgm-pink waves-effect"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i>   A partir d'un guide</button>
 									<button type="button" style="width:33%" class="btn bgm-green btn-lg waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i>   Creer un guide</button>
 								</div>
 							<div style="visibility: collapse;">
-							<input type="text" id="nb_element" name="nb_element">1</input> 
+							<input type="text" id="nb_element" name="nb_element" >
 							</div>
 							</div>
 								
@@ -268,8 +114,6 @@
 											<th data-column-id="id" data-type="numeric">numero de compte</th>
 											<th data-column-id="option">Debit/Crédit</th>
 											<th data-column-id="sender">Montant</th>
-											<!--<th data-column-id="received" data-order="desc">Received</th>
-											<th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>-->
 										</tr>
 									</thead>
 									<tbody id="tableAddGuide">
@@ -277,7 +121,7 @@
 											<td>
 												<div class="form-group">
 													<div class="fg-line">
-														<input name ="idCompte0" type="text" class="form-control compte" placeholder="Numero de compte" vk_1fb3d="subscribed"">
+														<input name ="idCompte0" type="text" class="form-control compte" placeholder="Numero de compte" >
 														<div id='opComptForm_idCompte0_errorloc' class='error_strings'></div>
 													</div>
 												</div>
@@ -299,7 +143,7 @@
 											<td>
 											<div class="form-group">
 												<div class="fg-line">
-													<input name="montant0" type="text" class="form-control input-mask montant"  placeholder="eg: 300 000.00" maxlength="9" autocomplete="off" vk_129f4="subscribed">
+													<input name="montant0" type="text" class="form-control input-mask montant"  placeholder="eg: 300 000.00" maxlength="9" autocomplete="off" >
 												</div>
 											</div>
 											</td>
@@ -307,15 +151,13 @@
 									
 									</tbody>
 								</table>
-								</br>
+
 								
 								</div>
 								<div>
 									<ul class="f-menu" style="display:inline; list-style-type: none;">
 									<li style="background-color: #333;">
-										<div style="position: absolute;
-												bottom: 16px;
-												left: 35px;">
+										<div style="position: absolute;bottom: 16px;left: 35px;">
 											<button type="button" style=" " class="btn bgm-lightblue btn-icon waves-effect waves-circle waves-float" onclick="addRow();"><i class="zmdi zmdi-plus zmdi-hc-fw"></i></button>
 										</div>
 									</li>
@@ -330,15 +172,12 @@
 											bottom: 16px;
 											right: 16px;">
 										<button class="btn btn-danger btn-lg waves-effect"><i class="zmdi zmdi-undo zmdi-hc-fw"></i>Annuler</button>
-										<button class="btn bgm-green btn-lg waves-effect" style="align" type="submit"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>Valider</button>
+										<button class="btn bgm-green btn-lg waves-effect"  type="submit"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i>Valider</button>
 									</div>
 							</div>	
 						</div>
 						
 					</form>
-					<script type="text/javascript">
-						
-					</script>
 				</div>
 					
 				
@@ -346,66 +185,53 @@
 
 		</section>
 		
-		<footer id="footer">
-			Copyright &copy; 2016 IFA-ESI
-			
-			<ul class="f-menu">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Rac1</a></li>
-				<li><a href="#">RAc2</a></li>
-				<li><a href="#">RAc3</a></li>
-				<li><a href="#">rac4</a></li>
-			</ul>
-		</footer>
-		
-		
-        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
-                <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
-		
-        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
 
-        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
-        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-      <!--   <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script> -->
-        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>  
-		
-       <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
-        
-        
-        <!-- Placeholder for IE9 -->
-        <!--[if IE 9 ]>
-            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
-        <![endif]-->
 
-        <script src="js/functions.js"></script>
-        <script src="js/demo.js"></script>
-        <script>
 
+        
+        <!-- Script de validation -->
+        <script type="text/javascript">
 	    	$("#opComptForm").validate();
-	    	
-	    	//Méthodes de validation
+	    	//Méthodes de validation	    	
 	    	$.validator.addMethod("valueNotEquals", function(value, element, arg){
-	    		return arg != jQuery(element).find('option:selected').text();;
-	   		}, "Value must not equal arg.");
-	    	
+	    		return arg != jQuery(element).find('option:selected').text();
+	   		}, "Value must not equal arg!");
+	    	$.validator.addMethod("numOpExists", function(value, element, arg){
+	    		var result2;
+	    		$.ajaxSetup({async: false});
+				$.getJSON(	'${home}numOpExists.json'+'?num='+value,
+							{ajax : 'true'}, 
+							function(data){
+								
+								result2=data;
+							}
+						);
+				$.ajaxSetup({async: true});
+	    			return !result2;
+	   		}, "Une opération avec le même numéro existe déja !");
 	    	$.validator.addMethod("compteNumExists", function(value, element, arg){
 	    		var result;
 	    		$.ajaxSetup({async: false});
 				$.getJSON(	'${home}compteExists.json'+'?num='+value,
 							{ajax : 'true'}, 
-							function(data){result=data;}
-						);
+							function(data){
+							result=data;
+							});
 				$.ajaxSetup({async: true});
-	    			return result;
-	   			}, "Compte n'existe pas.");
+	    		return result;
+	   		}, "Compte n'existe pas!");
+	    	
+
 	    	
 	    	//Ajout des règles
+	    	$("#numOperation").rules("add", {
+	        	required:true,
+	        	numOpExists:true,
+	            messages:{
+	            	required:"Veuillez entrer le numéro d'opération !",
+	            	numOpExists:"Une opéraition portant le même numéro existe déjà!"
+	            }
+	        });
 	        $("#dateOperation").rules("add", {
 	            required: true,
 	            messages:{
@@ -425,6 +251,7 @@
 	            	valueNotEquals:"Veuillez choisir une piece !"	
 	            }
 	        	});
+
 		function addValidationRules(){
 		    $('.compte').each(function () { 
 		        $(this).rules("add", {
@@ -442,7 +269,7 @@
 		    });
 		    $('.montant').each(function () { 
 		        $(this).rules("add", {
-		            required: true,
+		        	required: true,
 		            number:true,
 		            messages:{
 		            	required:"Vous devez indiquer un montant !",
@@ -460,8 +287,8 @@
 		    });
 		}
 		addValidationRules();
+
 		function addRow() {
-						
 					var element= document.getElementById('tableAddGuide');
 					var tr = document.createElement('tr');
 					var row = element.rows.length;
@@ -500,14 +327,10 @@
 					addValidationRules();
 
 				}
-			
-		
 		</script>
-        <!-- Data Table -->
+		
+        <!-- Scripts de la page -->
 		<script type="text/javascript">
-            /*
-             * Notifications
-             */
             function notify(from, align, icon, type, animIn, animOut){
                 $.growl({
                     icon: icon,
@@ -638,47 +461,38 @@
             });
 
         </script>
+		<!-- Récupération des listes -->
+		<script type="text/javascript">
+			var selectElement = document.getElementById("tierSelection");
+			selectElement.onchange = function (){
+				var tierId = document.getElementById("tierSelection").value;
+				if(tierId!=0){
+					$.getJSON(	'${home}findPieces.json'+'?tierId='+tierId+"&engaId="+0,
+								{ajax : 'true'}, 
+								function(data){
+									var html = '<option value="0">-- Choisir une piece --</option>';
+									var len = data.length;
+									for (var i = 0; i < len; i++) {
+										html += '<option value="' + data[i].id + '">'
+												+ data[i].id +'</option>';
+									}
+									html += '</option>';
+									
+									$('#selectPiece').html(html);
+								}
+								).done(function() {
+						console.log( "apres success" );
+					  })
+					  .fail(function() {
+						console.log( "error" );
+					  })
+					  .always(function() {
+						console.log( "complete toujours succes ou erreur" );
+					  });
+				}
+				
+			}
+		</script>
     
-<script>
-var selectElement = document.getElementById("tierSelection");
-selectElement.onchange = function (){
-	var tierId = document.getElementById("tierSelection").value;
-	if(tierId!=0){
-		$.getJSON(	'${home}findPieces.json'+'?tierId='+tierId,
-					{ajax : 'true'}, 
-					function(data){
-						var html = '<option value="">Selectionner une pièce</option>';
-						var len = data.length;
-						for (var i = 0; i < len; i++) {
-							html += '<option value="' + data[i].id + '">'
-									+ data[i].id +'</option>';
-						}
-						html += '</option>';
-						
-						$('#selectPiece').html(html);
-					}
-					).done(function() {
-			console.log( "apres success" );
-		  })
-		  .fail(function() {
-			console.log( "error" );
-		  })
-		  .always(function() {
-			console.log( "complete toujours succes ou erreur" );
-		  });
-	}
-	
-}
-</script>
-<script type="text/javascript">
-
-
-</script>
-    
-</body>
-
-
-     
-
-<!-- D?lloped by Juba Agoun on April 2016 and modified by Amine Aouffen on Mai 2016-->
+	</body>
 </html>
