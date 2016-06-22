@@ -75,7 +75,7 @@ public class NomenclaturesBudgetairesController {
         comptable.setLibelleCompte(designationNomenclature);
         if(service.creerCompteComptable(comptable)!=null)
             return "100";
-        else return "601";
+        else return "101";
 
     }
 
