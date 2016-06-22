@@ -180,6 +180,23 @@ $(document).ready(function () {
 }).on("loaded.rs.jquery.bootgrid", function () {
 
 
+    $("#data-table-command").find('button.compte-suppr.extern').on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        afficherSupprChapitre(idUtilisateur, rows);
+
+    })
+        .end().find("button.showingInfos").on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        //window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
+        //alert("you pressed edit on row " + $(this).data("row-id"));
+    });
+
+
+
     //Click sur le bouton  supprimer un chapitre
     $('button.rubrique-create').on('click', function () {
         afficherCreateChapitre();
@@ -306,10 +323,9 @@ function afficherModifAccountMessage() {
 
 function afficherCreateChapitreMessage() {
 
-    var code_rubr = $('#creat_input_codechap ').val();
+    var code_rubr = $('#creat_input_coderub ').val();
     var designation_rubr = $('#creat_input_designation').val();
-    var code_rubr=$('#chapitre-select-section').val();
-
+    var code_chap=$('#chapitre-select-section').val();
 
     //alert("code chapitre : "+code_chap+"\n"+"designation chapitre :"+designation_chap+"code section :"+code_sect );
     swal({
@@ -325,31 +341,42 @@ function afficherCreateChapitreMessage() {
             {
                 type: "POST",
                 url: "nomenclatures_rubrique_create.html",
-                data: {code_rubrique: code_rubr, designation_rubrique: designation_rubr,code_rubrique:code_rubr},
-                success: function (data) {
-                    if (JSON.parse(data) == "100")
-                        swal("Succès!", "La Rubrique est ajoutée avec Succès", "success");
-                    else
-                        swal("Erreur", "Le Rubrique n'est pas ajoutée", "error");
-                }
+                data: {code_rubrique: code_rubr, designation_rubrique: designation_rubr,code_chapitre:code_chap},
             }
         )
             .done(function (data) {
-                swal("Succès!", "La Rubrique est ajoutée avec Succès", "success");
+                if(JSON.parse(data) == "100")
+                    swal({
+                        title: "Succès",
+                        text: "Création avec Succès ",
+                        type: "success",
+                        closeOnConfirm: false,
+                        confirmButtonText: "OK",
+                        confirmButtonColor: "#2196f3"
+                    },function () {
+                        window.location.replace("nomenclatures_rubriques.html");
+                    });
+
+                else
+                    if( JSON.parse(data) == "102")
+                        swal("Erreur", "Elément existe déja ", "error");
+                else
+                        swal("Erreur", "Création non éffectuée", "error");
+
             })
             .error(function (data) {
                 swal("Erreur", "Le Rubrique n'est pas ajoutée", "error");
             });
     });
 }
+//nomenclatures_rubrique_remove
+function afficherSupprChapitre(code_sect, selectedRow) {
 
-function afficherSupprChapitre(selectedRow) {
-
-    console.log("the chapitre code is :" +selectedRow);
+    console.log("the rubrique code is :" +selectedRow);
 
     swal({
             title: 'Ete Vous Sure ?',
-            text: "Voulez vous vraiment supprimer Ce Chapitre!",
+            text: "Voulez vous vraiment supprimer Cette Rubrique",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -367,20 +394,23 @@ function afficherSupprChapitre(selectedRow) {
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "nomenclatures_chapitre_delete.json",
-                        data: {code_chapitre: selectedRow},
-                        success: function (data) {
-                            if (JSON.parse(data) == "100")
-                                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                            else
-                                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                        }
+                        url: "nomenclatures_rubrique_remove.html",
+                        data: {code_rubrique: code_sect},
+
                     }
                 ).done(function (data) {
-                    swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
+                    if(JSON.parse(data) == "100"){
+                        $('#data-table-command').bootgrid("remove", selectedRow);
+                        swal("Succès!", "Suppression avec  Succès", "success");
+                    }
+
+                    else if(JSON.parse(data) == "101")
+                        swal("Succès!", "Element n'existe pas ", "error");
+                    else
+                        swal("Erreur", "Suppression non  effectuée", "error");
                 })
                     .error(function (data) {
-                        swal("Erreur", "Chapitre non  Supprimé", "error");
+                        swal("Erreur", "Suppression non  effectuée", "error");
                     });
 
         });

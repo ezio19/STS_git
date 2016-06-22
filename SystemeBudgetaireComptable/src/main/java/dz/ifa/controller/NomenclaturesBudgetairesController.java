@@ -166,15 +166,22 @@ public class NomenclaturesBudgetairesController {
     @ResponseBody
     public String postCreateRubrique(@RequestParam("code_rubrique") String codeRubrique,
                                      @RequestParam("designation_rubrique") String designationRubrique,
-                                     @RequestParam("code_rubrique") String codeChapitre) {
+                                     @RequestParam("code_chapitre") String codeChapitre) {
 
+        System.out.println("-------------------------------------------------------------------- ");
+        System.out.println("-------------------------------------------------------------------- ");
+        System.out.println("-------------------------------------------------------------------- ");
+        System.out.println("-------------------------------------------------------------------- ");
+        System.out.println("-------------------------------------------------------------------- ");
         System.out.println("Mapping Rubrique Creation ");
-        System.out.println("code_chapitre :" + codeChapitre);
-        System.out.println("designation_chapitre : " + designationRubrique);
+        System.out.println("code_Rubrique :" + codeChapitre);
+        System.out.println("designation_Rubrique : " + designationRubrique);
         System.out.println("code Chapitre : " + codeChapitre);
 
         Chapitre chapitre=chapitresService.getChapitreByCodeChapitre(codeChapitre).get(0);
         if(chapitre!=null){
+            if(rubriqueService.getRubriqueByCodeRubrique(codeRubrique).size()>0)
+                return "102";
             Rubrique rubrique=new Rubrique();
             rubrique.setCodeRubrique(codeRubrique);
             rubrique.setDesignation(designationRubrique);
@@ -182,11 +189,11 @@ public class NomenclaturesBudgetairesController {
             if( rubriqueService.creerRubrique(rubrique) !=null )
                 return "100";
             else
-                return "-1";
+                return "101";
 
         }
         else
-            return "-1";
+            return "101";
 
     }
 
@@ -212,14 +219,6 @@ public class NomenclaturesBudgetairesController {
         List<Rubrique> lst = rubriqueService.getAllRubriques();
         return lst;
     }
-
-
-
-
-
-
-
-
 
 
     @RequestMapping(
@@ -249,7 +248,6 @@ public class NomenclaturesBudgetairesController {
             return "101";
         System.out.println("------------------------");
         System.out.println("------------------------");
-        System.out.println("------------------------");
         System.out.println("Suppression de la structure "+sections.getCodeSection());
 
         String result=sectionService.removeSection(sections);
@@ -268,22 +266,53 @@ public class NomenclaturesBudgetairesController {
 
 
 
+
+
     @RequestMapping(
-            value = {"/nomenclatures_chapitres"},
-            method = {RequestMethod.GET}
+            value = {"/nomenclatures_rubrique_remove"},
+            method = {RequestMethod.POST}
     )
+    @ResponseBody
+    public String postRemoveRubrique(@RequestParam("code_rubrique") String code_rubrique ) {
 
-    public String getChapitre(Model model) {
-       this.chapitres=chapitresService.getAllChapitres();
-        if(this.chapitres==null)
-            this.chapitres=new ArrayList<Chapitre>();
+        System.out.println("Section Remove : ");
+        System.out.println("Code Structure:" + code_rubrique);
+        List<Rubrique> rubriques=rubriqueService.getRubriqueByCodeRubrique(code_rubrique);
+        if(rubriques.size()==0)
+            return "101";
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("Suppression de la rubrique  "+rubriques.get(0).getCodeRubrique());
 
-        System.out.println("Affichage des chapitres");
-        for(int i=0;i<chapitres.size();i++)
-            System.out.println("Le Chapitre   "+this.chapitres.get(i).getCodeChapitre());
-        model.addAttribute("listChapitres", this.chapitres);
-        return "chapitres";
+        String result=rubriqueService.removeRubrique(rubriques.get(0));
+        if(result !=null){
+            System.out.println("------------------------");
+            System.out.println("------------------------");
+            System.out.println("------------------------");
+            System.out.println("Rubrique Removed "+result);
+            return "100";
+        }
+        else{
+            System.out.println("------------------------");
+            System.out.println("------------------------");
+            System.out.println("Erreur resultat null");
+            return "101";
+        }
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
 
     @RequestMapping(
             value = {"/nomenclatures_chapitre_delete"},
@@ -296,34 +325,7 @@ public class NomenclaturesBudgetairesController {
         return "100";
     }
 
-    @RequestMapping(
-            value = {"/nomenclatures_chapitre_create"},
-            method = {RequestMethod.POST}
-    )
-    @ResponseBody
-    public String postCreateChapitre(@RequestParam("code_chapitre") String codeChapitre, @RequestParam("designation_chapitre") String designationChapitre, @RequestParam("code_section") String codeSection) {
-        System.out.println("Mapping nomenclatures_chapitre_delete ");
-        System.out.println("code_chapitre :" + codeChapitre);
-        System.out.println("designation_chapitre : " + designationChapitre);
-        System.out.println("code Section : " + codeSection);
 
-
-        Section section=sectionService.getSectionByCodeSection(codeSection);
-        if(section!=null){
-            Chapitre chapitre=new Chapitre();
-            chapitre.setCodeChapitre(codeChapitre);
-            chapitre.setDesignation(designationChapitre);
-            chapitre.setSection(section);
-            if( chapitresService.creerChapitre(chapitre)  !=null )
-                return "100";
-            else
-                return "-1";
-
-        }
-        else
-            return "-1";
-
-    }
 
 
     @RequestMapping(

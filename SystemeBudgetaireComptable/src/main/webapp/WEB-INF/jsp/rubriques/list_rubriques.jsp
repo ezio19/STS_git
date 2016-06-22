@@ -3,7 +3,7 @@
 <div class="card list-sections">
     <!--L'entete de la page' -->
     <div class="card-header">
-        <h2>Chapitres
+        <h2>Rubriques
             <small>Affichage des Rubriques.</small>
         </h2>
     </div>
@@ -21,6 +21,7 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
+                <th data-column-id="id" data-identifier="true" data-type="numeric">Id</th>
                 <th data-column-id="code_chapitre"   >Code Rubrique</th>
                 <th data-column-id="CompteLabel" class="text-left" >Désignation</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
@@ -32,6 +33,7 @@
             <c:if test="${listRubriques.size()>0}">
             <c:forEach begin="0" end="${listRubriques.size()-1}" varStatus="loop">
                 <tr data-row-id="${loop.index}">
+                    <td class="text-left" style="">${loop.index+1}</td>
                     <td class="text-left " style="">${listRubriques.get(loop.index).getCodeRubrique()}</td>
                     <td class="text-left" style="">${listRubriques.get(loop.index).getDesignation()}</td>
                 </tr>
