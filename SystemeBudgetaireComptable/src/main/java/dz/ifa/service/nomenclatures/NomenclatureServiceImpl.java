@@ -26,6 +26,7 @@ public class NomenclatureServiceImpl implements NomenclatureService {
     private CompteBudgetaireRepository compteBudgetaireRepository;
 
 
+
     public CompteComptable creerCompteComptable(CompteComptable comptable) {
         return nomenclatureComptableRepository.save(comptable);
 
@@ -65,6 +66,44 @@ public class NomenclatureServiceImpl implements NomenclatureService {
     @Override
     public List<Structure> getStructureByCodeStructure(String code_structure) {
         return structureRepository.getStructureByCodeStructure(code_structure);
+    }
+
+    public String removeStrcuture(Structure structure) {
+        try{
+            structureRepository.delete(structure);
+            return structure.getCodeStructure();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
+
+    public String removeCompteComptable(CompteComptable compteComptable) {
+        try{
+            nomenclatureComptableRepository.delete(compteComptable);
+            return compteComptable.getNumCompte();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public String removeCompteBudgetaire(CompteBudgetaire compteBudgetaire) {
+
+        try{
+            compteBudgetaireRepository.delete(compteBudgetaire);
+            return compteBudgetaire.getNumCompte();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
 

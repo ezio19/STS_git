@@ -15,6 +15,6 @@ public interface RubriqueService {
     public Rubrique getRubrique(String id);
     public List<Rubrique> getAllRubriques();
     public List<Rubrique> getRubriqueByCodeRubrique(String code_rubrique);
-
+    public String removeRubrique(Rubrique rubrique);
 
 }

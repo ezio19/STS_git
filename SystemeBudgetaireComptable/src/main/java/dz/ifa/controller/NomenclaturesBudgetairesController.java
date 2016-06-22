@@ -2,6 +2,7 @@
 package dz.ifa.controller;
 
 import dz.ifa.model.commun.Structure;
+import dz.ifa.model.gestion_utilisateurs.Utilisateur;
 import dz.ifa.model.nomenclature.*;
 import dz.ifa.service.nomenclatures.ChapitresService;
 import dz.ifa.service.nomenclatures.NomenclatureService;
@@ -233,6 +234,35 @@ public class NomenclaturesBudgetairesController {
         return "sections";
     }
 
+    @RequestMapping(
+            value = {"/nomenclatures_section_remove"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postRemoveSection(@RequestParam("code_section") String code_section ) {
+
+        System.out.println("Section Remove : ");
+        System.out.println("Code Structure:" + code_section);
+
+        Section  sections= sectionService.getSectionByCodeSection(code_section);
+        if(sections==null)
+            return "101";
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("Suppression de la structure "+sections.getCodeSection());
+
+        String result=sectionService.removeSection(sections);
+        if(result !=null){
+            System.out.println("Section Removed "+result);
+            return "100";
+        }
+        else
+            return "101";
+
+    }
+
+
 
 
 
@@ -346,6 +376,38 @@ public class NomenclaturesBudgetairesController {
             return "801"; /// si le retour est null (section n'est pas crée)
 
     }
+
+
+    @RequestMapping(
+            value = {"/nomenclatures_structure_remove"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postRemoveStructure(@RequestParam("code_structure") String code_structure ) {
+
+        System.out.println("Utilisateur Remove : ");
+        System.out.println("Code Structure:" + code_structure);
+
+        List<Structure>  structures= service.getStructureByCodeStructure(code_structure);
+        if(structures.size()==0)
+            return "102";
+        Structure structure=structures.get(0);
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("Suppression de la structure "+structure.getCodeStructure());
+
+        String result=service.removeStrcuture(structure);
+        if(result !=null){
+            System.out.println("Utilisateur Removed "+result);
+            return "100";
+        }
+        else
+            return "101";
+
+    }
+
+
 
 
 

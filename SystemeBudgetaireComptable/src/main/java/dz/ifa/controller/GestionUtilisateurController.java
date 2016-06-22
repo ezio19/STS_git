@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,6 +139,30 @@ public class GestionUtilisateurController {
             return "101";
 
     }
+
+
+
+
+    @RequestMapping(value="gestion_utilisateurs_get_utilisateur/id_utilisateur/{id_utilisateur}", method=RequestMethod.GET)
+    public String getUtilisateur(@PathVariable("id_utilisateur") String id_utilisateur, Model model) {
+        List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
+        if(utilisateurs.size()==0){
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            System.out.println("compte inexistant");
+            return "404";
+        }
+
+        model.addAttribute("utilisateur", utilisateurs.get(0));
+        return "gestion_utilisateurs";
+    }
+
 
 
     @RequestMapping(

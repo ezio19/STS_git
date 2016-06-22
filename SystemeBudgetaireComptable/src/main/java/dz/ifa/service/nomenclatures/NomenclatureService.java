@@ -32,6 +32,14 @@ public interface NomenclatureService {
     public List<Structure> getAllStructures();
     public Structure creerStructure(Structure structure);
     public List<Structure> getStructureByCodeStructure(String code_structure);
+    public String removeStrcuture(Structure structure);
+
+
+
+
+
+    public String removeCompteComptable(CompteComptable compteComptable);
+    public String removeCompteBudgetaire(CompteBudgetaire compteBudgetaire);
 
 
 

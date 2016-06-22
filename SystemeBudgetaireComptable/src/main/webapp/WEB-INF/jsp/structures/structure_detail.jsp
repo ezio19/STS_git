@@ -82,11 +82,7 @@
                             </tr>
                             </thead>
 
-                            <script>
-                                alert(""+selectedSection);
-                                print("helov^oqzbvôuqsbdvpcsdiyqvcp_yzibdiklrydxcugbhj,klliytcouvh dqsipohvzdz");
 
-                            </script>
                             </tbody>
                         </table>
                     </div>

@@ -37,6 +37,20 @@ public class SectionServiceImpl implements SectionService{
         return sectionRepository.getSectionByCodeSection(code_section).get(0);
     }
 
+    @Override
+    public String removeSection(Section section) {
+
+        try {
+            sectionRepository.delete(section);
+            return section.getCodeSection();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public List<Section> getAllSections() {
         return this.sectionRepository.findAllSection();
     }

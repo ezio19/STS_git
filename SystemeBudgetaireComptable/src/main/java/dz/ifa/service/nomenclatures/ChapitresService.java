@@ -20,4 +20,5 @@ public interface ChapitresService {
     List<Chapitre> getAllChapitres();
 
     List<Chapitre> getChapitreByCodeChapitre(String codeChapitre);
+    public String removeChapitre(Chapitre chapitre);
 }

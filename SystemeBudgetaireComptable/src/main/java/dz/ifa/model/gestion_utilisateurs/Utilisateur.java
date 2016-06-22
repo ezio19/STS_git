@@ -48,7 +48,7 @@ public class Utilisateur {
 	private List<Fonctionnalite> foncts;
 
 
-	@OneToMany(mappedBy = "utilisateur")
+	@OneToMany(mappedBy = "utilisateur",cascade = CascadeType.ALL)
 	@JsonBackReference
 	private List<Preference> preferences;
 

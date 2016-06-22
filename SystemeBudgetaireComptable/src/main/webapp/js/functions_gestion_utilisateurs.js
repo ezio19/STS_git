@@ -108,7 +108,11 @@ $(document).ready(function () {
 
         })
             .end().find("button.showingInfos").on("click", function (e) {
-            alert("you pressed edit on row " + $(this).data("row-id"));
+            var rows = Array();
+            rows[0] = $(this).data("row-id");
+            var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+            window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
+            //alert("you pressed edit on row " + $(this).data("row-id"));
         });
 
 
@@ -326,32 +330,22 @@ $(document).ready(function () {
                 }
             )
                 .done(function (data) {
-                    if (JSON.parse(data) == "100")
+                    if (JSON.parse(data) == "100"){
                         swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
+                        window.location.replace("gestion_utilisateurs_utilisateurs");
+                    }
                     else if (JSON.parse(data) == "602")
                         swal("Erreur", "l'utilisateur Existe deja verifier votre Id Utilisateur", "error");
                     else if (JSON.parse(data) == "603")
                         swal("Erreur", "Le Champ Repeter Mot de passe ne Correspond pas au Mot de passe ", "error");
                 })
                 .error(function (data) {
-                    if (JSON.parse(data) == "100")
-                        swal("Succès!", "La Rubrique est ajoutée avec Succès", "success");
-                    else
-                        swal("Erreur", "Le Rubrique n'est pas ajoutée", "error");
+                    swal("Erreur", "L'Utilisateur n'est pas ajouté", "error");
                 });
         });
     }
 
     function afficherSupprChapitre(idUtilisateur, selectedRow) {
-
-
-
-
-
-
-
-        //console.log("the chapitre code is :" + selectedRow);
-
         swal({
                 title: 'Ete Vous Sure ?',
                 text: "Voulez vous vraiment supprimer Ce Chapitre!",
