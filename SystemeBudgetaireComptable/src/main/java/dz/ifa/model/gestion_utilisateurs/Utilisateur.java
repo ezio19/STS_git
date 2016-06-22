@@ -40,7 +40,7 @@ public class Utilisateur {
 	private String codeStructure;
 
 
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany( fetch=FetchType.LAZY)
 	@JoinTable(name="AUTORITE",
     joinColumns = @JoinColumn (name="ID_UTILISATEUR", referencedColumnName="ID_UTILISATEUR"),
         inverseJoinColumns = @JoinColumn(name="designation", referencedColumnName="designation"))
