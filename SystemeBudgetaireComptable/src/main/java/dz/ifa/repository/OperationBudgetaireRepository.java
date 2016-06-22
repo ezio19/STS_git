@@ -16,4 +16,5 @@ public interface OperationBudgetaireRepository extends JpaRepository<OperationBu
 	
 	@Query("select opBdg from OperationBudgetaire opBdg where opBdg.operationComptable.dateOperation between :#{#dateDeb} and :#{#dateFin}")
 	List<OperationBudgetaire> findOpBugetaire(@Param("dateDeb") Date dateDeb,@Param("dateFin") Date dateFin);
+
 }

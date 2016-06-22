@@ -18,11 +18,15 @@ public interface OperationService {
 	public OperationComptable save(OperationComptable operationComptable);
 	public List<OperationComptable> getListOperationsComptables(Date date1,Date date2);
 	public List<OperationComptable> getAllOperationsComptables();
+	public OperationComptable getOperationComptableByNum(String numOperation);
+	public List<OperationComptable> getListOperationsBrouillard();
+	public void deleteOperationComptById(long id);
 	
 	
 	//Opération qui concerne les opérations budgétaires
 	public OperationBudgetaire save(OperationBudgetaire operationBudgetaire);
 	public List<OperationBudgetaire> getListOperationsBudgetaires(Date date1,Date date2);
 	public List<OperationBudgetaire> getAllOperationsBudgetaires();
+	public OperationBudgetaire getOperationBudgetaireByNum(String numOperation);
 	
 }
