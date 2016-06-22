@@ -120,5 +120,18 @@ public class ChapitresController {
 
 
 
+    @RequestMapping(
+            value = {"/nomenclatures_chapitres_list.json"},
+            method = {RequestMethod.GET}
+    )
+    public List<Chapitre> getChapitresList() {
+        List<Chapitre> lst = chapitresService.getAllChapitres();
+        return lst;
+    }
+
+
+
+
+
 
 }
