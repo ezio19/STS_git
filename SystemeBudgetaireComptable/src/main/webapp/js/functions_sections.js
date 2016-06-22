@@ -302,19 +302,28 @@ function afficherCreateSectionMessage() {
                 type: "POST",
                 url: "nomenclatures_section_create.html",
                 data: {code_section: code_sect, designation_section: designation_sect,code_structure:code_struct},
-                success: function (data) {
-                    if (JSON.parse(data) == "100")
-                        swal("Succès!", "La section a été ajoutée avec succès", "success");
-                    else
-                        swal("Erreur", "La n'a pas été ajoutée ", "error");
-                }
+
             }
         )
             .done(function (data) {
-                swal("Succès!", "La section a été ajoutée avec succès", "success");
+                if(JSON.parse(data) == "100")
+                    swal({
+                        title: "Succès",
+                        text: "Création avec Succès ",
+                        type: "success",
+                        closeOnConfirm: false,
+                        confirmButtonText: "OK",
+                        confirmButtonColor: "#2196f3"
+                    },function () {
+                        window.location.replace("nomenclatures_sections.html");
+                    });
+
+                else {
+                    swal("Erreur", "Création non éffectuée ", "error");
+                }
             })
             .error(function (data) {
-                swal("Erreur", "La n'a pas été ajoutée", "error");
+                swal("Erreur", "Création non éffectuée ", "error");
             });
     });
 }
@@ -401,6 +410,9 @@ function afficherCreateAccountMessage(){
                 }
                 )
                 .done(function(data) {
+
+
+
                     swal("Succès!", "La Section est ajoutée avec Succès", "success");
                 })
                 .error(function(data) {
@@ -442,7 +454,10 @@ function afficherModifAccountMessage(){
                 }
                 )
                 .done(function(data) {
-                    swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
+
+
+
+                    //swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
                 })
                 .error(function(data) {
                     swal("Erreur", "Le Compte n'est pas modifié", "error");
@@ -451,40 +466,7 @@ function afficherModifAccountMessage(){
 }
 
 
-function afficherCreateChapitreMessage() {
 
-    var code_chap= $('#creat_input_codeChapitre ').val();
-    var designation_chap=$('#creat_input_designationChapitre').val();
-    swal({
-        title: "Etes Vous Sure ?",
-        text: "Voulez vous vraiment Ajouter ce Chapitre ?",
-        type: "info",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        confirmButtonText: "Confirmer",
-        confirmButtonClass :"btn  btn-success waves-effect",
-    }, function() {
-        $.ajax(
-            {
-                type: "POST",
-                url: "nomenclatures_chapitre_create.html",
-                data: { code_chapitre:code_chap, designation_chapitre:designation_chap},
-                success: function(data){
-                    if(data==100)
-                        swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                    else
-                        swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                }
-            }
-        )
-            .done(function(data) {
-                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-            })
-            .error(function(data) {
-                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-            });
-    });
-}
 
 function afficherSupprChapitre(code_sect, selectedRow) {
     swal({
@@ -518,7 +500,6 @@ function afficherSupprChapitre(code_sect, selectedRow) {
                         $('#data-table-command').bootgrid("remove", selectedRow);
                         swal("Succès!", "La est supprimée avec Succès", "success");
                     }
-
                     else
                         swal("Erreur", "La Section n'est pas  Supprimée", "error");
                 })

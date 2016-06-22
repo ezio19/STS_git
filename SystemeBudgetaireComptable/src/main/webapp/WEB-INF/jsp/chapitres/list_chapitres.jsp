@@ -21,6 +21,7 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
+                <th data-column-id="id" data-identifier="true" data-type="numeric">Id</th>
                 <th data-column-id="code_chapitre"   >Code Chapitre</th>
                 <th data-column-id="CompteLabel" class="text-left" >Désignation</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
@@ -32,6 +33,7 @@
             <c:if test="${listChapitres.size()>0}">
             <c:forEach begin="0" end="${listChapitres.size()-1}" varStatus="loop">
                 <tr data-row-id="${loop.index}">
+                    <td class="text-left" style="">${loop.index+1}</td>
                     <td class="text-left " style="">${listChapitres.get(loop.index).getCodeChapitre()}</td>
                     <td class="text-left" style="">${listChapitres.get(loop.index).getDesignation()}</td>
                 </tr>

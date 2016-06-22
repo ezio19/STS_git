@@ -36,7 +36,7 @@ public class Rubrique {
     @JsonManagedReference
     private Chapitre chapitre;
 
-    @OneToMany(mappedBy = "rubrique")
+    @OneToMany(mappedBy = "rubrique",cascade = CascadeType.ALL)
     @JsonBackReference
     private List<CompteBudgetaire> compteBudgetaires;
 

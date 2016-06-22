@@ -20,29 +20,10 @@ $(document).ready(function () {
         ajax: 'true'
     }, function (result) {
         var htln = "";
-       /* result.sectionList[0].code_section="sect123";
-        result.sectionList[0].designation="Exploitation";
-
-        result.sectionList[1].code_section="sec23";
-        result.sectionList[1].designation="Immobilisations Corporelles";
-
-
-        result.sectionList[2].code_section="sect12";
-        result.sectionList[2].designation="Dettes";*/
-
         for (var i = 0; i < result.sectionList.length; i++) {
-            //alert("taille de la liste : "+result.sectionList.length+"taille du result :"+result.length+"  la section "+i+" "+result.sectionList[i].codeSection+" "+result.sectionList[i].designation);
             console.log("Section " + i);
             console.log("Code Section " + result.sectionList[i].codeSection);
             console.log("Designation" + result.sectionList[i].designation);
-
-            //$('#chapitre-select-section').selectpicker(result.sectionList[i].codeSection, result.sectionList[i].designation);
-
-            /*
-             $('#chapitre-select-section')
-             .append($('<option>', { value : result.sectionList[i].codeSection })
-             .text(result.sectionList[i].designation));
-             */
             htln += '<option value=';
             htln += "" + result.sectionList[i].codeSection;
             htln += '>';
@@ -68,11 +49,6 @@ $(document).ready(function () {
 
 
     //databinding
-    /* $("#section_creation_form").my({ui:{
-     "#creat_input_codeSec": "code_section",
-     "#creat_input_designation": "designation"
-     }}, data_section);
-     */
     $("#data-table-command").bootgrid({
         css: {
             icon: 'zmdi icon',
@@ -92,6 +68,23 @@ $(document).ready(function () {
     });
 }).on("loaded.rs.jquery.bootgrid", function () {
 
+    $("#data-table-command").find('button.compte-suppr.extern').on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        afficherSupprChapitre(idUtilisateur, rows);
+
+    })
+        .end().find("button.showingInfos").on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        //window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
+        //alert("you pressed edit on row " + $(this).data("row-id"));
+    });
+
+
+
     //Click le bouton creer une section
     $('button.section-create').on('click', function () {
         compteCreationMode = true;
@@ -110,19 +103,6 @@ $(document).ready(function () {
         afficherSection();
     });
 
-//Click sur le bouton de supprimer
-    $('button.compte-suppr.extern').on('click', function () {
-        var self=$(this);
-        var part;
-        //part=;
-        //part=JSON.stringify(part);
-        //[data-findme]
-        //afficherSupprMessage2(self.closest('tr'));
-        //afficherSupprChapitre( self.closest('tr').attr('data-row-id'));
-        afficherSupprChapitre( );
-
-
-    });
 
     //Click sur le bouton modifier (interne)
     $('button.compte-mod').on('click', function () {
@@ -357,7 +337,7 @@ function afficherCreateChapitreMessage() {
     });
 }
 
-function afficherSupprChapitre(selectedRow) {
+function afficherSupprChapitre(code_sect, selectedRow) {
 
     console.log("the chapitre code is :" +selectedRow);
 
@@ -381,17 +361,21 @@ function afficherSupprChapitre(selectedRow) {
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "nomenclatures_chapitre_delete.json",
-                        data: {code_chapitre: selectedRow},
-                        success: function (data) {
-                            if (JSON.parse(data) == "100")
-                                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                            else
-                                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                        }
+                        url: "nomenclatures_chapitre_remove",
+                        data: {code_chapitre: code_sect},
+
                     }
                 ).done(function (data) {
-                    swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
+                    if (JSON.parse(data) == "100"){
+                        $('#data-table-command').bootgrid("remove", selectedRow);
+                        swal("Succès!", "Elément supprimé avec Succès", "success");
+                    }
+
+                    else
+                        if(JSON.parse(data) == "101")
+                            swal("Erreur", "Element n'existe pas", "error");
+                        else
+                            swal("Erreur", "Suppresion non effectuée", "error");
                 })
                     .error(function (data) {
                         swal("Erreur", "Chapitre non  Supprimé", "error");

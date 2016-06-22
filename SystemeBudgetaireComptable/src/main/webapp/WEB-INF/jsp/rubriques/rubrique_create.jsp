@@ -45,7 +45,7 @@
                         <div id="section_creation_form" class="row">
                             <div class="col-sm-4">
                                 <div class="fg-line">
-                                    <input id="creat_input_codechap" placeholder="Code Rubrique "
+                                    <input id="creat_input_coderub" placeholder="Code Rubrique "
                                            class="form-control compte">
                                 </div>
                             </div>
