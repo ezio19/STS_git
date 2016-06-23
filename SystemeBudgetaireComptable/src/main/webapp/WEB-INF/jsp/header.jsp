@@ -12,7 +12,7 @@
         </li>
 
         <li class="logo hidden-xs">
-            <a href="">Systeme Budgétaire et Comptable</a>
+            <a href="" class="m-l-10"><img src="img/DEev17_200_36.png"></a>
         </li>
 
 

@@ -23,6 +23,7 @@ public class Engagement {
 	@ManyToOne
 	@JsonIgnore
 	private Tier tier;
+	//TODO changer le tier par fiche fournisseur
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<EngagementElementaire> engagementsElementaires;
 	public Engagement() {

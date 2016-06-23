@@ -27,7 +27,7 @@ public class OperationBudgetaire  {
 	OperationComptable operationComptable;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	private Engagement m_Engagement;
+	private Engagement engagement;
 
 	public OperationBudgetaire(){
 
@@ -39,14 +39,14 @@ public class OperationBudgetaire  {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setM_Engagement(Engagement m_Engagement) {
-		this.m_Engagement = m_Engagement;
+	public void setEngagement(Engagement m_Engagement) {
+		this.engagement = m_Engagement;
 	}
 	public void setOperationComptable(OperationComptable operationComptable) {
 		this.operationComptable = operationComptable;
 	}
-	public Engagement getM_Engagement() {
-		return m_Engagement;
+	public Engagement getEngagement() {
+		return engagement;
 	}
 	public OperationComptable getOperationComptable() {
 		return operationComptable;

@@ -34,7 +34,7 @@ public class DemandeControllerExterne {
 	public String montant_T;
 	
 /*********Ajouter une demande de transfert externe ***********************/
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+
 	@RequestMapping(value = "/addDemandeTransfertExterne", method = RequestMethod.GET)
 	public String addDemande(Model model, HttpSession session) {
 		
@@ -51,7 +51,6 @@ public class DemandeControllerExterne {
 	}	
 	
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@RequestMapping(value = "/addDemandeTransfertExterne", method = RequestMethod.POST)
 	public String updateDemande(@Valid @ModelAttribute("demandeTransfertExterne") DemandeTransfertExterne demandeTransfertExterne, BindingResult result) 
 	
@@ -63,7 +62,7 @@ public class DemandeControllerExterne {
 			demandeTransfertExterneService.save(demandeTransfertExterne);
 		
 		
-		return "redirect:addDemandeTransfertExterne.html";
+		return "addDemandeExterne";
 	}
 	
 	/************************************************************************************/
@@ -73,15 +72,17 @@ public class DemandeControllerExterne {
 	
 	/*********All demandes transfert externe ***********************/
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	
+	@PreAuthorize("hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTER', 'ROLE_ADMIN')")
     @RequestMapping(value="/AllDemandesExterne", method=RequestMethod.GET)
     public ModelAndView listDemandesExterne() {
         
         List <DemandeTransfertExterne> demandesExterne = demandeTransfertExterneService.findAllDemandesExterne();
             return new ModelAndView("listeDemandesExterne", "listeExterne", demandesExterne);
     }
+	
     
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/AllDemandesExterne", method = RequestMethod.POST)
     
 	public String deleteGuide3(HttpServletRequest request, HttpSession session)
@@ -93,15 +94,15 @@ public class DemandeControllerExterne {
 		System.out.println("getDemandeSalutExterne");
 		
 	//	List<DemandeTransfert> demandeTransfert = demandeTransfertService.findDemandeById(num_demande_T);
-	
-		
+
+
 		return "redirect:getDemandeExterne.html";
 	}
     
     /**********get  demandes transfert externe ***********************/
-	
-	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+
+
+	@PreAuthorize("hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/getDemandeExterne", method = RequestMethod.GET)
 	public String getDemande(Model model){
     
@@ -131,29 +132,7 @@ public class DemandeControllerExterne {
           //  return new ModelAndView("RecepteurDG", "listeExterne", rubriques);
     //}
     
-    
-    
-    public String getNum_demande_T() {
-  		return num_demande_T;
-  	}
 
-
-
-  	public void setNum_demande_T(String num_demande_T) {
-  		this.num_demande_T = num_demande_T;
-  	}
-
-
-
-  	public String getMontant_T() {
-  		return montant_T;
-  	}
-
-
-
-  	public void setMontant_T(String montant_T) {
-  		this.montant_T = montant_T;
-  	}
     
     
 

@@ -29,6 +29,9 @@
         <!-- Login -->
         <form id="loginForm" action="login" method="post">
 	        <div class="lc-block toggled" id="l-login">
+				<img src="img/DEev17_300-150.png">
+				<br/>
+				<br/>
 	            <div class="input-group m-b-20">
 	                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
 	                <div class="fg-line">

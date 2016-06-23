@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import dz.ifa.service.nomenclatures.RubriqueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,10 @@ import dz.ifa.service.GoalService;
 public class DispoController {
 	@Autowired
 	private DisponibiliteService disponibiliteService;
-	
+	@Autowired
+	private RubriqueService rubriqueService;
+
+
 	
 	public String montantInsuff= "10";
 	public String montant_TT= "50";
@@ -62,14 +66,14 @@ public class DispoController {
 	   System.out.println("montant de la rubrique:");
 	   System.out.println(montantRubrique);
 	   
-	 return "redirect:disponibilite.html";
+	 return "disponibilite";
 		
 
 		}
 	    
 	    @RequestMapping(value="/RecepteurDG", method=RequestMethod.GET)
 	    public ModelAndView listDispoExt() {
-		    List <Rubrique> rubriques = disponibiliteService.findDispoByMontant(50);
+		    List <Rubrique> rubriques = rubriqueService.getAllRubriques();//disponibiliteService.findDispoByMontant(50);
 	        System.out.println("Dispo size"+rubriques.size());
 	        return new ModelAndView("RecepteurDG", "rubriques", rubriques); 
 		
@@ -93,9 +97,7 @@ public class DispoController {
 
 			}
 	    
-	    
-	    
-	    
+
 	    
 	    
 	    @RequestMapping(value = "/disponibilite", method = RequestMethod.GET)

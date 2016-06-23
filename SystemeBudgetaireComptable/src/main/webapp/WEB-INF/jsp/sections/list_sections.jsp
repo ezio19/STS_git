@@ -19,7 +19,7 @@
             <thead>
             <tr>
                 <th data-column-id="id" data-identifier="true" data-type="numeric">Id</th>
-                <th style="" class="text-left" data-column-id="id">Code Section</th>
+                <th style="" class="text-left" data-column-id="code_sect">Code Section</th>
                 <th data-column-id="CompteLabel" class="text-left" style="">Désignation</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
             </tr>
@@ -30,7 +30,7 @@
             <c:if test="${listSections.size() >0}">
                 <c:forEach begin="0" end="${listSections.size()-1}" varStatus="loop">
                     <tr data-row-id="${loop.index}" >
-                        <td class="text-left" style="">${loop.index}</td>
+                        <td class="text-left" style="">${loop.index+1}</td>
                         <td class="text-left" style="">${listSections.get(loop.index).getCodeSection()}</td>
                         <td class="text-left" style="">${listSections.get(loop.index).getDesignation()}</td>
 

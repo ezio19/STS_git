@@ -15,36 +15,47 @@ var data_section = {
 //Initialisation du tableau contenant les sections
 $(document).ready(function () {
 
-    //Initialisation
-    $.getJSON('nomenclatures_structures_list.json', {
-        ajax: 'true'
-    }, function (result) {
-        var htln = "";
-        for (var i = 0; i < result.structureList.length; i++) {
-            console.log("Section " + i);
-            console.log("Code Strcuture " + result.structureList[i].codeStructure);
-            console.log("Designation" + result.structureList[i].nom);
-            htln += '<option value=';
-            htln += "" + result.structureList[i].codeStructure;
-            htln += '>';
-            htln += "" + result.structureList[i].nom;
-            htln += '</option>';
-        }
-        $("#structure-select-section")
-            .html(htln)
-            .selectpicker('refresh');
 
-    }).done(function () {
-        console.log("apres success");
-    })
-        .fail(function () {
-            console.log("error");
+    function getStructuresList()
+    {
+
+
+        $.getJSON('nomenclatures_structures_list.json', {
+            ajax: 'true'
+        }, function (result) {
+            var htln = "";
+            for (var i = 0; i < result.structureList.length; i++) {
+                console.log("Section " + i);
+                console.log("Code Strcuture " + result.structureList[i].codeStructure);
+                console.log("Designation" + result.structureList[i].nom);
+                htln += '<option value=';
+                htln += "" + result.structureList[i].codeStructure;
+                htln += '>';
+                htln += "" + result.structureList[i].nom;
+                htln += '</option>';
+            }
+             $("#structure-select-section")
+             .html(htln)
+             .selectpicker('refresh');
+
+        }).done(function () {
+            console.log("apres success");
         })
-        .always(function () {
-            console.log("complete toujours succes ou erreur");
-        });
+            .fail(function () {
+                console.log("error");
+            })
+            .always(function () {
+                console.log("complete toujours succes ou erreur");
+            });
 
-    //Initialisation
+
+    }
+
+
+    function prepareFonctionnalitesList(){
+
+
+
     $.getJSON('gestion_utilisateurs_fonctionnalites_list.json', {
         ajax: 'true'
     }, function (result) {
@@ -73,65 +84,9 @@ $(document).ready(function () {
             console.log("complete toujours succes ou erreur");
         });
 
-
-    //databinding
-    /* $("#section_creation_form").my({ui:{
-     "#creat_input_codeSec": "code_section",
-     "#creat_input_designation": "designation"
-     }}, data_section);
-     */
-    var grid = $("#data-table-command").bootgrid({
-        css: {
-            icon: 'zmdi icon',
-            iconColumns: 'zmdi-view-module',
-            iconDown: 'zmdi-expand-more',
-            iconRefresh: 'zmdi-refresh',
-            iconUp: 'zmdi-expand-less'
-        },
-        formatters: {
-            "commands": function (column, row) {
-                return "<button type=\"button\" class=\"showingInfos btn btn-icon command-edit waves-effect waves-circle\" data-row-id=\"" + row.id + "\"><span class=\"zmdi zmdi-assignment\"></span></button> " +
-                    "<button type=\"button\" class=\"compte-suppr extern btn btn-icon command-delete waves-effect waves-circle\" data-row-id=\"" + row.id + "\"><span class=\"zmdi zmdi-delete\"></span></button> ";
-                ;
-            }
-        },
+    }
 
 
-    }).on("loaded.rs.jquery.bootgrid", function () {
-
-
-        grid.find('button.compte-suppr.extern').on("click", function (e) {
-            var rows = Array();
-            rows[0] = $(this).data("row-id");
-            var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
-            afficherSupprChapitre(idUtilisateur, rows);
-
-        }).end().find("button.showingInfos").on("click", function (e) {
-            var rows = Array();
-            rows[0] = $(this).data("row-id");
-            var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
-            window.location.replace("gestion_utilisateurs_get_utilisateur.html?id_utilisateur="+idUtilisateur);
-
-
-           /* $.ajax(
-                {
-                    type: "GET",
-                    url: "gestion_utilisateurs_get_utilisateur.html",
-                    data: {id_utilisateur: idUtilisateur},
-                }
-            ).done(function (data) {
-                alert(data);
-            }).error(function (data) {
-                swal("Erreur", "Utilisateur non  Supprimé", "error");
-            });
-*/
-        });
-
-
-
-
-        //alert("you pressed edit on row " + $(this).data("row-id"));
-    });
 
 
     //Click le bouton creer une section
@@ -143,14 +98,6 @@ $(document).ready(function () {
     });
 
 
-//Click le bouton affichage d'une section
-    $('button.showingInfos').on('click', function () {
-        selectedCompte = $(this.closest('tr')).attr('data-row-id');
-        compteShowingMode = true;
-        compteCreationMode = false;
-        compteEditMode = false;
-        afficherSection();
-    });
 
 
     //Click sur le bouton modifier (interne)
@@ -172,17 +119,6 @@ $(document).ready(function () {
     });
 
 
-//Click sur le bouton  supprimer un chapitre
-    $('button.chpitre-suppr').on('click', function () {
-
-    });
-
-    //Click sur le bouton  créer un chapitre
-    $('button.rubrique-create-submit').on('click', function () {
-        afficherCreateChapitreMessage();
-
-    });
-
 
     $('button.rubrique-create_cancel').on('click', function () {
         $("input.rubrique").val("");
@@ -190,12 +126,12 @@ $(document).ready(function () {
         $('.card.rubrique-create').css('display', 'none');
     });
 
-    $('a.rubrique-return').on('click', function () {
-        //$( "input.chapitre" ).prop( "readonly", true );
-        $('.card.section-detail').css('display', '');
-        //$('.card.chapitre-create').addClass('animated fadeOuLeft');
-        $('.card.rubrique-create').css('display', 'none');
-        compteShowingMode = true;
+    $('button.compte-modif').on('click', function () {
+        $("input.compte").prop("readonly", false);
+        prepareFonctionnalitesList();
+        getStructuresList();
+
+
     });
 
 

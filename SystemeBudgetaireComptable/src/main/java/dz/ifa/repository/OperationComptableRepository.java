@@ -27,4 +27,9 @@ public interface OperationComptableRepository extends JpaRepository<OperationCom
 	@Query("select o from OperationComptable o where o.valide=false")
 	List<OperationComptable> getListOperationsBrouillard();
 	
+	@Query("select o from OperationComptable o where o.valide=true")
+	List<OperationComptable> getValideOperationsComptables();
+	
+	
+	
 }

@@ -484,10 +484,7 @@ function afficherSupprChapitre(code_sect, selectedRow) {
 
         },
         function (isConfirm) {
-
-
             if (isConfirm)
-
                 $.ajax(
                     {
                         type: "POST",

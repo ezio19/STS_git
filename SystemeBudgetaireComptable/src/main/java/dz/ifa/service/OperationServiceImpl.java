@@ -86,4 +86,27 @@ public class OperationServiceImpl implements OperationService {
 	public void deleteOperationComptById(long id) {
 		operationComptableRepository.delete(id);
 	}
+	
+	@Override
+	public OperationComptable getOperationComptableById(long id) {
+		return operationComptableRepository.findOne(id);
+	}
+	
+	@Override
+	public void  validateOperationComptById(long opId) {
+		OperationComptable operationComptable =  operationComptableRepository.getOne(opId);
+		operationComptable.setValide(true);
+		operationComptableRepository.save(operationComptable);
+	}
+	
+	@Override
+	public List<OperationComptable> getValideOperations() {
+		return operationComptableRepository.getValideOperationsComptables();
+		
+	}
+	
+	@Override
+	public List<OperationBudgetaire> getAllOperationsBudgetairesValides() {
+		return operationBudgetaireRepository.getAllOperationsBudgetairesValides();
+	}
 }

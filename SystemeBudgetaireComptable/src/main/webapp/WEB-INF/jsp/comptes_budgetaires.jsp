@@ -28,7 +28,7 @@
     <section id="content">
         <div class="container">
 
-            <c:import url="comptes_budgetaires/list_rubriques.jsp">
+            <c:import url="comptes_budgetaires/list_comptes_budgetaires.jsp">
                 <c:param name="listComptesBudgetaires" value="${listComptesBudgetaires}"/>
             </c:import>
 

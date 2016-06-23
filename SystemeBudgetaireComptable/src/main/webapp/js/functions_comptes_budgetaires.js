@@ -105,6 +105,24 @@ $(document).ready(function () {
     });
 }).on("loaded.rs.jquery.bootgrid", function () {
 
+    $("#data-table-command").find('button.command-delete').on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(3).text();
+        afficherSupprChapitre(idUtilisateur, rows);
+
+    })
+        .end().find("button.command-edit").on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        //window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
+        //alert("you pressed edit on row " + $(this).data("row-id"));
+    });
+
+
+
+
     //Click le bouton creer une section
     $('button.section-create').on('click', function () {
         compteCreationMode = true;
@@ -123,19 +141,7 @@ $(document).ready(function () {
         afficherSection();
     });
 
-//Click sur le bouton de supprimer
-    $('button.compte-suppr.extern').on('click', function () {
-        var self=$(this);
-        var part;
-        //part=;
-        //part=JSON.stringify(part);
-        //[data-findme]
-        //afficherSupprMessage2(self.closest('tr'));
-        //afficherSupprChapitre( self.closest('tr').attr('data-row-id'));
-        afficherSupprChapitre( );
 
-
-    });
 
     //Click sur le bouton modifier (interne)
     $('button.compte-mod').on('click', function () {
@@ -184,7 +190,7 @@ $(document).ready(function () {
 
 
 }).on('selected.rs.jquery.bootgrid',function (e,row) {
-        alert(e);
+        //alert(e);
 });
 ;
 
@@ -212,24 +218,10 @@ $(document).ready(function () {
     //Click sur le bouton  supprimer un chapitre
     $('button.rubrique-create').on('click', function () {
         afficherCreateChapitre();
-
-
     });
 
 
-    //Click sur le bouton  supprimer un chapitre
-    $('button.rubrique-suppr').on('click', function () {
-        /* var rows=Array();
-         rows[0] = $(this).data("row-id");
-         afficherSupprChapitre(rows);
-         alert("You pressed edit on row: " + $(this).data("row-id"));*/
 
-        var rows = Array();
-        rows[0] = $(this).data("data-row-id");
-        $("#chapitre-data-table-command").bootgrid('remove', rows);
-
-
-    });
 
 
 });
@@ -273,7 +265,7 @@ function afficherSection() {
 
 //Click sur le bouton  supprimer
 $('button.compte-suppr.intern').on('click', function () {
-    afficherSupprMessage(this.closest('tr'));
+    //afficherSupprMessage(this.closest('tr'));
 });
 
 //Click sur le bouton de retour
@@ -371,14 +363,13 @@ function afficherCreateChapitreMessage() {
             });
     });
 }
+//url: "nomenclatures_comptes_budgetaires_remove.html",
+function afficherSupprChapitre(code_sect, selectedRow) {
 
-function afficherSupprChapitre(selectedRow) {
-
-    console.log("the chapitre code is :" +selectedRow);
-
+    alert("code sect == num cpt +"+code_sect+"selected row    "+selectedRow);
     swal({
             title: 'Ete Vous Sure ?',
-            text: "Voulez vous vraiment supprimer Ce Compte!",
+            text: "Voulez vous vraiment supprimer Cette Section!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -391,25 +382,24 @@ function afficherSupprChapitre(selectedRow) {
 
         },
         function (isConfirm) {
-            if(isConfirm)
+            if (isConfirm)
                 $.ajax(
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "nomenclatures_chapitre_delete.json",
-                        data: {code_chapitre: selectedRow},
-                        success: function (data) {
-                            if (JSON.parse(data) == "100")
-                                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                            else
-                                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                        }
+                        url: "nomenclatures_comptes_budgetaires_remove.html",
+                        data: {num_compte: code_sect},
                     }
                 ).done(function (data) {
-                    swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
+                    if (JSON.parse(data) == "100"){
+                        $('#data-table-command').bootgrid("remove", selectedRow);
+                        swal("Succès!", "La est supprimée avec Succès", "success");
+                    }
+                    else
+                        swal("Erreur", "La Section n'est pas  Supprimée", "error");
                 })
                     .error(function (data) {
-                        swal("Erreur", "Chapitre non  Supprimé", "error");
+                        swal("Erreur", "La Section n'est pas  Supprimée", "error");
                     });
 
         });

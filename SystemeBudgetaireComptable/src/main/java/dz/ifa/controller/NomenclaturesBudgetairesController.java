@@ -160,6 +160,35 @@ public class NomenclaturesBudgetairesController {
 
 
 
+    @RequestMapping(
+            value = {"/nomenclatures_comptes_budgetaires_remove"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postRemoveSection(@RequestParam("num_compte") String num_compte ) {
+
+        System.out.println("Section Remove : ");
+        System.out.println("Code Structure:" + num_compte);
+
+        List<CompteBudgetaire> compteBudgetaires=service.getCompteBudgetaireByNumeroCompte(num_compte);
+        if(compteBudgetaires.size()==0)
+            return "101";
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println("Suppression du Compte "+compteBudgetaires.get(0).getNumCompte());
+
+        String result=service.removeCompteBudgetaire(compteBudgetaires.get(0));
+        if(result !=null){
+            System.out.println("Section Removed "+result);
+            return "100";
+        }
+        else
+            return "101";
+
+    }
+
+
+
 
 
 

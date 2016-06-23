@@ -19,16 +19,13 @@
 
                     <ul class="main-menu">
                         <li>
-                            <a href=""><i class="zmdi zmdi-account"></i> View Profile</a>
+                            <a href=""><i class="zmdi zmdi-account"></i> Afficher le Profil</a>
                         </li>
                         <li>
-                            <a href="#"><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                            <a href="#"><i class="zmdi zmdi-settings"></i> Parametres</a>
                         </li>
                         <li>
-                            <a href="#"><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                            <a href="logout"><i class="zmdi zmdi-time-restore"></i> Deconnexion</a>
                         </li>
                     </ul>
                 </div>
@@ -62,8 +59,14 @@
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Transfert</a>
                         <ul>
-                            <li ><a href="addDemandeTransfertInterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a></li>
+                            <li ><a href="addDemandeTransfert.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a></li>
                             <li ><a href="addDemandeTransfertExterne.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Demande Transfert Externe</a></li>
+                            <sec:authorize access="hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTRA', 'ROLE_ADMIN')">
+                            <li ><a href="AllDemandes.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les Disponibilit√©s Internes</a></li>
+                            </sec:authorize>
+                            <sec:authorize access="hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTER', 'ROLE_ADMIN')">
+                            <li ><a href="AllDemandesExterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les Disponibilit√©s Externes</a></li>
+                            </sec:authorize>
                         </ul>
                     </li>
 
@@ -81,20 +84,23 @@
                         	</sec:authorize>
                         </ul>
                    </li>
-                   
+
+
+                    <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-compact"></i> OpÈrations</a>
+                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Op√©rations</a>
                         <ul>
 	                        <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
-	                            <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>OpÈrations BudgÈtaires</a></li>
+	                            <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Op√©rations Budg√©taires</a></li>
 	                        </sec:authorize> 
                             <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
-                            	<li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>OpÈrations Comptables</a></li>
+                            	<li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Op√©rations Comptables</a></li>
                         	</sec:authorize>
                         </ul>
                    </li>
+                    </sec:authorize>
                    
-                   <li><a href="logout"><i class="zmdi"/> DÈconnexion</a></li>
+                   <li><a href="logout"> Deconnexion</a></li>
 
                 </ul>
 
