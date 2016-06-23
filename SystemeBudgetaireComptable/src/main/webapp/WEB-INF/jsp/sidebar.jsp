@@ -62,8 +62,10 @@
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Transfert</a>
                         <ul>
-                            <li ><a href="addDemandeTransfertInterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a></li>
+                            <li ><a href="addDemandeTransfert.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a></li>
                             <li ><a href="addDemandeTransfertExterne.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Demande Transfert Externe</a></li>
+                            <li ><a href="AllDemandes.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les DisponibilitÃ©s Internes</a></li>
+                            <li ><a href="addDemandeTransfertExterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les DisponibilitÃ©s Externes</a></li>
                         </ul>
                     </li>
 
@@ -83,18 +85,18 @@
                    </li>
                    
                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Opérations</a>
+                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Opï¿½rations</a>
                         <ul>
 	                        <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
-	                            <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Opérations Budgétaires</a></li>
+	                            <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Opï¿½rations Budgï¿½taires</a></li>
 	                        </sec:authorize> 
                             <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
-                            	<li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Opérations Comptables</a></li>
+                            	<li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Opï¿½rations Comptables</a></li>
                         	</sec:authorize>
                         </ul>
                    </li>
                    
-                   <li><a href="logout"><i class="zmdi"/> Déconnexion</a></li>
+                   <li><a href="logout"><i class="zmdi"/> Dï¿½connexion</a></li>
 
                 </ul>
 

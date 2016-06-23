@@ -105,6 +105,24 @@ $(document).ready(function () {
     });
 }).on("loaded.rs.jquery.bootgrid", function () {
 
+    $("#data-table-command").find('button.command-delete').on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(3).text();
+        afficherSupprChapitre(idUtilisateur, rows);
+
+    })
+        .end().find("button.command-edit").on("click", function (e) {
+        var rows = Array();
+        rows[0] = $(this).data("row-id");
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
+        //window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
+        //alert("you pressed edit on row " + $(this).data("row-id"));
+    });
+
+
+
+
     //Click le bouton creer une section
     $('button.section-create').on('click', function () {
         compteCreationMode = true;
@@ -372,13 +390,10 @@ function afficherCreateChapitreMessage() {
     });
 }
 
-function afficherSupprChapitre(selectedRow) {
-
-    console.log("the chapitre code is :" +selectedRow);
-
+function afficherSupprChapitre(code_sect, selectedRow) {
     swal({
             title: 'Ete Vous Sure ?',
-            text: "Voulez vous vraiment supprimer Ce Compte!",
+            text: "Voulez vous vraiment supprimer Ce Compte !",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -391,25 +406,29 @@ function afficherSupprChapitre(selectedRow) {
 
         },
         function (isConfirm) {
-            if(isConfirm)
+
+            alert(code_sect);
+            if (isConfirm)
+
                 $.ajax(
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "nomenclatures_chapitre_delete.json",
-                        data: {code_chapitre: selectedRow},
-                        success: function (data) {
-                            if (JSON.parse(data) == "100")
-                                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                            else
-                                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                        }
+                        url: "nomenclatures_comptes_budgetaires_remove.html",
+                        data: {num_compte: code_sect},
                     }
                 ).done(function (data) {
-                    swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                })
-                    .error(function (data) {
-                        swal("Erreur", "Chapitre non  Supprimé", "error");
+                    if (JSON.parse(data) == "100"){
+                        $('#data-table-command').bootgrid("remove", selectedRow);
+                        swal("Succès!", "Suppression effectuée avec Succès", "success");
+                    }
+                    else
+                        if (JSON.parse(data) == "101")
+                            swal("Erreur", "Elément n'existe pas", "error");
+                        else
+                            swal("Erreur", "Suppression non effectuée", "error");
+                }).error(function (data) {
+                    swal("Erreur", "Suppression non effectuée", "error");
                     });
 
         });

@@ -35,7 +35,10 @@ public class DemandeController {
 	public String num_demande_T;
 	
 	public String montant_T;
-	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
+
+	
+	
+
 	@RequestMapping(value = "/addDemandeTransfert", method = RequestMethod.GET)
 	public String addDemande(Model model, HttpSession session) {
 		
@@ -51,19 +54,17 @@ public class DemandeController {
 	}	
 	
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
+	
 	@RequestMapping(value = "/addDemandeTransfert", method = RequestMethod.POST)
 	public String updateDemande(@Valid @ModelAttribute("demandeTransfert") DemandeTransfert demandeTransfert, BindingResult result) 
 	
 	{
 		
-	//	System.out.println("ma demande numero: " + demandeTransfert.getNum_demande());
-		
 	
 			demandeTransfertService.save(demandeTransfert);
 		
 		
-		return "redirect:addDemandeTransfert.html";
+		return "addDemandeTransfert";
 	}
 	
 	
@@ -71,7 +72,7 @@ public class DemandeController {
 	
 	
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTRA', 'ROLE_ADMIN')")
     @RequestMapping(value="/AllDemandes", method=RequestMethod.GET)
     public ModelAndView listDemandes() {
         
@@ -79,7 +80,9 @@ public class DemandeController {
             return new ModelAndView("listeDemandes", "liste", demandes);
     }
     
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	
+	
+	@PreAuthorize("hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTRA', 'ROLE_ADMIN')")
     @RequestMapping(value = "/AllDemandes", method = RequestMethod.POST)
 	public String deleteGuide2(HttpServletRequest request, HttpSession session)
 		    throws AuthenticationException {
@@ -90,7 +93,7 @@ public class DemandeController {
 	//	System.out.println(request.getParameter("code_monnaie"));
 	
 		
-		return "redirect:getDemande.html";
+		return "getDemande";
 	}
     
     
@@ -164,7 +167,7 @@ public class DemandeController {
 			demandeTransfertService.save(demandeTransfert);
 		
 		
-		return "redirect:addDemandePlusieursCompte.html";
+		return "addDemandePlusieursCompte";
 	}
 
 } 

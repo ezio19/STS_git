@@ -19,7 +19,7 @@
             <thead>
             <tr>
                 <th data-column-id="id" data-identifier="true" data-type="numeric">Id</th>
-                <th style="" class="text-left" data-column-id="id">Code Section</th>
+                <th style="" class="text-left" data-column-id="code_sect">Code Section</th>
                 <th data-column-id="CompteLabel" class="text-left" style="">Désignation</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
             </tr>
