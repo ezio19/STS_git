@@ -1,6 +1,8 @@
 ﻿<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
     <!--[if IE 9 ]>
@@ -62,169 +64,12 @@
 		</script>
     </head>
 <body>
-        <header id="header" class="clearfix" data-current-skin="blue">
-		
-			<ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
+<c:import url="header.jsp"></c:import>
+<section id="main">
+    <c:import url="sidebar.jsp"></c:import>
 
-                <li class="logo hidden-xs">
-                    <a href="index-2.html">Liste des demandes de transfert</a>
-                </li>
-				 <!-- Top Search Content -->
-            <div id="top-search-wrap">
-                <div class="tsw-inner">
-                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
-                    <input type="text">
-                </div>
-            </div>
-			</ul>
-        </header>
-		<section id="main">
 			
-            <aside id="sidebar" class="sidebar c-overflow">
-                <div class="profile-menu">
-                    <a href="#">
-                        <div class="profile-pic">
-                            <img src="img/profile-pics/1.jpg" alt="">
-                        </div>
 
-                        <div class="profile-info">
-                            Malinda Hollaway
-
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </a>
-
-                    <ul class="main-menu">
-                        <li>
-                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-time-restore"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <ul class="main-menu">
-                    <li><a href="index-2.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Headers</a>
-
-                        <ul>
-                            <li><a href="textual-menu.html">Textual menu</a></li>
-                            <li><a href="image-logo.html">Image logo</a></li>
-                            <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-widgets"></i> Widgets</a>
-
-                        <ul>
-                            <li><a href="widget-templates.html">Templates</a></li>
-                            <li><a href="widgets.html">Widgets</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-list"></i> Tables</a>
-
-                        <ul>
-                            <li><a href="tables.html">Normal Tables</a></li>
-                            <li><a href="data-tables.html">Data Tables</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu active toggled">
-                        <a href="#"><i class="zmdi zmdi-collection-text"></i> Forms</a>
-
-                        <ul>
-                            <li><a href="form-elements.html">Basic Form Elements</a></li>
-                            <li><a href="form-components.html">Form Components</a></li>
-                            <li><a href="form-examples.html">Form Examples</a></li>
-                            <li><a href="form-validations.html">Form Validation</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-swap-alt"></i>User Interface</a>
-                        <ul>
-                            <li><a href="colors.html">Colors</a></li>
-                            <li><a href="animations.html">Animations</a></li>
-                            <li><a href="box-shadow.html">Box Shadow</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="icons.html">Icons</a></li>
-                            <li><a href="alerts.html">Alerts</a></li>
-                            <li><a href="preloaders.html">Preloaders</a></li>
-                            <li><a href="notification-dialog.html">Notifications & Dialogs</a></li>
-                            <li><a href="media.html">Media</a></li>
-                            <li><a href="components.html">Components</a></li>
-                            <li><a href="other-components.html">Others</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-trending-up"></i>Charts</a>
-                        <ul>
-                            <li><a href="flot-charts.html">Flot Charts</a></li>
-                            <li><a href="other-charts.html">Other Charts</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="calendar.html"><i class="zmdi zmdi-calendar"></i> Calendar</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-image"></i>Photo Gallery</a>
-                        <ul>
-                            <li><a href="photos.html">Default</a></li>
-                            <li><a href="photo-timeline.html">Timeline</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="generic-classes.html"><i class="zmdi zmdi-layers"></i> Generic Classes</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-collection-item"></i> Sample Pages</a>
-                        <ul>
-
-                            <li><a href="profile-about.html">Profile</a></li>
-                            <li><a href="list-view.html">List View</a></li>
-                            <li><a href="messages.html">Messages</a></li>
-                            <li><a href="pricing-table.html">Pricing Table</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="wall.html">Wall</a></li>
-                            <li><a href="invoice.html">Invoice</a></li>
-                            <li><a href="login.html">Login and Sign Up</a></li>
-                            <li><a href="lockscreen.html">Lockscreen</a></li>
-                            <li><a href="404.html">Error 404</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="form-examples.html"><i class="zmdi zmdi-menu"></i> 3 Level Menu</a>
-
-                        <ul>
-                            <li><a href="form-elements.html">Level 2 link</a></li>
-                            <li><a href="form-components.html">Another level 2 Link</a></li>
-                            <li class="sub-menu">
-                                <a href="form-examples.html">I have children too</a>
-
-                                <ul>
-                                    <li><a href="#">Level 3 link</a></li>
-                                    <li><a href="#">Another Level 3 link</a></li>
-                                    <li><a href="#">Third one</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="form-validations.html">One more 2</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </aside>
 			
 			<section id="content">
 				<div class="container">
@@ -253,7 +98,7 @@
                             <th data-column-id="CompteLabel" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Rubrique</span><span class="zmdi icon "></span></a></th>
                             <th data-column-id="CompteType" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Montant</span><span class="zmdi icon "></span></a></th>
                             <th data-column-id="CompteDescription" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Code monnaie</span><span class="zmdi icon zmdi-expand-more"></span></a></th>
-                             <th data-column-id="CompteDescription" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Visualisation</span><span class="zmdi icon zmdi-expand-more"></span></a></th>
+                             <th data-column-id="CompteDescription" class="text-left" style=""><a href="javascript:void(0);" class="column-header-anchor sortable"><span class="text">Visualiser</span><span class="zmdi icon zmdi-expand-more"></span></a></th>
                          </tr>
                         </thead>
                         
@@ -267,10 +112,9 @@
                             <td id="code_monnaie" class="text-left" style="">${c.code_monnaie}</td>
                            
 							<td class="text-left" style="">
-							
-                     
-                            <button type="button" class="compte-show extern btn  waves-effect " ><span class="zmdi zmdi-delete" data-row-id="${c.num_demande}"></span></button>
-							 
+                                <button type="button" class="compte-show extern btn  waves-effect " ><span class="zmdi zmdi-arrow-forward" data-row-id="${c.num_demande}"></span></button>
+
+
 							</td>	 
                         </tr>
 
@@ -313,8 +157,8 @@
 									            <c:out value="${dem.date_demande}" />
 									        </td>
 									         <td>
-									        <button type="button" class="compte-suppr extern btn btn-icon command-delete  waves-circle" ><span class="zmdi zmdi-delete" data-row-id="${dem.num_demande}"></span></button>
-							       		  </td>
+                                                 <button type="button" class="compte-show extern btn  waves-effect " ><span class="zmdi zmdi-arrow-forward" data-row-id="${c.num_demande}"></span></button>
+                                             </td>
 							        </tr>
 							    </c:forEach>
 						
@@ -543,6 +387,7 @@
 	document.getElementById('code_monnaie').value=code_monnaie;
 	document.getElementById('etat').value=etat;
 	document.getElementById('date_demande').value=date_demande;
+
 
 	$( "form:first" ).submit();
 

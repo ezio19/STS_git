@@ -64,7 +64,7 @@ public class DemandeController {
 			demandeTransfertService.save(demandeTransfert);
 		
 		
-		return "addDemandeTransfert";
+		return "addDemande";
 	}
 	
 	
@@ -88,33 +88,25 @@ public class DemandeController {
 		    throws AuthenticationException {
 		num_demande_T =  request.getParameter("num_demande");
 		montant_T =request.getParameter("montant");
-	//	System.out.println(request.getParameter("num_rubrique"));
-	//	System.out.println(request.getParameter("montant"));
+
+		System.out.println(request.getParameter("montant"));
 	//	System.out.println(request.getParameter("code_monnaie"));
 	
 		
-		return "getDemande";
+		return "redirect:getDemande.html";
 	}
-    
-    
 
+
+	@PreAuthorize("hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTRA', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/getDemande", method = RequestMethod.GET)
 	public String getDemande(Model model){
 	//	System.out.println("je suis le numero de demande :"+num_demande_T);
-			
-
 		String ch1 = num_demande_T.replaceAll(" ", ""); 
 		//System.out.println("je suis le numero de demande :"+ch1);
 		int foo = Integer.parseInt(ch1);
-		//System.out.println("je suis le numero de demande :"+foo);
+		System.out.println("je suis le numero de demande :"+foo);
 		List<DemandeTransfert> demandeTransfert = demandeTransfertService.findDemandeById(foo);
-		
-		Intermediaire intermediaire = new Intermediaire();
-		intermediaire.setId(1);
-		intermediaire.setId_demande(num_demande_T);
-		intermediaire.setId_demande(montant_T);
-	
-				System.out.println("DEMANDE TRANSFER"+demandeTransfert.size());
+		System.out.println("DEMANDE TRANSFER"+demandeTransfert.size());
 		model.addAttribute("demandeTransfert", demandeTransfert);
 		return "getDemandeTransfert";
 	}

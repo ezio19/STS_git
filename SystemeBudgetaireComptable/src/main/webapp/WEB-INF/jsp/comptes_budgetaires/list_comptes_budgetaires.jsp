@@ -19,12 +19,16 @@
             <!--l'entete du tableau' -->
             <thead>
             <tr>
+
                 <th data-column-id="id" data-identifier="true" data-type="numeric">Id</th>
-                <th data-column-id="concatenation"   >Concaténation</th>
-                <th data-column-id="CompteLabel" class="text-left" >Désignation</th>
-                <th data-column-id="CompteNum" class="text-left" >Numéro</th>
-                <th data-column-id="CompteType" class="text-left" >Type</th>
+                <th style="" class="text-left" data-column-id="concat">Concaténation</th>
+                <th data-column-id="designation" class="text-left" style="">Désignation</th>
+                <th data-column-id="nume" class="text-left" style="">Numéro</th>
+                <th data-column-id="type_cpt" class="text-left" style="">Type</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commandes</th>
+
+
+
             </tr>
             </thead>
 

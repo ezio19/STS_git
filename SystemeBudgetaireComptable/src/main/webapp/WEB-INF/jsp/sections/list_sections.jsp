@@ -30,7 +30,7 @@
             <c:if test="${listSections.size() >0}">
                 <c:forEach begin="0" end="${listSections.size()-1}" varStatus="loop">
                     <tr data-row-id="${loop.index}" >
-                        <td class="text-left" style="">${loop.index}</td>
+                        <td class="text-left" style="">${loop.index+1}</td>
                         <td class="text-left" style="">${listSections.get(loop.index).getCodeSection()}</td>
                         <td class="text-left" style="">${listSections.get(loop.index).getDesignation()}</td>
 

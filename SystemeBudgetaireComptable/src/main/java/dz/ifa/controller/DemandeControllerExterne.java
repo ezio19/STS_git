@@ -62,7 +62,7 @@ public class DemandeControllerExterne {
 			demandeTransfertExterneService.save(demandeTransfertExterne);
 		
 		
-		return "addDemandeTransfertExterne";
+		return "addDemandeExterne";
 	}
 	
 	/************************************************************************************/
@@ -94,15 +94,15 @@ public class DemandeControllerExterne {
 		System.out.println("getDemandeSalutExterne");
 		
 	//	List<DemandeTransfert> demandeTransfert = demandeTransfertService.findDemandeById(num_demande_T);
-	
-		
-		return "getDemandeExterne";
+
+
+		return "redirect:getDemandeExterne.html";
 	}
     
     /**********get  demandes transfert externe ***********************/
-	
-	
-    @PreAuthorize("hasRole('admin')and hasRole('DG')")
+
+
+	@PreAuthorize("hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTER', 'ROLE_ADMIN')")
     @RequestMapping(value = "/getDemandeExterne", method = RequestMethod.GET)
 	public String getDemande(Model model){
     
@@ -132,29 +132,7 @@ public class DemandeControllerExterne {
           //  return new ModelAndView("RecepteurDG", "listeExterne", rubriques);
     //}
     
-    
-    
-    public String getNum_demande_T() {
-  		return num_demande_T;
-  	}
 
-
-
-  	public void setNum_demande_T(String num_demande_T) {
-  		this.num_demande_T = num_demande_T;
-  	}
-
-
-
-  	public String getMontant_T() {
-  		return montant_T;
-  	}
-
-
-
-  	public void setMontant_T(String montant_T) {
-  		this.montant_T = montant_T;
-  	}
     
     
 

@@ -361,7 +361,7 @@ function afficherSupprChapitre(code_sect, selectedRow) {
                     {
                         type: "POST",
                         dataType: 'json',
-                        url: "nomenclatures_chapitre_remove",
+                        url: "nomenclatures_chapitre_remove.html",
                         data: {code_chapitre: code_sect},
 
                     }
