@@ -141,26 +141,19 @@ public class GestionUtilisateurController {
     }
 
 
-
-
-    @RequestMapping(value="gestion_utilisateurs_get_utilisateur/id_utilisateur/{id_utilisateur}", method=RequestMethod.GET)
-    public String getUtilisateur(@PathVariable("id_utilisateur") String id_utilisateur, Model model) {
+//    id_utilisateur/{id_utilisateur}
+//value="gestion_utilisateurs_get_utilisateur/id_utilisateur/{id_utilisateur}", method=RequestMethod.GET
+    @RequestMapping(value = "/gestion_utilisateurs_get_utilisateur.html", method = RequestMethod.GET)
+    public String getUtilisateur(@RequestParam("id_utilisateur") String id_utilisateur, Model model) {
         List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
         if(utilisateurs.size()==0){
             System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
-            System.out.println("compte inexistant");
             return "404";
         }
+        System.out.println("Compte Existe   "+utilisateurs.get(0).getId());
 
         model.addAttribute("utilisateur", utilisateurs.get(0));
-        return "gestion_utilisateurs";
+        return "gestion_utilisateurs_pages/utilisateur_detaill";
     }
 
 

@@ -19,16 +19,13 @@
 
                     <ul class="main-menu">
                         <li>
-                            <a href=""><i class="zmdi zmdi-account"></i> View Profile</a>
+                            <a href=""><i class="zmdi zmdi-account"></i> Afficher le Profil</a>
                         </li>
                         <li>
-                            <a href="#"><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                            <a href="#"><i class="zmdi zmdi-settings"></i> Parametres</a>
                         </li>
                         <li>
-                            <a href="#"><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                            <a href="logout"><i class="zmdi zmdi-time-restore"></i> Deconnexion</a>
                         </li>
                     </ul>
                 </div>
@@ -87,20 +84,23 @@
                         	</sec:authorize>
                         </ul>
                    </li>
-                   
+
+
+                    <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Op�rations</a>
+                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Opérations</a>
                         <ul>
 	                        <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
-	                            <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Op�rations Budg�taires</a></li>
+	                            <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Opérations Budgétaires</a></li>
 	                        </sec:authorize> 
                             <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
-                            	<li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Op�rations Comptables</a></li>
+                            	<li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Opérations Comptables</a></li>
                         	</sec:authorize>
                         </ul>
                    </li>
+                    </sec:authorize>
                    
-                   <li><a href="logout"><i class="zmdi"/> D�connexion</a></li>
+                   <li><a href="logout"> Deconnexion</a></li>
 
                 </ul>
 
