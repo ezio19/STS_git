@@ -87,7 +87,7 @@
 
                                             <div class="col-sm-8">
                                                 <div class="fg-line">
-                                                    <input id="code_structure" placeholder="${utilisateur.getPrenom()}"class="form-control compte" readonly>
+                                                    <input id="code_structure" placeholder="${}"class="form-control compte" readonly>
                                                 </div>
                                             </div>
 
