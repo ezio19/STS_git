@@ -897,7 +897,7 @@ $(document).ready(function(){
     });
 
 
-    $("#sidebar").mCustomScrollbar();
+    
 
 
 

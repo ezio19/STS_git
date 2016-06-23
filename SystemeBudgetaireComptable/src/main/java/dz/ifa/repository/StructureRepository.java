@@ -17,6 +17,6 @@ import java.util.List;
 public interface StructureRepository extends JpaRepository<Structure,String> {
     Structure save(Structure structure);
 
-    @Query("SELECT c FROM Structure c WHERE LOWER(c.codeStructure) = LOWER(:codeStructure)")
+    @Query("SELECT c FROM Structure c WHERE c.codeStructure = (:codeStructure) ")
     public List<Structure> getStructureByCodeStructure(@Param("codeStructure") String codeStructure);
 }

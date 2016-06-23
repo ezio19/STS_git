@@ -29,8 +29,6 @@ public class SectionsController {
     private NomenclatureService service;
 
 
-
-
     @RequestMapping(
             value = {"/nomenclatures_sections_list.json"},
             method = {RequestMethod.GET}
@@ -48,15 +46,13 @@ public class SectionsController {
     @ResponseBody
     public String postCreateSection(@RequestParam("code_section") String codeSection,
                                     @RequestParam("designation_section") String designationSection,
-                                    @RequestParam("code_structure") String code_structure ) {
+                                    @RequestParam("code_structure") String code_structure) {
 
 
-
-        List<Structure> structures=service.getStructureByCodeStructure(code_structure);
-        if(structures.size()==0)
+        List<Structure> structures = service.getStructureByCodeStructure(code_structure);
+        if (structures.size() == 0)
             return "80904";
-        Structure structure=structures.get(0);
-
+        Structure structure = structures.get(0);
 
 
         Section section = new Section(codeSection, designationSection);
@@ -70,8 +66,6 @@ public class SectionsController {
             return "801"; /// si le retour est null (section n'est pas crée)
 
     }
-
-
 
 
     @RequestMapping(
@@ -91,27 +85,54 @@ public class SectionsController {
             method = {RequestMethod.POST}
     )
     @ResponseBody
-    public String postRemoveSection(@RequestParam("code_section") String code_section ) {
+    public String postRemoveSection(@RequestParam("code_section") String code_section) {
 
         System.out.println("Section Remove : ");
         System.out.println("Code Structure:" + code_section);
 
-        Section  sections= sectionService.getSectionByCodeSection(code_section);
-        if(sections==null)
+        Section sections = sectionService.getSectionByCodeSection(code_section);
+        if (sections == null)
             return "101";
         System.out.println("------------------------");
         System.out.println("------------------------");
-        System.out.println("Suppression de la structure "+sections.getCodeSection());
+        System.out.println("Suppression de la structure " + sections.getCodeSection());
 
-        String result=sectionService.removeSection(sections);
-        if(result !=null){
-            System.out.println("Section Removed "+result);
+        String result = sectionService.removeSection(sections);
+        if (result != null) {
+            System.out.println("Section Removed " + result);
             return "100";
-        }
-        else
+        } else
             return "101";
 
     }
+
+
+
+    @RequestMapping(value = "/nommenclatures_get_section.html", method = RequestMethod.GET)
+    public String getSection(@RequestParam("code_section") String code_section, Model model) {
+        //List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
+        Section section=sectionService.getSectionByCodeSection(code_section);
+        if(section ==null){
+            System.out.println("Section inexistante");
+            return "404";
+        }
+        System.out.println("Compte Existe   "+section.getCodeSection());
+
+        model.addAttribute("section", section);
+        return "sections/section_detail";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

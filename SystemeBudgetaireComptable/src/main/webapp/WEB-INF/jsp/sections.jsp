@@ -29,9 +29,7 @@
                 <c:param name="listSections" value="${listSections}"/>
             </c:import>
 
-            <c:import url="./sections/section_detail.jsp">
-                <c:param name="listSections" value="${listSections}"/>
-            </c:import>
+
 
             <c:import url="./sections/section_create.jsp">
             </c:import>

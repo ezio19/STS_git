@@ -58,6 +58,53 @@ public class StructuresController {
 
 
 
+    @RequestMapping(value = "/nomenclatures_get_structure", method = RequestMethod.GET)
+    public String getStructure(@RequestParam("code_structure") String code_structure, Model model) {
+        List<Structure> structures=service.getStructureByCodeStructure(code_structure);
+        if(structures.size()==0){
+            System.out.println("compte inexistant");
+            return "404";
+        }
+        System.out.println("Structure Existe   "+structures.get(0).getCodeStructure());
+    Structure structure=structures.get(0);
+        model.addAttribute("structure", structure);
+        return "structures/structure_detail";
+    }
+
+
+    @RequestMapping(
+            value = {"/nomenclatures_strcuture_edit"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postEditStructure(@RequestParam("nom_structure") String nom_structure,
+                                      @RequestParam("address_strcuture") String address_strcuture,
+                                      @RequestParam("code_strcuture") String code_strcuture
+    ) {
+
+        System.out.println("Mapping Strcuture Creation ");
+        System.out.println("nom_structure :" + nom_structure);
+        System.out.println("address_strcuture : " + address_strcuture);
+        System.out.println("code_strcuture : " + code_strcuture);
+
+        List<Structure> structures=service.getStructureByCodeStructure(code_strcuture);
+        if (structures.size() == 0) {
+            System.out.println("Strcuture not Exist");
+            return "103";
+        }
+        Structure structure=structures.get(0);
+        structure.setAdresse(address_strcuture);
+        //structure.setCodeStructure(code_strcuture);
+        structure.setNom(nom_structure);
+        if(service.creerStructure(structure)!=null)
+            return "100";
+        else return "101";
+
+    }
+
+
+
+
 
     @RequestMapping(
             value = {"/nomenclatures_structure_remove"},

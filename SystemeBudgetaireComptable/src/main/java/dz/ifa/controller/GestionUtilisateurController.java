@@ -141,8 +141,6 @@ public class GestionUtilisateurController {
     }
 
 
-//    id_utilisateur/{id_utilisateur}
-//value="gestion_utilisateurs_get_utilisateur/id_utilisateur/{id_utilisateur}", method=RequestMethod.GET
     @RequestMapping(value = "/gestion_utilisateurs_get_utilisateur.html", method = RequestMethod.GET)
     public String getUtilisateur(@RequestParam("id_utilisateur") String id_utilisateur, Model model) {
         List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
@@ -216,6 +214,70 @@ public class GestionUtilisateurController {
             return "101";
 
     }
+
+
+
+    @RequestMapping(
+            value = {"/gestion_utilisateurs_utilisateur_edit"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postEditUtilisateur(@RequestParam("nom") String nom,
+                                                   @RequestParam("prenom") String prenom,
+                                                   @RequestParam("passwd") String passw,
+                                                   @RequestParam("reppassw") String reppasswd,
+                                                   @RequestParam(value = "mail", required = false) String mail,
+                                                   @RequestParam(value = "addresse", required = false) String addresse,
+                                                   @RequestParam("id_utilisateur") String idUtilisateur,
+                                                   @RequestParam("code_structure") String code_structure,
+                                                   @RequestParam(value = "fonctionnalites[]") List<Integer> fonctionnalites,
+                                                   @RequestParam("actif") int actif
+    ) {
+
+        System.out.println("Mapping Rubrique Creation ");
+        System.out.println("nom :" + nom);
+        System.out.println("prenom :" + prenom);
+        System.out.println("passwd :" + passw);
+        System.out.println("reppassw :" + reppasswd);
+        System.out.println("mail :" + mail);
+        System.out.println("address:" + addresse);
+        System.out.println("id_user:" + idUtilisateur);
+        System.out.println("code_structure:" + idUtilisateur);
+
+        List<Utilisateur>utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(idUtilisateur);
+        if(utilisateurs.size()==0)
+            return "101";
+        if(!passw.equals(reppasswd))
+            return "603";
+        Utilisateur utilisateur=utilisateurs.get(0);
+        utilisateur.setNom(nom);
+        utilisateur.setPrenom(prenom);
+        utilisateur.setPasswd(BCryptHash(passw));
+        if(mail!=null)
+            utilisateur.seteMail(mail);
+        if(addresse!=null)
+            utilisateur.setAdresse(addresse);
+        utilisateur.setId(idUtilisateur);
+        utilisateur.setActif(actif);
+        List<Structure> structures=nomenclatureService.getStructureByCodeStructure(code_structure);
+        if(structures.size()==0)
+            return "603";
+        utilisateur.setStructure(structures.get(0));
+        utilisateur.prepareList();
+        for (int i = 0; i < fonctionnalites.size(); i++) {
+            Fonctionnalite fonctionnalite=gestionUtilisateursService.getFonctionnaliteById(fonctionnalites.get(i)).get(0);
+            utilisateur.getFoncts().add(fonctionnalite);
+            System.out.println("les FCN sont : " + fonctionnalites.get(i));
+        }
+
+        if(gestionUtilisateursService.creerUtilisateur(utilisateur)!=null)
+            return "100";
+        else
+            return "101";
+
+    }
+
+
 
     public String BCryptHash(String sequence) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

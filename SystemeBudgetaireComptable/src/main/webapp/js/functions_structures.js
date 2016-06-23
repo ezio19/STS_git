@@ -42,7 +42,7 @@ $(document).ready(function () {
         var rows = Array();
         rows[0] = $(this).data("row-id");
         var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
-        window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/" + idUtilisateur);
+        window.location.replace("nomenclatures_get_structure.html?code_structure=" + idUtilisateur);
         //alert("you pressed edit on row " + $(this).data("row-id"));
     });
 
@@ -249,7 +249,7 @@ function afficherCreateSectionMessage() {
             {
                 type: "POST",
                 url: "nomenclatures_strcuture_create.html",
-                data: {nom_structure: code_struct, address_strcuture: nom_struct, code_strcuture: addresse_struct},
+                data: {nom_structure: nom_struct, address_strcuture: addresse_struct, code_strcuture: code_struct},
                 success: function (data) {
                     if (JSON.parse(data) == "100")
                         swal("Succès!", "La Structure a été ajoutée avec succès", "success");
@@ -270,141 +270,12 @@ function afficherCreateSectionMessage() {
 
 
 
-function afficherCreateAccountMessage() {
-    var classe1 = $('#creat_input_classe ').val();
-    var section1 = $('#creat_input_section').val();
-    var nom1 = $('#creat_input_nom').val();
-    var chapitre1 = $('#creat_input_chapitre').val();
-    var rubrique1 = $('#creat_input_rubrique').val();
-    var numero1 = $('#creat_input_compte_num ').val();
-    var designagtion1 = $('#creat_input_designation ').val();
-    var type1 = $('#creat_input_type').val();
-    swal({
-        title: "Etes Vous Sure ?",
-        text: "Voulez vous vraiment Ajouter ce Compte ?",
-        type: "info",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        confirmButtonText: "Confirmer",
-        confirmButtonClass: "btn  btn-success waves-effect",
-    }, function () {
-        $.ajax(
-            {
-                type: "POST",
-                url: "nomenclatures_budget_create.html",
-                data: {
-                    classe: classe1,
-                    nom: nom1,
-                    section: section1,
-                    chapitre: chapitre1,
-                    rubrique: rubrique1,
-                    numero: numero1,
-                    designagtion: designagtion1,
-                    type: type1
-                },
-                success: function (data) {
-                    if (data == 100)
-                        swal("Succès!", "La Section est ajoutée avec Succès", "success");
-                    else
-                        swal("Erreur", "La Section n'est pas ajoutée", "error");
-                    alert(data);
-                }
-            }
-        )
-            .done(function (data) {
-                swal("Succès!", "La Section est ajoutée avec Succès", "success");
-            })
-            .error(function (data) {
-                swal("Erreur", "La Section n'est pas ajoutée ", "error");
-            });
-    });
-}
-
-function afficherModifAccountMessage() {
-    var classe1 = $('#edit_input_classe ').val();
-    var section1 = $('#edit_input_section').val();
-    var nom1 = $('#edit_input_nom').val();
-    var chapitre1 = $('#edit_input_chapitre').val();
-    var rubrique1 = $('#edit_input_rubrique').val();
-    var numero1 = $('#edit_input_compte_num ').val();
-    var designagtion1 = $('#edit_input_designation ').val();
-    var type1 = $('#edit_input_type').val();
-    swal({
-        title: "Etes Vous Sure ?",
-        text: "Voulez vous valider la modification du compte ?",
-        type: "warning",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        confirmButtonText: "Valider",
-        confirmButtonColor: "#ec6c62"
-    }, function () {
-        $.ajax(
-            {
-                type: "POST",
-                url: "nomenclatures_budget_edit.html",
-                data: {
-                    classe: classe1,
-                    nom: nom1,
-                    section: section1,
-                    chapitre: chapitre1,
-                    rubrique: rubrique1,
-                    numero: numero1,
-                    designagtion: designagtion1,
-                    type: type1
-                },
-                success: function (data) {
-                    if (data == 100)
-                        swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
-                    else
-                        swal("Erreur", "Le Compte n'est pas modifié", "error");
-
-                }
-            }
-        )
-            .done(function (data) {
-                swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
-            })
-            .error(function (data) {
-                swal("Erreur", "Le Compte n'est pas modifié", "error");
-            });
-    });
-}
 
 
-function afficherCreateChapitreMessage() {
 
-    var code_chap = $('#creat_input_codeChapitre ').val();
-    var designation_chap = $('#creat_input_designationChapitre').val();
-    swal({
-        title: "Etes Vous Sure ?",
-        text: "Voulez vous vraiment Ajouter ce Chapitre ?",
-        type: "info",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        confirmButtonText: "Confirmer",
-        confirmButtonClass: "btn  btn-success waves-effect",
-    }, function () {
-        $.ajax(
-            {
-                type: "POST",
-                url: "nomenclatures_chapitre_create.html",
-                data: {code_chapitre: code_chap, designation_chapitre: designation_chap},
-                success: function (data) {
-                    if (data == 100)
-                        swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                    else
-                        swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                }
-            }
-        )
-            .done(function (data) {
-                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-            })
-            .error(function (data) {
-                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-            });
-    });
-}
+
+
+
 
 function afficherSupprChapitre(code_struct, selectedRow) {
 

@@ -43,12 +43,12 @@
 
                             <div class=""></div>
                             <button class="btn btn-login compte-modif">Modifier l'Utilisateur</button>
-                            <button class="btn btn-login compte-modif">Enregistrer les modification</button>
+                            <button class="btn btn-login compte-modif-enreg" style="display: none">Enregistrer les modification</button>
 
 
                         </div>
                         <div class="col-sm-3" dir="rtl">
-                            <a href="#"
+                            <a href="gestion_utilisateurs_utilisateurs.html"
                                class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
                                     class="zmdi zmdi-arrow-left"></i></a>
                         </div>
@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                                     <br/>
-                                    <div class="row" style="display: none;">
+                                    <div  class="password-zone" class="row"  style="display: none">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
                                                 <input id="creat_input_passw" placeholder="Mot de passe"  type="password" class="form-control compte" >
@@ -163,21 +163,21 @@
                                         <div class="col-sm-8">
                                             <div class="fg-line">
 
-                                                <div style="display: none">
+                                                <div id="code_struct_mod" style="display: none">
                                                 <select  class="selectpicker"  id="structure-select-section"
                                                         data-live-search="true" >
                                                     <option disabled>${utilisateur.getCodeStructure()}</option>
                                                 </select>
                                                 </div>
 
-                                                <input   placeholder="${utilisateur.getCodeStructure()}" type="email" class="form-control compte" readonly>
+                                                    <input id="code_struct"  placeholder="${utilisateur.getCodeStructure()}" type="email" class="form-control compte" readonly>
 
 
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row" style="display: none">
+                                    <div id="state_select" class="row" style="display: none">
                                         <br/>
                                         <div class="col-sm-4">
                                             <div class="fg-line">

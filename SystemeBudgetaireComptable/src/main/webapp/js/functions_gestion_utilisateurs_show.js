@@ -128,11 +128,27 @@ $(document).ready(function () {
 
     $('button.compte-modif').on('click', function () {
         $("input.compte").prop("readonly", false);
+        $('button.compte-modif-enreg').css('display', '');
+        $('#code_struct').css('display', 'none');
+        $('#code_struct_mod').css('display', '');
+        $('div.password-zone').css('display', '');
+        $('button.compte-modif').css('display', 'none');
+
+        $('#state_select').css('display', '');
+
+
         prepareFonctionnalitesList();
         getStructuresList();
 
-
     });
+
+    $('button.compte-modif-enreg').on('click', function () {
+        afficherCreateChapitreMessage();
+    });
+
+
+
+
 
 
     function afficherCreateChapitre() {
@@ -255,7 +271,7 @@ $(document).ready(function () {
 
         swal({
             title: "Etes Vous Sure ?",
-            text: "Voulez vous vraiment Ajouter cette Rubrique ?",
+            text: "Voulez vous vraiment Modifier cet Utilsiateur ?",
             type: "info",
             showCancelButton: true,
             closeOnConfirm: false,
@@ -265,7 +281,7 @@ $(document).ready(function () {
             $.ajax(
                 {
                     type: "POST",
-                    url: "gestion_utilisateurs_utilisateur_create.html",
+                    url: "gestion_utilisateurs_utilisateur_edit.html",
                     data: {
                         nom: in_nom,
                         prenom: in_prenom,
@@ -296,50 +312,6 @@ $(document).ready(function () {
         });
     }
 
-    function afficherSupprChapitre(idUtilisateur, selectedRow) {
-        swal({
-                title: 'Ete Vous Sure ?',
-                text: "Voulez vous vraiment supprimer Ce Chapitre!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Oui, Confirmer!',
-                cancelButtonText: 'Annuler',
-                confirmButtonClass: 'btn btn-danger',
-                cancelButtonClass: 'btn',
-                buttonsStyling: false,
-                closeOnConfirm: true,
 
-            },
-            function (isConfirm) {
-
-
-                if (isConfirm)
-
-                    $.ajax(
-                        {
-                            type: "POST",
-                            dataType: 'json',
-                            url: "gestion_utilisateurs_utilisateur_remove.html",
-                            data: {id_utilisateur: idUtilisateur},
-                        }
-                    ).done(function (data) {
-                        if (JSON.parse(data) == "100") {
-
-                            $('#data-table-command').bootgrid("remove", selectedRow);
-                            swal("Succès!", "L'Utilisateur est supprimé avec Succès", "success");
-                        }
-
-                        else
-                            swal("Erreur", "Utilisateur non  Supprimé", "error");
-                    })
-                        .error(function (data) {
-                            swal("Erreur", "Utilisateur non  Supprimé", "error");
-                        });
-
-            });
-
-
-    }
 
 });

@@ -29,9 +29,6 @@
                 <c:param name="listStructures" value="${listStructures}"/>
             </c:import>
 
-            <c:import url="structures/structure_detail.jsp">
-                <c:param name="listStructures" value="${listStructures}"/>
-            </c:import>
 
             <c:import url="structures/structure_create.jsp">
             </c:import>
