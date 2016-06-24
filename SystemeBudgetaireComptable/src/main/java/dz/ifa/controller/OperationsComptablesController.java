@@ -148,7 +148,7 @@ public class OperationsComptablesController {
 		
 		operationService.save(operationComptable);
 		
-		 ModelAndView m= new ModelAndView("redirect:/operationsComptables.html");
+		 ModelAndView m= new ModelAndView("redirect:/opcompt.html");
 		 return m; 
 		}
 		
@@ -259,7 +259,7 @@ public class OperationsComptablesController {
 				
 				operationService.save(operationComptable);
 				
-				 ModelAndView m= new ModelAndView("redirect:/operationsComptables.html");
+				 ModelAndView m= new ModelAndView("redirect:/opcompt.html");
 				 return m; 
 
 			}

@@ -109,6 +109,7 @@ public class OperationsBudgetaireController {
 						else ecritureElementaire.setDebiteur(false);
 						//Montant 
 						ecritureElementaire.setMontant(Float.parseFloat(montant));
+						operationService.save(operationComptable);
 						ecritureElementaire.setOperationComptable(operationComptable);
 						operationComptable.getEcrituresElementaire().add(ecritureElementaire);
 						ecritureElementaire.setOperationComptable(operationComptable);
@@ -148,16 +149,16 @@ public class OperationsBudgetaireController {
 		
 					
 					
-					//Récupération du montant total
+					//Rï¿½cupï¿½ration du montant total
 					String montantglo = requete.getParameter("montantglobal");
 					montantglo = montantglo.replaceAll(" ", "");
 					Long montantglobal= Long.parseLong(montantglo);
 					
-					//Récupération de l'engement  
+					//Rï¿½cupï¿½ration de l'engement  
 					String nomEngagement =requete.getParameter("engaSelection");
 					System.out.println("le nom est" + nomEngagement);
 					
-					//Récupération de l'id du guide
+					//Rï¿½cupï¿½ration de l'id du guide
 					String idGuide= requete.getParameter("idguideselected");
 					
 					//Envoie du model
@@ -226,6 +227,7 @@ public class OperationsBudgetaireController {
 						else ecritureElementaire.setDebiteur(false);
 						//Montant 
 						ecritureElementaire.setMontant(Float.parseFloat(montant));
+						operationService.save(operationComptable);
 						ecritureElementaire.setOperationComptable(operationComptable);
 						operationComptable.getEcrituresElementaire().add(ecritureElementaire);
 						ecritureElementaire.setOperationComptable(operationComptable);

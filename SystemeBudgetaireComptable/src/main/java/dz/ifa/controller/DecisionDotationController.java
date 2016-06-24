@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,7 @@ public class DecisionDotationController {
 	List<DecisionDotation> list =new ArrayList<DecisionDotation>();
 
 	int val=0;
+	
 	@RequestMapping(value = "/AfficherDecisionIntiale", method = RequestMethod.GET)
 	public String aficherDecision(@ModelAttribute("dD") DecisionDotation descisionDotation,Model model) {
 		list =new ArrayList<DecisionDotation>();
@@ -54,10 +56,8 @@ public class DecisionDotationController {
 	}
 	//-------------------------------------------------------------------------//
 	@RequestMapping(value = "/formu2", method = RequestMethod.GET)
-	public String modifierDotationRubriques (Model model,@RequestParam String section,
-			@RequestParam String chapitre,@RequestParam String rubrique,@RequestParam String montant
-			,@RequestParam String codeMonnais) {
-		System.out.println(section);
+	public String modifierDotationRubriques (Model model) {
+		/*System.out.println(section);
 		System.out.println(chapitre);
 		System.out.println(rubrique);
 		System.out.println(montant);
@@ -66,7 +66,7 @@ public class DecisionDotationController {
 		model.addAttribute("chapitre", chapitre);
 		model.addAttribute("rubrique", rubrique);
 		model.addAttribute("montant", montant);
-		model.addAttribute("codeMonnais", codeMonnais);
+		model.addAttribute("codeMonnais", codeMonnais);*/
 		return "formu2";
 	}
 	//-------------------------------------------------------------------------//
@@ -74,9 +74,9 @@ public class DecisionDotationController {
 	public String afficherDotationRubrique(Model model,@RequestParam String numero) {
 		System.out.println("le numero est: "+ numero);
 		List<DotationRubrique> liste1= new ArrayList<DotationRubrique>();
-		if(liste==null){
+		
 		liste = dotRub.loadAll();
-		}
+		
 		Iterator i = liste.iterator();
 		DotationRubrique x;
 		while(i.hasNext())
@@ -113,7 +113,6 @@ public class DecisionDotationController {
 		 		return "AjoutDecisi";
 	}
 	//--------------------------------------------------------------------------//
-	
 	@RequestMapping(value = "/addDecision", method = RequestMethod.POST)
 	public String updateGoal(@Valid @ModelAttribute("dD") DecisionDotation descisionDotation, BindingResult result,Model model) {
 		
@@ -142,6 +141,7 @@ public class DecisionDotationController {
 	
 	
 	/*------------------------------------------------------------*/
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DOTATION', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/formu", method = RequestMethod.GET)
 	public String addDecisionRubrique(@ModelAttribute("aa") DotationRubrique dotationRubrique) {
 		if(val==0){
@@ -150,7 +150,7 @@ public class DecisionDotationController {
 		}
 		return "formu";
 	}
-	
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DOTATION', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/formu", method = RequestMethod.POST)
 	public String updateGoal(@Valid @ModelAttribute("aa") DotationRubrique dotationRubrique, BindingResult result,Model model) {
 		if(result.hasErrors()) {
@@ -169,6 +169,7 @@ public class DecisionDotationController {
 		System.out.println(des.getListeRubrique().size());
 		return "formu";
 	}
+	@PreAuthorize("hasAnyAuthority('ROLE_RES_DOTA', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/Valider", method = RequestMethod.GET)
 	public String Valider() {
 	
@@ -176,6 +177,7 @@ public class DecisionDotationController {
 		return "decisionRubrique";
 	}
 	/*******************************************************************/
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DECISION', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/index0", method = RequestMethod.GET)
 	public String addIndex(Model model) {
 		if(des==null)
@@ -188,12 +190,12 @@ public class DecisionDotationController {
 		}
 	}
 	
-	
 	@RequestMapping(value = "/searchActivities.json", method = RequestMethod.POST)
 	public @ResponseBody void findActivitiesByCreteria(@RequestBody Criteria cr) {
 		
 	}
 /****************************************************/
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DECISION', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/searchA.json", method = RequestMethod.POST)
 	public @ResponseBody String findActivit(@RequestBody DecisionDotation De) {
 		
@@ -212,9 +214,12 @@ public class DecisionDotationController {
 		}
 		des.setListeRubrique(l);
 		dotaDecRep.save(des);
+		val= 0;
+		des=null;
 		return "AfficherDecisionIntiale";
 	}
 /***************************************************************/
+	@PreAuthorize("hasAnyAuthority('ROLE_SUPPRIMER_RUBRIQUE_INIT', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/searchSupp.json", method = RequestMethod.POST)
 	public @ResponseBody void suppLigne(@RequestBody DotationRubrique De) {
 		List<DotationRubrique> l =des.getListeRubrique();
@@ -234,5 +239,17 @@ public class DecisionDotationController {
 			d1=(DotationRubrique)i.next();
 		}
 		des.setListeRubrique(l);
+	}
+	//*************************************************************************************//
+	@RequestMapping(value = "/searchModif.json", method = RequestMethod.POST)
+	public @ResponseBody String modffierLigne(@RequestBody DotationRubrique De,Model model) {
+		model.addAttribute("de", De);
+		model.addAttribute("section", De.getSection());
+		System.out.println("la section est "+De.getSection());
+		model.addAttribute("chapitre", De.getChapitre());
+		model.addAttribute("rubrique", De.getRubrique());
+		model.addAttribute("montant", De.getMontant());
+		model.addAttribute("codeMonnais", De.getCodeMonnais());
+		return "formu2";
 	}
 }

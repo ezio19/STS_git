@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -67,7 +69,7 @@
                                     <div class="clearfix">
                                         <div class="chart stats-line"></div>
                                         <div class="count">
-                                            <small>OpÈrations budgÈtaires</small>
+                                            <small>Op√©rations budg√©taires</small>
                                             <h2>23.555</h2>
                                         </div>
                                     </div>
@@ -79,7 +81,7 @@
                                     <div class="clearfix">
                                         <div class="chart stats-line-2"></div>
                                         <div class="count">
-                                            <small>OpÈrations Comptables</small>
+                                            <small>Op√©rations Comptables</small>
                                             <h2>44.312</h2>
                                         </div>
                                     </div>
@@ -98,7 +100,7 @@
                                             <div class="dash-widget-visits"></div>
                                         </div>
                                         
-                                        <div class="dash-widget-title">Statistique du mois prÈcedent</div>
+                                        <div class="dash-widget-title">Statistique du mois pr√©cedent</div>
                                         
                                     </div>
                                     
@@ -109,12 +111,12 @@
                                         
                                         <br/>
                                         
-                                        <small>OpÈrations budgÈtaires</small>
+                                        <small>Op√©rations budg√©taires</small>
                                         <h3 class="m-0 f-400">6.799</h3>
                                         
                                         <br/>
                                         
-                                        <small>OpÈrations comptables</small>
+                                        <small>Op√©rations comptables</small>
                                         <h3 class="m-0 f-400">13.965</h3>
                                     </div>
                                 </div>
@@ -140,11 +142,11 @@
                                     <div class="p-t-20 p-b-20 text-center">
                                         <div class="easy-pie sub-pie-1" data-percent="56">
                                             <div class="percent">56</div>
-                                            <div class="pie-title">OpÈrations comptables</div>
+                                            <div class="pie-title">Op√©rations comptables</div>
                                         </div>
                                         <div class="easy-pie sub-pie-2" data-percent="84">
                                             <div class="percent">84</div>
-                                            <div class="pie-title">OpÈrations budgÈtaires</div>
+                                            <div class="pie-title">Op√©rations budg√©taires</div>
                                         </div>
                                     </div>
     
@@ -168,7 +170,7 @@
                              
                             <div class="card">
                                 <div class="card-header">
-                                    <h2>RÈpartition du budget</h2>
+                                    <h2>R√©partition du budget</h2>
                                     
                                   </div>
                                 
@@ -223,8 +225,8 @@
                             <!-- Todo Lists -->
                             <div id="todo-lists">
                                 <div class="tl-header">
-                                    <h2>Pense BÍte</h2>
-                                    <small>Ajouter, Modifier et gÈrer votre liste des t‚ches a faire</small>
+                                    <h2>Pense B√©te</h2>
+                                    <small>Ajouter, Modifier et g√©rer votre liste des t√©ches a faire</small>
                                     
                                     <ul class="actions actions-alt">
                                         <li class="dropdown">
@@ -249,7 +251,7 @@
                                         <i class="add-new-item zmdi zmdi-plus"></i>
                                         
                                         <div class="add-tl-body">
-                                            <textarea placeholder="Saisir la t‚che"></textarea>
+                                            <textarea placeholder="Saisir la t√©che"></textarea>
                                             
                                             <div class="add-tl-actions">
                                                 <a href="#" data-tl-action="dismiss"><i class="zmdi zmdi-close"></i></a>
@@ -277,7 +279,7 @@
                                             <label>
                                                 <input type="checkbox">
                                                 <i class="input-helper"></i>
-                                                <span>Archiver les dossiers validÈs</span>
+                                                <span>Archiver les dossiers valid√©s</span>
                                             </label>
                                         </div>
                                     </div>

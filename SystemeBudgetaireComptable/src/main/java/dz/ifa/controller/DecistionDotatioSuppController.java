@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +35,7 @@ public class DecistionDotatioSuppController {
 	private DecisionDotationSuppService dotaDecRep;
 	private decisionDotationSupp des=null;
 	int val=0;
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DOTATION_SUPP', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/formu1", method = RequestMethod.GET)
 	public String addDecisionRubrique1(@ModelAttribute("aa") DotationRubrique dotationRubrique) {
 		if(val==0){
@@ -43,6 +45,7 @@ public class DecistionDotatioSuppController {
 		return "formu1";
 	}
 	//------------------------------------------------------------//
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DOTATION_SUPP', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/formu1", method = RequestMethod.POST)
 	public String updateGoal(@Valid @ModelAttribute("aa") DotationRubrique dotationRubrique, BindingResult result,Model model) {
 		if(result.hasErrors()) {
@@ -59,6 +62,7 @@ public class DecistionDotatioSuppController {
 		return "formu1";
 	}
 	//-----------------------------------------------------------------------------------------//
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DECISION_SUPP', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/index11", method = RequestMethod.GET)
 	public String addIndex(Model model) {
 		if(des==null)
@@ -71,6 +75,7 @@ public class DecistionDotatioSuppController {
 		}
 	}
 //------------------------------------------------------------------------------------------------//
+	@PreAuthorize("hasAnyAuthority('ROLE_AJOUTER_DECISION_SUPP', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/searchA1.json", method = RequestMethod.POST)
 	public @ResponseBody String findActivit(@RequestBody DecisionDotation De) {
 		
@@ -89,9 +94,12 @@ public class DecistionDotatioSuppController {
 		}
 		des.setListeRubrique(l);
 		dotaDecRep.save(des);
+		val= 0;
+		des=null;
 		return "AfficherDecisionSupp";
 	}
 	//--------------------------------------------------------------------------------------------//
+	@PreAuthorize("hasAnyAuthority('ROLE_SUPPRIMER_RUBRIQUE_SUPP', 'ROLE_ADMIN')")
 	@RequestMapping(value = "/searchSupp1.json", method = RequestMethod.POST)
 	public @ResponseBody void suppLigne(@RequestBody DotationRubrique De) {
 		List<DotationRubrique> l =des.getListeRubrique();
