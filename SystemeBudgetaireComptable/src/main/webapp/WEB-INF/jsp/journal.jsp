@@ -110,7 +110,7 @@
 											             
 											        	<c:out value="${gui.operationComptable.dateOperation}" />
 											        <td>
-											        	<c:out value="${gui.m_Engagement}" />
+											        	<c:out value="${gui.engagement}" />
 											        </td>
 											        <td>
 											           <c:out value="${gui.operationComptable.debit}" />

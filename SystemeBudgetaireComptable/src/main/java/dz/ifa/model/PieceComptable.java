@@ -25,11 +25,10 @@ public class PieceComptable {
 	private Long id;
 	
 	private double montantGlobal;
-	private long numero;
+	private String numero;
 	private String objet;
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@Null
 	@JsonIgnore
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private Tier tier;
 	
 	public PieceComptable(){
@@ -44,11 +43,11 @@ public class PieceComptable {
 		this.montantGlobal = montantGlobal;
 	}
 
-	public long getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 

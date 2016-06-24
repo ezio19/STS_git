@@ -47,8 +47,40 @@ public class OpBudgWebServiceController {
 	}
 	
 	@RequestMapping(value = "/deleteOpComptById", method = RequestMethod.GET)
-	public void deleteOpById(@RequestParam(name="opId") long opId) {
-		operationService.deleteOperationComptById(opId);
+	public boolean deleteOpById(@RequestParam(name="opId") long opId) {
+		if(operationService.getOperationComptableById(opId)!=null){
+			operationService.deleteOperationComptById(opId);
+			if(operationService.getOperationComptableById(opId)==null){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return false;
+		}
 	}
+		
+		@RequestMapping(value = "/validateOpComptById", method = RequestMethod.GET)
+		public boolean validateOpById(@RequestParam(name="opId") long opId) {
+			if(operationService.getOperationComptableById(opId)!=null){
+				operationService.validateOperationComptById(opId);
+				if(operationService.getOperationComptableById(opId).isValide()){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				return true;
+			}
+		
+	}
+		@RequestMapping(value = "/getMontantPieceById", method = RequestMethod.GET)
+		public double getMontantPieceById(@RequestParam(name="pId") long pId){
+			return pieceComptableService.findPieceById(pId).getMontantGlobal();
+		}
 
 }

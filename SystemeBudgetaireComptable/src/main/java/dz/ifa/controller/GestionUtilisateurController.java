@@ -139,8 +139,6 @@ public class GestionUtilisateurController {
             return "101";
 
     }
-
-
     @RequestMapping(value = "/gestion_utilisateurs_get_utilisateur.html", method = RequestMethod.GET)
     public String getUtilisateur(@RequestParam("id_utilisateur") String id_utilisateur, Model model) {
         List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);

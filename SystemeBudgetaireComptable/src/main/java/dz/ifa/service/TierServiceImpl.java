@@ -17,4 +17,10 @@ public class TierServiceImpl implements TierService{
 		// TODO Auto-generated method stub
 		return tierRepository.findAll();
 	}
+	
+	public Tier findTier(Long id){
+		return tierRepository.findOne(id);
+	}
+
+	
 }

@@ -897,7 +897,11 @@ $(document).ready(function(){
     });
 
 
+<<<<<<< HEAD
+    $("#sidebar").mCustomScrollbar();
+=======
     
+>>>>>>> refs/remotes/origin/news_master
 
 
 

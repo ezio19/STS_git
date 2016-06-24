@@ -13,12 +13,18 @@ public class PieceComptableServiceImpl implements PieceComptableService{
 	@Autowired 
 	PieceComptableRepository pieceComptableRepository;
 	
-	public PieceComptable findPieceById(Long id) {
+	public PieceComptable findPieceById(long id) {
 		return pieceComptableRepository.findOne(id);
 	}
 
 	public List<PieceComptable> findPiecesByTierId(long tierId) {
 		// TODO Auto-generated method stub
 		return pieceComptableRepository.findPiecesByTierId(tierId);
+	}
+
+
+	public PieceComptable save(PieceComptable pieceComptable) {
+		// TODO Auto-generated method stub
+		return pieceComptableRepository.save(pieceComptable);
 	}
 }

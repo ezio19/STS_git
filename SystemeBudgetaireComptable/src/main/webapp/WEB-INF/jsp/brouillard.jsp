@@ -66,11 +66,11 @@
 												</tr>
 										</thead>
 										<tbody id="tableAddGuide">
-											<c:forEach items="${listOperations}" var="operation">
-												<tr>
+											<c:forEach items="${listOperations}" var="operation" varStatus="status">
+												<tr id="${operation.id}">
 													<td>
 														<label class="radio radio-inline m-r-20">
-															<input type="radio" value="option2">
+															<input type="radio" value="${operation.id}" id="radio${status.index} }" name="radios">
 															<i class="input-helper"></i>
 														</label>
 													</td>
@@ -88,8 +88,8 @@
 								<br/>
 								<div style="position: absolute;bottom: 16px;right: 16px;">
 									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Consulter les écritures</button>
-									<button class="btn btn-danger btn-primary waves-effect"><i class="zmdi zmdi-close zmdi-hc-fw"></i>Supprimer l'opération</button>
-									<button class="btn bgm-green btn-primary waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Valider l'opération</button>
+									<button class="btn btn-danger btn-primary waves-effect" onclick="supprimerOperation()"><i class="zmdi zmdi-close zmdi-hc-fw" ></i>Supprimer l'opération</button>
+									<button class="btn bgm-green btn-primary waves-effect" onclick="validerOperation()"><i class="zmdi zmdi-plus zmdi-hc-fw" ></i> Valider l'opération</button>
 								</div>			
 						</div>
 									</div>		
@@ -106,7 +106,42 @@
         <script src="js/demo.js"></script>
         <!-- Script de selection -->
         <script type="text/javascript">
-        	$('.radio').onSelect
+        $('input').on('change', function() {
+        	   $('input[name=radios]:checked').val(); 
+        });
+        </script>
+        <!-- Scripts des fonctions -->
+        <script>
+        function supprimerOperation(){
+        	var idOp = $('input[name=radios]:checked').val();
+        	//Ajax
+        	var result;
+    		$.ajaxSetup({async: false});
+			$.getJSON(	'${home}deleteOpComptById.json'+'?opId='+idOp,
+						{ajax : 'true'}, 
+						function(data){
+							result=data;
+						}
+					);
+			$.ajaxSetup({async: true});
+			alert(result);
+    		if(result)  $('table tr#'+idOp).remove();
+        }
+        function validerOperation(){
+        	var idOp = $('input[name=radios]:checked').val();
+        	//Ajax
+        	var result;
+    		$.ajaxSetup({async: false});
+			$.getJSON(	'${home}validateOpComptById.json'+'?opId='+idOp,
+						{ajax : 'true'}, 
+						function(data){
+							result=data;
+						}
+					);
+			$.ajaxSetup({async: true});
+			alert(result);
+    		if(result)  $('table tr#'+idOp).remove();
+        }
         </script>
         <!-- Data Table -->
 		<script type="text/javascript">

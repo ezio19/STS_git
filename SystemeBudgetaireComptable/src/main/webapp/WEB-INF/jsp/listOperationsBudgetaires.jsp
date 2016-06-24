@@ -41,7 +41,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h2>
-								Brouillard<small>Opérations comptables non valider.</small>
+								Les Opérations Budgétaires<small>La liste des opérations budgétaires</small>
 							</h2>
 						</div>
 						<div class="card-body card-padding">

@@ -1,12 +1,8 @@
 ﻿<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
-    <!--[if IE 9 ]>
-	<html class="ie9"><![endif]-->
-    
-<!--powered by ESI IFA Project 2016 -->
+<html>
 
 <head>
         <meta charset="utf-8">
@@ -14,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Liste des guides IFA</title>
+        <title>Ajout de pièce comptable</title>
         
         <!-- Vendor CSS -->
         <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
@@ -26,44 +22,9 @@
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
         
-        <script type="text/javascript">
-        function deleteRow() {
-            try {
-            var table = document.getElementById('tableGuide');
-            var rowCount = table.rows.length;
-
-            for(var i=0; i<rowCount; i++) {
-                var row = table.rows[i];
-                var chkbox = row.cells[0].childNodes[0];
-                if(null != chkbox && true == chkbox.checked) {
-                    table.deleteRow(i);
-                    rowCount--;
-                    i--;
-                }
-            }
-            }catch(e) {
-                alert(e);
-            }
-
-            var table = document.getElementById('tableGuide');
-            var rowCount = table.rows.length;
-
-            for(var i=1; i<rowCount; i++) {
-    //        	document.getElementById("tableGuide").rows[i].cells[1].innerHTML = i;                                   
-				
-				for(var i=0; i<rowCount; i++) {
-                var row = table.rows[i];
-                var chkbox = row.cells[0].childNodes[0];
-                if(null != chkbox && true == chkbox.checked) {
-                	document.getElementById("tableGuide").rows[i].cells[1].innerHTML = i;  
-                }
-            }
-                } 
-
-      		  }
-
-
-        </script>
+        <!-- Validation du formulaire -->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
     </head>
 <body>
         <header id="header" class="clearfix" data-current-skin="blue">
@@ -78,7 +39,7 @@
                 </li>
 
                 <li class="logo hidden-xs">
-                    <a href="index-2.html">Liste des guides IFA</a>
+                    <a href="index-2.html">Ajout de pièce comptable</a>
                 </li>
 				 <!-- Top Search Content -->
             <div id="top-search-wrap">
@@ -91,136 +52,186 @@
         </header>
 		<section id="main">
 			
-         <section id="content">
+			<section id="content">
 				<div class="container">
-					<div class="card">
-						<div class="card-body card-padding" >
-							<div style="display:inline; margin:10px; width: 301px; padding:10px; position: absolute;top:16px;right:4px;">
-									<form method="get">
-										<input  type="text" class="search-field form-control" placeholder="Search" name="nameSearch"style="display:inline;     width: 86%;">
-										<button type="submit" class="btn btn-info waves-effect"><i class="zmdi zmdi-search"></i></button>
-									</form>
-							</div>
-							
-							   <div style="visibility: collapse;">
-										<input type="text" id="nb_element" name="nb_element">1</input> 
-							</div> 
-							
-							<table id="tableGuide" class="table table-bordered" style="margin-top: 65px;">
-									<thead>
+					<form  method="post" id="newPieceForm" name="newPieceForm"> 
+						<div class="card">
+							<div class="card-body card-padding">
 								
-										<tr>
-											<th data-column-id="check" data-type="checkbox" ></th>
-											<th data-column-id="id" data-type="numeric">N°</th>
-											<th data-column-id="nom" data-type="numeric">Nom du guide</th>
-											<th data-column-id="typGuide">Type du guide</th>
-											<th data-column-id="option">Description</th>
-											<th data-column-id="sender">Date de création</th>
-											
-											
-										</tr>
-									</thead>
-									
-									
-									<tbody >
-									
 							
+								<div class="form-group">
+									<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+										<h2>N° de la pièce:</h2>
+									</div>
+									<div class="fg-line">
+										<input type="text" name="numPiece" id="numPiece"class="form-control input-lg" placeholder="ex:00559T23F255YOE/2016" >
+									</div>
+								</div>
+								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+									<h2>Fournisseur:</h2>
+								</div>
 									
-									
-									<c:forEach items="${guides}" var="gui">
-							        <tr>
-							       			<td >
-													<input type="checkbox" >
-											</td>
-										
-											<td>
-									            <c:out value="${gui.id}" />
-									        </td>
-									        <td>
-									            <c:out value="${gui.nom_guide}" />
-									        </td>
-									        <td>
-									        	<c:out value="${gui.type_facture}" />
-									        </td>
-									        <td>
-									            <c:out value="${gui.descriptionguide}" />
-									        </td>
-									        <td>
-									            <c:out value="${gui.date}" />
-									        </td>
-							        </tr>
-							    </c:forEach>
-						
-						
-						
-						
-									
-									</tbody>
-								</table>
+								<div class="form-group">
+									<div class="fg-line">
+										<div class="select">
+											<select class="form-control"  id="tierSelection" name="tier">
+												<option value="0">-- Selectionner un fournisseur--</option>
+												<c:forEach items="${listTiers}" var="tier">
+													<option value="${tier.id}">${tier.NIF}-${tier.NIS}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+									<h2>Montant:</h2>
+								</div>
+								<div class="dtp-container fg-line">
+									<input type="text" class="form-control input-mask"  placeholder=""  name="montantPiece" id="montantPiece"/>
+								</div>
+								<div class="form-group">
+									<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+										<h2>Objet:</h2>
+									</div>
+									<div class="fg-line">
+										<input type="text" class="form-control input-lg" placeholder="ex:Facture éléctricité" name="objetPiece" id="objetPiece" >
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+										<h2>Observation:</h2>
+									</div>
+									<div class="fg-line" >
+										<textarea  class="form-control" style="background:#EEE" rows="5" placeholder="Saisissez l'observation liéer a cette piéce comptable ...."></textarea>
+									</div>
+								</div>
 								<br>
 								<br>
 								
-								<div style="position: absolute;bottom: 16px;right: 16px;">
-									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Modifier la selection</button>
-									<button type="button" class="btn btn-danger btn-primary waves-effect" id="sa-warning" onClick="deleteRow()"><i class="zmdi zmdi-close zmdi-hc-fw"></i>Supprimer Selection</button>
-									<a href="NewGuide.html"><button class="btn bgm-green btn-primary waves-effect" id="sa-warning"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Ajouter guide</button></a>
-								</div>			
-						</div>
-					</div>	
-				</div>	
+								<div style="position: absolute;
+										bottom: 16px;
+										right: 16px;">
+									<button class="btn btn-danger btn-lg waves-effect"><i class="zmdi zmdi-undo zmdi-hc-fw"></i>Annuler</button>
+									<button class="btn bgm-teal btn-lg waves-effect" style="align" ><i class="zmdi zmdi-upload zmdi-hc-fw"></i>Upload du fichier</button>
+									<button type="submit" class="btn bgm-green btn-lg waves-effect" style="align" id="sa-success"><i class="zmdi zmdi-mail-send zmdi-hc-fw" ></i>Valider</button>
+								</div>
+                                
+                          
+								
+							
+							
+							</div>		
+						</div>	
+					</form>							
+				</div>
+					
+				
 			</section>
 
 		</section>
 		
-		<footer id="footer">
-			Copyright &copy; 2016 IFA-ESI
-			
-			<ul class="f-menu">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Rac1</a></li>
-				<li><a href="#">RAc2</a></li>
-				<li><a href="#">RAc3</a></li>
-				<li><a href="#">rac4</a></li>
-			</ul>
-		</footer>
-		
-		
 		<!-- Javascript Libraries -->	
-		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         
-                <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
         <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
 		
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
 		<!---new JS-->
-		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         
         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-      <!--   <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script> -->
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>  
 		
        <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
-        
-        
-        <!-- Placeholder for IE9 -->
-        <!--[if IE 9 ]>
-            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
-        <![endif]-->
 
+
+		<script type="text/javascript">
+		$("#newPieceForm").validate();
+
+		$.validator.addMethod("valueNotEquals", function(value, element, arg){
+	    	return arg != jQuery(element).find('option:selected').text();
+	    	}
+		);
+	    
+    	$("#numPiece").rules("add", {
+        	required:true,
+            messages:{
+            	required:"Veuillez saisir un numéro de piece !"
+            }
+        });
+    	
+    	$("#tierSelection").rules("add", {
+        	required:true,
+        	valueNotEquals:"-- Selectionner un fournisseur--",
+            messages:{
+            	required:"Veuillez saisir un numéro de piece !",
+            	valueNotEquals:"Veuillez choisir un fournisseur !"
+            }
+        });
+    	
+    	$("#montantPiece").rules("add", {
+        	required:true,
+        	valueNotEquals:"-- Selectionner un fournisseur--",
+            messages:{
+            	required:"Veuillez saisir un numéro de piece !",
+            	valueNotEquals:"Veuillez choisir un fournisseur !"
+            }
+        });
+    	
+    	$("#objetPiece").rules("add", {
+        	required:true,
+            messages:{
+            	required:"Veuillez saisir un numéro de piece !"
+            }
+        });
+		</script>
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
-
+		<script>function addRow() {
+						
+					var element= document.getElementById('tableAddGuide');
+					var tr = document.createElement('tr');
+					
+					tr.innerHTML='<tr><td><div class="form-group"><div class="fg-line"><input type="text" class="form-control" placeholder="Numero de compte" vk_1fb3d="subscribed">'
+						+'						</div>'
+						+'					</div>'
+						+'				</td>'
+						+'				<td>'
+						+'				<div class="form-group">'
+						+'					<div class="fg-line">'
+						+'						<div class="select">'
+						+'							<select class="form-control">'
+						+'								<option>D/C</option>'
+						+'								<option>D�bit</option>'
+						+'								<option>Cr�dit</option>'
+						+'							</select>'
+						+'						</div>'
+						+'					</div>'
+						+'				</div>'
+						
+						+'				</td>'	
+						+'				<td>'
+						+'				<div class="form-group">'
+						+'					<div class="fg-line">'
+						+'						<input type="text" class="form-control input-mask" data-mask="00,00%" placeholder="eg: 00,00%" maxlength="9" autocomplete="off" vk_129f4="subscribed">'
+						+'					</div>'
+					+'					</div>'
+						+'				</td>'
+						+'			</tr>';	
+				
+					
+					element.appendChild(tr);
+				}
+		</script>
         <!-- Data Table -->
 		<script type="text/javascript">
             /*
              * Notifications
              */
-             
             function notify(from, align, icon, type, animIn, animOut){
                 $.growl({
                     icon: icon,
@@ -292,21 +303,21 @@
 
             //Success Message
             $('#sa-success').click(function(){
-                swal("Guide Ajout�!", "Le guide a �t� ajout� a la base!", "success")
+                swal("L'ajout s'est bien effectuer !", "L'opération d'ajout de la pièce comptable s'est bien effectué ", "success")
             });
 
             //Warning Message
             $('#sa-warning').click(function(){
                 swal({   
-                    title: "Êtes vous sur de vouloir supprimer ?",   
-                    text: "Ceci est une suppression définitive!",   
+                    title: "Are you sure?",   
+                    text: "You will not be able to recover this imaginary file!",   
                     type: "warning",   
                     showCancelButton: true,   
                     confirmButtonColor: "#DD6B55",   
-                    confirmButtonText: "Oui, Supprimer!",   
+                    confirmButtonText: "Yes, delete it!",   
                     closeOnConfirm: false 
                 }, function(){   
-                    swal("Supprimer!", "Le guide a été supprimer correctement.", "success"); 
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
                 });
             });
             

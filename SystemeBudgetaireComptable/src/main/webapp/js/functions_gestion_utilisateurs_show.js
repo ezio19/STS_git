@@ -128,6 +128,221 @@ $(document).ready(function () {
 
     $('button.compte-modif').on('click', function () {
         $("input.compte").prop("readonly", false);
+<<<<<<< HEAD
+        prepareFonctionnalitesList();
+        getStructuresList();
+
+
+    });
+
+
+    function afficherCreateChapitre() {
+
+        //$( "input.compte" ).prop( "readonly", false );
+        $('.card.section-detail').css('display', 'none');
+        $('.card.rubrique-create').css('display', '');
+        $('.card.rubrique-create').addClass('animated fadeInLeft');
+        compteShowingMode = false;
+
+    }
+
+
+    function afficherSection() {
+        //affichage uniquement
+        if (compteShowingMode) {
+            $("input.compte").prop("readonly", true);
+            $('button.compte-mod-save').css('display', 'none');
+            $('button.compte-mod').css('display', '');
+            $('button.compte-suppr').css('display', '');
+            $('.card.section-detail').css('display', '');
+        }
+        if (compteEditMode) {
+            $("input.compte").prop("readonly", false);
+            $('button.compte-mod-save').css('display', '');
+            $('button.compte-mod').css('display', 'none');
+            $('button.compte-suppr.intern').css('display', 'none');
+            $('.card.section-detail').css('display', '');
+        }
+        if (compteCreationMode)
+            $('.card.section-create').css('display', '');
+
+
+        $('.card.list-sections').css('display', 'none');
+
+    }
+
+//Click sur le bouton de retour
+    $('a.btn-login.section-return-btn').on('click', function () {
+        if (compteEditMode || compteShowingMode)
+            $('.card.section-detail').css('display', 'none');
+        if (compteCreationMode)
+            $('.card.section-create').css('display', 'none');
+
+        $('.card.list-sections').css('display', '');
+    });
+
+
+///Click sur le Bouton annuler de l'interface ceer une nouvelle section
+    $('button.compte-create_cancel').on('click', function () {
+        //alert("code section : "+data_section.code_section+"\ndesignation :"+data_section.designation);
+        $("input.compte").val("");
+        compteCreationMode = false;
+        $('.card.section-create').css('display', 'none');
+        $('.card.list-sections').css('display', '');
+
+
+    });
+
+    function afficherModifAccountMessage() {
+        var codeChap = $('#edit_input_classes ').val();
+        var designationChap = $('#edit_input_nom').val();
+        swal({
+            title: "Etes Vous Sure ?",
+            text: "Voulez vous valider la modification du compte ?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "Valider",
+            confirmButtonColor: "#ec6c62"
+        }, function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "nomenclatures_chapitre_edit.html",
+                    data: {code_chapitre: codeChap, designation: designationChap},
+                    success: function (data) {
+                        if (data == 100)
+                            swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
+                        else
+                            swal("Erreur", "Le Compte n'est pas modifié", "error");
+
+                    }
+                }
+            )
+                .done(function (data) {
+                    swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
+                })
+                .error(function (data) {
+                    swal("Erreur", "Le Compte n'est pas modifié", "error");
+                });
+        });
+    }
+
+    function afficherCreateChapitreMessage() {
+
+        /* var code_rubr = $('#creat_input_codechap ').val();
+         var designation_rubr = $('#creat_input_designation').val();
+         var code_rubr=$('#chapitre-select-section').val();*/
+        var in_nom = $("#creat_input_nom").val();
+        var in_prenom = $("#creat_input_prenom").val();
+        var in_passw = $("#creat_input_passw").val();
+        var in_reppss = $("#creat_input_reppasswd").val();
+        var in_mail = $("#creat_input_email").val();
+        var in_tel = $("#creat_input_telephone").val();
+        var in_adr = $("#creat_input_addresse").val();
+        var in_id_user = $("#creat_input_id_user").val();
+        var in_struct = $("#structure-select-section").val();
+        var in_actif = $("#state-select").val();
+
+
+        var items = new Array();
+        $('#fonctionnlaite-select :selected').each(function (i, selected) {
+            console.log("parsing the element " + i);
+            console.log("selected val : " + $(selected).val());
+            items[i] = $(selected).val();
+            console.log("Items " + items[i]);
+        });
+
+
+        swal({
+            title: "Etes Vous Sure ?",
+            text: "Voulez vous vraiment Ajouter cette Rubrique ?",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "Confirmer",
+            confirmButtonClass: "btn  btn-success waves-effect",
+        }, function () {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "gestion_utilisateurs_utilisateur_create.html",
+                    data: {
+                        nom: in_nom,
+                        prenom: in_prenom,
+                        passwd: in_passw,
+                        reppassw: in_reppss,
+                        mail: in_mail,
+                        addresse: in_adr,
+                        id_utilisateur: in_id_user,
+                        code_structure: in_struct,
+                        fonctionnalites: items,
+                        actif: in_actif
+                    }
+                }
+            )
+                .done(function (data) {
+                    if (JSON.parse(data) == "100") {
+                        swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
+                        window.location.replace("gestion_utilisateurs_utilisateurs");
+                    }
+                    else if (JSON.parse(data) == "602")
+                        swal("Erreur", "l'utilisateur Existe deja verifier votre Id Utilisateur", "error");
+                    else if (JSON.parse(data) == "603")
+                        swal("Erreur", "Le Champ Repeter Mot de passe ne Correspond pas au Mot de passe ", "error");
+                })
+                .error(function (data) {
+                    swal("Erreur", "L'Utilisateur n'est pas ajouté", "error");
+                });
+        });
+    }
+
+    function afficherSupprChapitre(idUtilisateur, selectedRow) {
+        swal({
+                title: 'Ete Vous Sure ?',
+                text: "Voulez vous vraiment supprimer Ce Chapitre!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Oui, Confirmer!',
+                cancelButtonText: 'Annuler',
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn',
+                buttonsStyling: false,
+                closeOnConfirm: true,
+
+            },
+            function (isConfirm) {
+
+
+                if (isConfirm)
+
+                    $.ajax(
+                        {
+                            type: "POST",
+                            dataType: 'json',
+                            url: "gestion_utilisateurs_utilisateur_remove.html",
+                            data: {id_utilisateur: idUtilisateur},
+                        }
+                    ).done(function (data) {
+                        if (JSON.parse(data) == "100") {
+
+                            $('#data-table-command').bootgrid("remove", selectedRow);
+                            swal("Succès!", "L'Utilisateur est supprimé avec Succès", "success");
+                        }
+
+                        else
+                            swal("Erreur", "Utilisateur non  Supprimé", "error");
+                    })
+                        .error(function (data) {
+                            swal("Erreur", "Utilisateur non  Supprimé", "error");
+                        });
+
+            });
+
+
+    }
+=======
         $('button.compte-modif-enreg').css('display', '');
         $('#code_struct').css('display', 'none');
         $('#code_struct_mod').css('display', '');
@@ -313,5 +528,6 @@ $(document).ready(function () {
     }
 
 
+>>>>>>> refs/remotes/origin/news_master
 
 });
