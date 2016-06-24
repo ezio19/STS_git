@@ -39,7 +39,7 @@
                                 <div class=""></div>
                                 <button class="btn btn-login compte-modif">Modifier la Structure</button>
 
-                                <button class="btn btn-login compte-modif-submit" style="display: none">Modifier la Structure</button>
+                                <button class="btn btn-login compte-modif-submit" style="display: none">Enregistrer les modifications</button>
 
 
                             </div>

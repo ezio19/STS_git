@@ -37,7 +37,8 @@
                             </h2>
 
                             <div class=""></div>
-                            <button class="btn btn-login compte-create-submit">Modifier la section</button>
+                            <button class="btn btn-login compte-create">Modifier la section</button>
+                            <button style="display: none" class="btn btn-login compte-create-submit">Enregistrer les modifications</button>
 
 
 
@@ -88,8 +89,7 @@
                                         </div>
 
 
-
-                                        <div  class="col-sm-8">
+                                        <div  id="code_struct"  class="col-sm-8 ">
                                             <br/>
                                             <br/>
                                             <div class="fg-line">
@@ -122,7 +122,7 @@
 <script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
-<script type="text/javascript" src="js/functions_sections.js"></script>
+<script type="text/javascript" src="js/functions_sections_show.js"></script>
 
 </body>
 

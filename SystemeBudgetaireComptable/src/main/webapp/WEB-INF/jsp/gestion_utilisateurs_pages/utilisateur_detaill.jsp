@@ -43,16 +43,16 @@
 
                             <div class=""></div>
                             <button class="btn btn-login compte-modif">Modifier l'Utilisateur</button>
-<<<<<<< HEAD
+
                             <button class="btn btn-login compte-modif">Enregistrer les modification</button>
-=======
+
                             <button class="btn btn-login compte-modif-enreg" style="display: none">Enregistrer les modification</button>
->>>>>>> refs/remotes/origin/news_master
+
 
 
                         </div>
                         <div class="col-sm-3" dir="rtl">
-<<<<<<< HEAD
+
                             <a href="#"
                                class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
                                     class="zmdi zmdi-arrow-left"></i></a>
@@ -183,7 +183,7 @@
                                     </div>
 
                                     <div class="row" style="display: none">
-=======
+
                             <a href="gestion_utilisateurs_utilisateurs.html"
                                class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
                                     class="zmdi zmdi-arrow-left"></i></a>
@@ -314,7 +314,7 @@
                                     </div>
 
                                     <div id="state_select" class="row" style="display: none">
->>>>>>> refs/remotes/origin/news_master
+
                                         <br/>
                                         <div class="col-sm-4">
                                             <div class="fg-line">

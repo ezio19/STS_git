@@ -52,6 +52,11 @@ public class SectionsController {
         List<Structure> structures = service.getStructureByCodeStructure(code_structure);
         if (structures.size() == 0)
             return "80904";
+
+        Section sections=sectionService.getSectionByCodeSection(codeSection);
+        if(sections!=null)
+            return "103";
+
         Structure structure = structures.get(0);
 
 
@@ -66,6 +71,43 @@ public class SectionsController {
             return "801"; /// si le retour est null (section n'est pas crée)
 
     }
+
+
+
+
+    ////Sections
+    @RequestMapping(
+            value = {"/nomenclatures_section_edit"},
+            method = {RequestMethod.POST}
+    )
+    @ResponseBody
+    public String postEditSection(@RequestParam("code_section") String codeSection,
+                                    @RequestParam("designation_section") String designationSection,
+                                    @RequestParam("code_structure") String code_structure) {
+
+
+        Section section = sectionService.getSectionByCodeSection(codeSection);
+        if (section==null)
+            return "101";
+        List<Structure> structures=service.getStructureByCodeStructure(code_structure);
+        if(structures.size()==0)
+            return "101";
+
+        section.setDesignation(designationSection);
+        section.setStructure(structures.get(0));
+
+        ///Ici je vais retouné 100 (message Ok) dans la cas ou la section est crée
+        /// On peut faire du traitment sur les paramètre par exmple ...
+        if (this.sectionService.creerSection(section) != null)
+            return "100";
+        else
+            return "801"; /// si le retour est null (section n'est pas crée)
+
+    }
+
+
+
+
 
 
     @RequestMapping(
