@@ -117,7 +117,6 @@ public class SectionsController {
             return "404";
         }
         System.out.println("Compte Existe   "+section.getCodeSection());
-
         model.addAttribute("section", section);
         return "sections/section_detail";
     }

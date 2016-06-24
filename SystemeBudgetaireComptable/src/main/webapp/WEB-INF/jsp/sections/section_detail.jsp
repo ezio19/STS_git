@@ -80,19 +80,21 @@
                                             </div>
                                         </div>
 
-                                        <div  style="display: none" class="col-sm-8">
+                                        <div id="structure-select" style="display: none" class="col-sm-8">
                                             <br/>
                                             <select class="selectpicker" title="Structure" id="structure-select-section"
                                                     data-live-search="true">
                                             </select>
+                                        </div>
 
-                                            <div class="col-sm-8">
-                                                <div class="fg-line">
-                                                    <input id="code_structure" placeholder="${section.getStructure().getCodeStructure()}"class="form-control compte" readonly>
-                                                </div>
+
+
+                                        <div  class="col-sm-8">
+                                            <br/>
+                                            <br/>
+                                            <div class="fg-line">
+                                                <input id="code_structure" placeholder="${section.getStructure().getCodeStructure()}"class="form-control compte" readonly>
                                             </div>
-
-
                                         </div>
 
                                     </div>

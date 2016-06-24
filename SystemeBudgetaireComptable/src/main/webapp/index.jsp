@@ -451,7 +451,7 @@
         
         <script src="vendors/bower_components/flot/jquery.flot.js"></script>
         <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
-        <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="vendors/bower_components/flot.curvedlines/c    urvedLines.js"></script>
         <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
         <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
         
@@ -475,7 +475,6 @@
         <script src="js/flot-charts/pie-chart.js"></script>
         <script src="js/charts.js"></script>
         <script src="js/functions.js"></script>
-        <script src="js/demo.js"></script>
 
         
     </body>

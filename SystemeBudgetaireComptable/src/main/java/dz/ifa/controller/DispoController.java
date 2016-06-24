@@ -47,7 +47,7 @@ public class DispoController {
     
     @RequestMapping(value="/RecepteurStructureInterne", method=RequestMethod.GET)
     public ModelAndView listDispo() {
-	    List <Rubrique> rubriques = disponibiliteService.findDispoByMontant(50);
+	    List <Rubrique> rubriques =rubriqueService.getAllRubriques();// disponibiliteService.findDispoByMontant(50);
         System.out.println("Dispo size"+rubriques.size());
         return new ModelAndView("RecepteurStructureInterne", "rubriques", rubriques); 
 	
@@ -77,9 +77,19 @@ public class DispoController {
 	        System.out.println("Dispo size"+rubriques.size());
 	        return new ModelAndView("RecepteurDG", "rubriques", rubriques); 
 		
-	}  
-		
-		    @RequestMapping(value = "/RecepteurDG", method = RequestMethod.POST)
+	}
+
+
+
+	@RequestMapping(value="/addDemandePlusieursCompt", method=RequestMethod.GET)
+	public ModelAndView listDispoPlusier() {
+		Rubrique rubrique=new Rubrique();
+		return new ModelAndView("addDemandePlusieursCompte", "rubriques", rubrique);
+
+	}
+
+
+	@RequestMapping(value = "/RecepteurDG", method = RequestMethod.POST)
 			public String affectExt(HttpServletRequest request, HttpSession session)
 			throws AuthenticationException {
 		   //idRbrique Dispo et son montant 	

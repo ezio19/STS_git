@@ -25,6 +25,31 @@ public class Rubrique {
 
     @Column
     private String designation;
+
+    public Integer getIdRubrique() {
+        return idRubrique;
+    }
+
+    public void setIdRubrique(Integer idRubrique) {
+        this.idRubrique = idRubrique;
+    }
+
+    public String getCode_monnaie() {
+        return code_monnaie;
+    }
+
+    public void setCode_monnaie(String code_monnaie) {
+        this.code_monnaie = code_monnaie;
+    }
+
+    public List<CompteBudgetaire> getCompteBudgetaires() {
+        return compteBudgetaires;
+    }
+
+    public void setCompteBudgetaires(List<CompteBudgetaire> compteBudgetaires) {
+        this.compteBudgetaires = compteBudgetaires;
+    }
+
     @Column
     private Double montant;
 

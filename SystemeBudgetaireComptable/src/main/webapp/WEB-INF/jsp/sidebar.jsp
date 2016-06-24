@@ -59,13 +59,21 @@
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Transfert</a>
                         <ul>
-                            <li ><a href="addDemandeTransfert.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a></li>
+                            <li class="sub-menu" >
+                                <a ><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a>
+                                <ul>
+                                    <li ><a href="addDemandeTransfert.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Un seul Compte</a></li>
+                                    <li ><a href="addDemandePlusieursCompte.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Plusieurs Comptes</a></li>
+                                </ul>
+                            </li>
+
+
                             <li ><a href="addDemandeTransfertExterne.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Demande Transfert Externe</a></li>
                             <sec:authorize access="hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTRA', 'ROLE_ADMIN')">
-                            <li ><a href="AllDemandes.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les Disponibilités Internes</a></li>
+                            <li ><a href="AllDemandes.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Liste des demandes de transfert Interne</a></li>
                             </sec:authorize>
                             <sec:authorize access="hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTER', 'ROLE_ADMIN')">
-                            <li ><a href="AllDemandesExterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les Disponibilités Externes</a></li>
+                            <li ><a href="AllDemandesExterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Liste des demandes de transfert externe</a></li>
                             </sec:authorize>
                         </ul>
                     </li>
