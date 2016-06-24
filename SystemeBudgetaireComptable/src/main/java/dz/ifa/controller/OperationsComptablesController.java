@@ -106,7 +106,7 @@ public class OperationsComptablesController {
 			String date = requete.getParameter("dateOperation");
 			System.out.println("le nombre de ligne est:" + date);
 
-			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
 			Date dateOperation;
 			dateOperation = dateFormat.parse(date);
 			operationComptable.setDate(dateOperation);
@@ -148,7 +148,7 @@ public class OperationsComptablesController {
 		
 		operationService.save(operationComptable);
 		
-		 ModelAndView m= new ModelAndView("redirect:/opcompt.html");
+		 ModelAndView m= new ModelAndView("redirect:/brouillard.html");
 		 return m; 
 		}
 		
@@ -259,23 +259,15 @@ public class OperationsComptablesController {
 				
 				operationService.save(operationComptable);
 				
-				 ModelAndView m= new ModelAndView("redirect:/opcompt.html");
+				 ModelAndView m= new ModelAndView("redirect:/brouillard.html");
 				 return m; 
 
 			}
 			
 	} 
-	@RequestMapping(value="operationsComptables",method=RequestMethod.GET)
+	@RequestMapping(value="operations",method=RequestMethod.GET)
 	public String afficherOperationsComptables(HttpServletRequest requete){
 		List<OperationComptable> operationsComptables = operationService.getValideOperations();
-		List<OperationBudgetaire> operationsBudgetaires = operationService.getAllOperationsBudgetairesValides();
-		for (OperationComptable operationComptable : operationsComptables) {
-			for (OperationBudgetaire operationBudgetaire : operationsBudgetaires) {
-				if(operationBudgetaire.getOperationComptable().getId()==operationComptable.getId()){
-					operationsComptables.remove(operationComptable);
-				}
-			}
-		}
 		requete.setAttribute("listOperations", operationsComptables);
 		return "listOperationsComptables";
 	}

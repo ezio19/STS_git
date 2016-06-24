@@ -1,35 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-	<head>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link href="css/material-design-iconic-font.css" rel="stylesheet">
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
-	    <link href="css/bootstrap-select.css" rel="stylesheet">
-	    <link href="css/animate.min.css" rel="stylesheet">
-	    <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
-	    <link href="css/sweetalert2.css" rel="stylesheet">
-	    <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
-	    <link href="css/app.min.1.css" rel="stylesheet">
-	    <link href="css/app.min.2.css" rel="stylesheet">
-        <title></title>
-
-       	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap-growl.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap-select.js"></script>
-		<script type="text/javascript" src="js/waves.min.js"></script>
-		<script type="text/javascript" src="js/typeahead.bundle.js"></script>
-		<script type="text/javascript" src="js/sweetalert2.min.js"></script>
-		<!--Bibliotheque pour le sidebar -->
-		<script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-		<script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
-		<script type="text/javascript" src="js/functions.js"></script>
-		<!-- Validation du formulaire -->
+<head>
+        <meta charset="utf-8">
+		 <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Opération Budgétaire</title>
+        
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+            
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        
+        <!-- Validation du formulaire -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
-        
+        <script src="js/operation-form.js"type="text/javascript"></script>
     </head>
 <body>
 		<!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
@@ -37,20 +32,97 @@
         <!--Le sidebar/navigation drawer (android) -->
 		<c:import url="./sidebar.jsp"></c:import>
 		
-		<section id="main">		
+        <header id="header" class="clearfix" data-current-skin="blue">
+		
+			<ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+                <li class="logo hidden-xs">
+                    <a href="index-2.html">Opération Budgétaire</a>
+                </li>
+				 <!-- Top Search Content -->
+            <div id="top-search-wrap">
+                <div class="tsw-inner">
+                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+                    <input type="text">
+                </div>
+            </div>
+			</ul>
+        </header>
+		<section id="main">
+			
+            
+			
 			<section id="content">
 				<div class="container">
-					<form method="post" name="opBudgForm" id="opBudgForm">
-						<div class="card">
-							<div class="card-body card-padding">
+				
+						<div id="divDialog" style="visibility:hidden">
+								<div class="sweet-overlay" tabindex="-1" style="opacity: 1.24; display: block;"></div>
+								<!----    shadow dialog---->
+								<div class="sweet-alert showSweetAlert visible" tabindex="-1" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-ouside-click="false" data-has-done-function="false" data-timer="null" style="display: block; width: 756px;margin-top: -167px;left: 40%;top: 50%;">
+									<h2>Table des guides</h2>
+									<table  class="table table-bordered" style="margin-top: 65px;">
+										<thead>
+									
+											<tr>
+												<th data-column-id="selct">
+													<label>													
+																												
+																	N°
+																	
+																</label>
+												</th>
+												<th data-column-id="id" data-type="numeric">Nom du guide</th>
+												<th data-column-id="typGuide">Type du guide</th>
+												<th data-column-id="option">Déscription</th>
+												<th data-column-id="sender">Date de création</th>
+												
+												<!--<th data-column-id="received" data-order="desc">Received</th>
+												<th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>-->
+											</tr>
+										</thead>
+										<tbody >
+								        <c:forEach items="${guides}" var="gui">
+	                           			 <tr>
+					                            <td><input class="typecheckbox" type="checkbox" value="${gui.id}"></td>
+					                            <td id="nom_guide" class="text-left" style="">${gui.nom_guide}</td>
+					                            <td id="type_facture" class="text-left" style="">${gui.type_facture}</td>
+					                            <td id="descriptionguide" class="text-left" style="">${gui.descriptionguide}</td>
+					                            <td id="date" class="text-left" style=""> ${gui.date}</td>
+													 
+	                       				 </tr>
+	
+	  
+	                   				  </c:forEach>
+										</tbody>
+									</table>
+															
+									<p>
+										<button class="cancel btn btn-lg btn-default" tabindex="2" style="display: inline-block;" onclick="unShowGuides();">Annuler</button> 
+										<button class="confirm btn btn-lg btn-primary checkedok" tabindex="1" style="display: inline-block;" onclick="checked();">OK</button>
+									</p>
+								</div>
+							</div>
 							
+					<form method="post" name="opBudgForm" id="opBudgForm">
+						 <input type="text" name="typeop" id="typeop" style="visibility: hidden"> </input>
+					     <input type="text" name="idguideselected" id="idguideselected"  style="visibility: hidden"> </input>
+					
+						<div class="card">
+							
+							<div class="card-body card-padding">
 								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
-									<h2>Numéro de l'opération</h2>
+									<h2>Code de l'opération</h2>
 								</div>
 								<div class="dtp-container fg-line">
 									<input type="text" class="form-control"  placeholder="Numero d'opération"  id ="numOperation" name="numOperation"/>
 								</div>
-							
 								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
 									<h2>Journée comptable</h2>
 								</div>
@@ -61,25 +133,51 @@
 								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
 									<h2>Engagement:</h2>
 								</div>
-								
-								<div class="form-group">
-									<div class="fg-line">
-										<div class="select">
-											<select class="form-control"  id="engaSelection" name="engaSelection">
-												<option value="0">-- Choisir un engagement --</option>
+								<div style="width:100%;">
+								<div class="form-group" style="display:inline-flex; width:80%; margin-right:5px;">
+										<div class="fg-line">
+											<div class="select">
+												<select class="form-control"  id="engaSelection" name="engaSelection">
+													<option value="0">-- Choisir un engagement --</option>
 												<c:forEach items="${listEngagements}" var="engagement">
 													<option value="${engagement.id}">${engagement.nom}</option>
 												</c:forEach>
+												</select>
+											</div>
+										</div>
+									</div>
+									<button id="btnAdd" class="btn bgm-teal waves-effect" style="width:200px;"><i class="zmdi zmdi-plus zmdi-hc-fw"></i>Ajouter un engagment</button>	
+								</div>
+								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+										<h2>Piéce:</h2>
+								</div>
+									
+								<div class="form-group">
+									<div class="fg-line">
+										<div class="select">
+											<select class="form-control" id="selectPiece" name="pieceSelection">
+												       
+	        									<option value="0">-- Choisir une piece --</option>
 											</select>
 										</div>
 									</div>
 								</div>
+								<div class="form-group">
+									<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
+										<h2>Montant Global </h2>
+									</div>
+									<div class="fg-line">
+										<input name="montantglobal" id="montantglobal"  type="text" class="form-control input-lg" readonly="true"/>
+									</div>
+							    </div>
+							    <br>
+							  
 								
 								<table  class="table table-bordered" style="background:#CCCCCC">
 										<thead >
 									
 											<tr>
-												<th data-column-id="id" data-type="numeric">Séction</th>
+												<th data-column-id="id" data-type="numeric">Section</th>
 												<th data-column-id="option">Chapitre</th>
 												<th data-column-id="sender">Rebrique</th>
 												<th data-column-id="sender">Montant engagé</th>
@@ -94,7 +192,13 @@
 												<td></td>
 												<td></td>
 												<td></td>	
-												<td></td>
+												<td>
+													<div class="form-group" style="margin-bottom: 0px;">
+														<div class="fg-line">
+															<input type="text" class="form-control" placeholder="Montant réalisé" vk_1fb3d="subscribed">
+														</div>
+													</div>
+												</td>
 											</tr>
 										
 										</tbody>
@@ -103,28 +207,15 @@
 								
 						</div>	
 						<div class="card">
-							<div class="card-body card-padding">
-								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
-										<h2>Pièce:</h2>
-								</div>
-									
-								<div class="form-group">
-									<div class="fg-line">
-										<div class="select">
-											<select class="form-control" id="selectPiece" name="pieceSelection">
-												       
-	        							<option vlaue="0">-- Choisir une piece --</option>
-											</select>
-										</div>
-									</div>
-								</div>
+							<div class="card-body card-padding">			    
 								<br>
 								<br>
 								<br>
 								<div class="btn-group btn-group-lg" role="group" style=" width:100%">
-									<button type="button" style="width:33%" class="btn bgm-teal waves-effect"><i class="zmdi zmdi-account zmdi-hc-fw"></i>   Saisie Mannuelle </button>
-									<button type="button" style="width:34%" class="btn bgm-pink waves-effect"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i>   A partir d'un guide</button>
-									<button type="button" style="width:33%" class="btn bgm-green btn-lg waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i>   Creer un guide</button>
+									<button id="btnSM" type="button" style="width:33%" class="btn bgm-teal waves-effect" onclick ="ShowLines()"><i class="zmdi zmdi-account zmdi-hc-fw" onclick="addRow()"></i>   Saisie Mannuelle </button>
+									<button  id ="btnAG"type="button" style="width:34%" class="btn bgm-pink waves-effect" onclick="showGuides();"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw" ></i>   A partir d'un guide</button>
+									<a href="NewGuide.html"><button type="button" style="width:33%" class="btn bgm-green btn-lg waves-effect"><i class="zmdi zmdi-plus zmdi-hc-fw"></i>   Creer un guide</button> </a>
+								
 								</div>
 								<div style="visibility: collapse;">
 									<input type="text" id="nb_element" name="nb_element">1</input> 
@@ -133,7 +224,7 @@
 							
 						</div>
 							
-						<div class="card">
+						<div class="card" id="card" style="visibility:hidden">
 							<div class="card-body card-padding">
 							<div class="table-responsive" style="padding-bottom:16px">
 								<table  class="table table-bordered">
@@ -173,7 +264,7 @@
 											<td>
 											<div class="form-group">
 												<div class="fg-line">
-													<input name="montant0" type="text" class="form-control input-mask montant"  placeholder="eg: 300 000.00" maxlength="9" autocomplete="off" vk_129f4="subscribed">
+													<input name="montant0" type="text" class="form-control input-mask montant"  data-mask="00,00" placeholder="eg: 900000,00" maxlength="20" autocomplete="off" vk_129f4="subscribed">
 												</div>
 											</div>
 											</td>
@@ -210,10 +301,74 @@
 						</div>
 					</form>
 				</div>
+				
 			</section>
+
 		</section>
 		
-	
+		
+		
+		<!-- Javascript Libraries -->	
+		
+ 
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+		
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+		<!---new JS-->
+
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+      <!--   <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script> -->
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>  
+		
+       <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+        
+        
+
+        <script src="js/functions.js"></script>
+        <script src="js/demo.js"></script>
+        
+        <script>
+        
+		function checked(){
+			var checkedValue = null; 
+			var inputElements = document.getElementsByClassName('typecheckbox');
+			for(var i=0; inputElements[i]; ++i){
+				  if(inputElements[i].checked){
+					   checkedValue = inputElements[i].value;
+					   break;
+				  }
+			}
+			unShowGuides();
+			var op="guide";
+			document.getElementById('typeop').value=op;
+			document.getElementById('idguideselected').value=checkedValue;
+			document.getElementById("opBudgForm").submit();
+			
+		}
+		
+		function showGuides(){
+		var element= document.getElementById('divDialog');
+		element.style.visibility="";
+		}
+		function unShowGuides(){
+				var element= document.getElementById('divDialog');
+				element.style.visibility="hidden";
+									
+		}
+
+		function ShowLines(){
+		var element= document.getElementById('card');
+		element.style.visibility="";
+		}
+        </script>
+        
 		<script type="text/javascript">
     	$("#opBudgForm").validate();
     	
@@ -342,7 +497,7 @@
 						+'					<div class="fg-line">'
 						+'						<input type="text"'
 						+'name="montant'+row+'"'
-						+'class="form-control input-mask montant" data-mask="00,00%" placeholder="eg: 00,00%" maxlength="9" autocomplete="off" vk_129f4="subscribed">'
+						+'class="form-control input-mask montant" data-mask="00,00" placeholder="eg: 900000,00" maxlength="20" autocomplete="off" vk_129f4="subscribed">'
 						+'					</div>'
 						+'				</div>'
 						+'				</td>'
@@ -484,14 +639,8 @@
                     showConfirmButton: false 
                 });
             });
-
         </script>
-        <script type="text/javascript">
-        function testerCompte(handler,numCompte){
-
-        }
-        </script>
-        <script>
+         <script>
 
 			var selectElement = document.getElementById("engaSelection");
 			selectElement.onchange = function (){
@@ -504,7 +653,7 @@
 									var len = data.length;
 									for (var i = 0; i < len; i++) {
 										html += '<option value="' + data[i].id + '">'
-												+ data[i].id +'</option>';
+												+ data[i].numero +"-"+data[i].objet+'</option>';
 									}
 									html += '</option>';
 									
@@ -519,11 +668,36 @@
 					  .always(function() {
 						console.log( "complete toujours succes ou erreur" );
 					  });
+				}else{
+					var html = '<option value="0">-- Choisir une piece --</option>';
+					$('#selectPiece').html(html);
+					$('#selectPiece').val("");
 				}
 				
 			}
+			
+			$("#selectPiece").on('change',function(){
+				var pId = $(this).val();
+				if(pId!=0){
+					$.getJSON(	'${home}getMontantPieceById.json'+'?pId='+pId,
+							{ajax : 'true'}, 
+							function(data){
+								$("#montantglobal").val(data);
+							}
+						);
+				}
+			})
 			</script>
-    
+    		<script>
+			$('#pieceSelection').on('change',function(){
+				$.getJSON(	'${home}getMontantByPieceId.json'+'?id='+$(this).attr('id'),
+						{ajax : 'true'}, 
+						function(data){
+							result=data;
+						}
+					);
+			})
+			</script>
     
 </body>
 

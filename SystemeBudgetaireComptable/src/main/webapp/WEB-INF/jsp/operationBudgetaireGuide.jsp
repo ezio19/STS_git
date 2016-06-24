@@ -117,7 +117,7 @@
 							
 							<div class="card-body card-padding">
 								<div class="card-header" style="padding-left: 0px; padding-bottom:10px">
-									<h2>Numéro de l'opération</h2>
+									<h2>Code de l'opération</h2>
 								</div>
 								<div class="dtp-container fg-line">
 									<input type="text" class="form-control"  placeholder="Numero d'opération"  id ="numOperation" name="numOperation"/>

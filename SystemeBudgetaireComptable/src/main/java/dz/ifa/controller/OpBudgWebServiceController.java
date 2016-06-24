@@ -78,5 +78,9 @@ public class OpBudgWebServiceController {
 			}
 		
 	}
+		@RequestMapping(value = "/getMontantPieceById", method = RequestMethod.GET)
+		public double getMontantPieceById(@RequestParam(name="pId") long pId){
+			return pieceComptableService.findPieceById(pId).getMontantGlobal();
+		}
 
 }

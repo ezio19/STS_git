@@ -58,7 +58,7 @@
 															Séléction
 														</label>
 													</th>
-													<th data-column-id="id" data-type="numeric">Numéro de l'opération</th>
+													<th data-column-id="id" data-type="numeric">Code de l'opération</th>
 													<th data-column-id="date" >Journée comptable</th>
 													<th data-column-id="idPiece">Piece corréspondante</th>
 													<th data-column-id="montant">Montant global</th>

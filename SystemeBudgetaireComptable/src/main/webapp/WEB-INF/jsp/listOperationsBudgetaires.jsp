@@ -63,10 +63,10 @@
 										<tbody id="tableAddGuide">
 											<c:forEach items="${listOperations}" var="operation" varStatus="status">
 												<tr id="${operation.id}">
-													<td>${operation.numOperation }</td>
-													<td>${operation.dateOperation }</td>		
-													<td>${operation.pieceComptable.objet}</td>
-													<td>${operation.pieceComptable.montantGlobal }</td>
+													<td>${operation.operationcomptable.numOperation }</td>
+													<td>${operation.operationcomptable.dateOperation }</td>		
+													<td>${operation.operationcomptable.pieceComptable.objet}</td>
+													<td>${operation.operationcomptable.pieceComptable.montantGlobal }</td>
 												</tr>
 											</c:forEach>
 										</tbody>

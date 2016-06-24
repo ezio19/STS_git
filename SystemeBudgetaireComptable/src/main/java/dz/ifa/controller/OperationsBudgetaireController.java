@@ -87,7 +87,7 @@ public class OperationsBudgetaireController {
 					try {
 
 						String date = requete.getParameter("dateOperation");
-						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 						Date dateOperation;
 						dateOperation = dateFormat.parse(date);
 						operationComptable.setDate(dateOperation);
@@ -109,7 +109,6 @@ public class OperationsBudgetaireController {
 						else ecritureElementaire.setDebiteur(false);
 						//Montant 
 						ecritureElementaire.setMontant(Float.parseFloat(montant));
-						operationService.save(operationComptable);
 						ecritureElementaire.setOperationComptable(operationComptable);
 						operationComptable.getEcrituresElementaire().add(ecritureElementaire);
 						ecritureElementaire.setOperationComptable(operationComptable);
@@ -127,7 +126,7 @@ public class OperationsBudgetaireController {
 					Printer.printObject(operationBudgetaire);
 					operationService.save(operationBudgetaire);
 					
-					 ModelAndView m= new ModelAndView("redirect:/opbudg.html");
+					 ModelAndView m= new ModelAndView("redirect:/brouillard.html");
 					 return m; 
 		
 		}
@@ -149,16 +148,16 @@ public class OperationsBudgetaireController {
 		
 					
 					
-					//Rï¿½cupï¿½ration du montant total
+					//Récupération du montant total
 					String montantglo = requete.getParameter("montantglobal");
 					montantglo = montantglo.replaceAll(" ", "");
 					Long montantglobal= Long.parseLong(montantglo);
 					
-					//Rï¿½cupï¿½ration de l'engement  
+					//Récupération de l'engement  
 					String nomEngagement =requete.getParameter("engaSelection");
 					System.out.println("le nom est" + nomEngagement);
 					
-					//Rï¿½cupï¿½ration de l'id du guide
+					//Récupération de l'id du guide
 					String idGuide= requete.getParameter("idguideselected");
 					
 					//Envoie du model
@@ -173,14 +172,14 @@ public class OperationsBudgetaireController {
 					
 					 
 					for (int i=0; i<guide.getListcpt().size(); i++)
-					    {
+					{
 					    	LigneGuideTmp ligne = new LigneGuideTmp();
 					    	ligne.setCpt(guide.getListcpt().get(i).getCpt());
 					    	String chaine= guide.getListcpt().get(i).getRolecpt();
 					    	ligne.setRolecpt(chaine);
 					    	ligne.setPourcentage(guide.getListcpt().get(i).getPourcentage() * montantglobal / 100);
 					    	listElementGuide.add(ligne);
-					    }
+					}
 					tailleElementsGuide = guide.getListcpt().size();
 					System.out.println("la taille " + tailleElementsGuide);
 					
@@ -227,7 +226,6 @@ public class OperationsBudgetaireController {
 						else ecritureElementaire.setDebiteur(false);
 						//Montant 
 						ecritureElementaire.setMontant(Float.parseFloat(montant));
-						operationService.save(operationComptable);
 						ecritureElementaire.setOperationComptable(operationComptable);
 						operationComptable.getEcrituresElementaire().add(ecritureElementaire);
 						ecritureElementaire.setOperationComptable(operationComptable);
@@ -242,7 +240,7 @@ public class OperationsBudgetaireController {
 					Printer.printObject(operationBudgetaire);
 					operationService.save(operationBudgetaire);
 
-					 ModelAndView m= new ModelAndView("redirect:/opbudg.html");
+					 ModelAndView m= new ModelAndView("redirect:/brouillard.html");
 					 return m; 
 				}
 	}
