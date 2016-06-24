@@ -242,9 +242,14 @@ public class GestionUtilisateurController {
         System.out.println("id_user:" + idUtilisateur);
         System.out.println("code_structure:" + idUtilisateur);
 
+
+        idUtilisateur="tester";
         List<Utilisateur>utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(idUtilisateur);
-        if(utilisateurs.size()==0)
-            return "101";
+        if(utilisateurs.size()==0){
+            System.out.println("Erreur user n'exite pas");
+            return "104";
+        }
+
         if(!passw.equals(reppasswd))
             return "603";
         Utilisateur utilisateur=utilisateurs.get(0);
@@ -270,8 +275,11 @@ public class GestionUtilisateurController {
 
         if(gestionUtilisateursService.creerUtilisateur(utilisateur)!=null)
             return "100";
-        else
+        else{
+            System.out.println("service creation retourne null");
             return "101";
+        }
+
 
     }
 

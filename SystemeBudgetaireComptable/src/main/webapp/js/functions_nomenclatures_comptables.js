@@ -277,8 +277,10 @@ function afficherCreateSectionMessage() {
         )
             .done(function (data) {
 
-                if (JSON.parse(data) == "100")
+                if (JSON.parse(data) == "100"){
+                    window.location.replace("nomenclatures_comptables.html");
                     swal("Succès!", "La Nomenclature a été ajoutée avec succès", "success");
+                }
                 else{
 
                     switch(data){
@@ -299,170 +301,14 @@ function afficherCreateSectionMessage() {
 
 
 
-function afficherSupprMessage(compteRow){
-    swal({
-  title: 'Ete Vous Sure ?',
-  text: "Voulez vous vraiment supprimer cette section!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#d33',
-  confirmButtonText: 'Oui, Confirmer!',
-  cancelButtonText: 'Annuler',
-  confirmButtonClass: 'btn btn-danger',
-  cancelButtonClass: 'btn',
-  buttonsStyling: false,
-  closeOnConfirm: false,
-
-},
-function(isConfirm) {
-  if (isConfirm === true) {
-    swal(
-      'Succès!',
-      'Le Section est Supprimée avec succès .',
-      'success'
-    );
-    if(selectedCompte==-1)
-        compteRow.remove();
-    else{
-         sel="tr[data-row-id=".concat(selectedCompte).concat("]");
-        //$( "tr[data-row-id=""]" ).remove();
-        $(sel).remove();
-
-    }
-
-    $('.card.list-sections').css('display', '');
-    $('.card.section-detail').css('display', 'none');
-
-  } else if (isConfirm === false) {
-    /*swal(
-      'Erreur',
-      'Compte non Supprimé',
-      'error'
-    );*/
-  } else {
-    // outside click, isConfirm is undefinded
-  }
-});
-}
-
-function afficherCreateAccountMessage(){
-    var classe1= $('#creat_input_classe ').val();
-    var section1=$('#creat_input_section').val();
-    var nom1=$('#creat_input_nom').val();
-    var chapitre1=$('#creat_input_chapitre').val();
-    var rubrique1=$('#creat_input_rubrique').val();
-    var numero1=$('#creat_input_compte_num ').val();
-    var designagtion1=$('#creat_input_designation ').val();
-    var type1=$('#creat_input_type').val();
-    swal({
-            title: "Etes Vous Sure ?",
-            text: "Voulez vous vraiment Ajouter ce Compte ?",
-            type: "info",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            confirmButtonText: "Confirmer",
-            confirmButtonClass :"btn  btn-success waves-effect",
-        }, function() {
-            $.ajax(
-                {
-                    type: "POST",
-                    url: "nomenclatures_budget_create.html",
-                    data: { classe:classe1, nom:nom1 ,section:section1 ,chapitre:chapitre1,rubrique:rubrique1,numero:numero1,designagtion:designagtion1 , type:type1 },
-                    success: function(data){
-                        if(data==100)
-                            swal("Succès!", "La Section est ajoutée avec Succès", "success");
-                        else
-                            swal("Erreur", "La Section n'est pas ajoutée", "error");
-                        alert(data);
-                    }
-                }
-                )
-                .done(function(data) {
-                    swal("Succès!", "La Section est ajoutée avec Succès", "success");
-                })
-                .error(function(data) {
-                    swal("Erreur", "La Section n'est pas ajoutée ", "error");
-                });
-        });
-}
-
-function afficherModifAccountMessage(){
-    var classe1= $('#edit_input_classe ').val();
-    var section1=$('#edit_input_section').val();
-    var nom1=$('#edit_input_nom').val();
-    var chapitre1=$('#edit_input_chapitre').val();
-    var rubrique1=$('#edit_input_rubrique').val();
-    var numero1=$('#edit_input_compte_num ').val();
-    var designagtion1=$('#edit_input_designation ').val();
-    var type1=$('#edit_input_type').val();
-    swal({
-            title: "Etes Vous Sure ?",
-            text: "Voulez vous valider la modification du compte ?",
-            type: "warning",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            confirmButtonText: "Valider",
-            confirmButtonColor: "#ec6c62"
-        }, function() {
-            $.ajax(
-                {
-                    type: "POST",
-                    url: "nomenclatures_budget_edit.html",
-                    data: { classe:classe1, nom:nom1 ,section:section1 ,chapitre:chapitre1,rubrique:rubrique1,numero:numero1,designagtion:designagtion1 , type:type1 },
-                    success: function(data){
-                        if(data==100)
-                            swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
-                        else
-                            swal("Erreur", "Le Compte n'est pas modifié", "error");
-
-                    }
-                }
-                )
-                .done(function(data) {
-                    swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
-                })
-                .error(function(data) {
-                    swal("Erreur", "Le Compte n'est pas modifié", "error");
-                });
-        });
-}
 
 
-function afficherCreateChapitreMessage() {
 
-    var code_chap= $('#creat_input_codeChapitre ').val();
-    var designation_chap=$('#creat_input_designationChapitre').val();
-    swal({
-        title: "Etes Vous Sure ?",
-        text: "Voulez vous vraiment Ajouter ce Chapitre ?",
-        type: "info",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        confirmButtonText: "Confirmer",
-        confirmButtonClass :"btn  btn-success waves-effect",
-    }, function() {
-        $.ajax(
-            {
-                type: "POST",
-                url: "nomenclatures_chapitre_create.html",
-                data: { code_chapitre:code_chap, designation_chapitre:designation_chap},
-                success: function(data){
-                    if(data==100)
-                        swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-                    else
-                        swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-                }
-            }
-        )
-            .done(function(data) {
-                window.location.replace("nomenclatures_comptables.html");
-                swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
-            })
-            .error(function(data) {
-                swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
-            });
-    });
-}
+
+
+
+
+
 
 function afficherSupprChapitre(selectedRow) {
 

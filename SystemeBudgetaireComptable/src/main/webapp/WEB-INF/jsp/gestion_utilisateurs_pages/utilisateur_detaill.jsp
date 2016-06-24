@@ -31,7 +31,7 @@
 
             <c:if test="${utilisateur!=null}">
 
-            <div class="card section-create" >
+            <div class="card section-create">
                 <!--L'entete de la page' -->
 
                 <div class="card-header">
@@ -45,9 +45,9 @@
                             <button class="btn btn-login compte-modif">Modifier l'Utilisateur</button>
 
 
-
-                            <button class="btn btn-login compte-modif-enreg" style="display: none">Enregistrer les modification</button>
-
+                            <button class="btn btn-login compte-modif-enreg" style="display: none">Enregistrer les
+                                modification
+                            </button>
 
 
                         </div>
@@ -79,26 +79,30 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input id="creat_input_nom"  placeholder="${utilisateur.getNom()}" class="form-control compte" readonly>
+                                                <input id="creat_input_nom" placeholder="${utilisateur.getNom()}"
+                                                       class="form-control compte" readonly>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-8">
                                             <div class="fg-line">
-                                                <input id="creat_input_prenom" placeholder="${utilisateur.getPrenom()}"class="form-control compte" readonly>
+                                                <input id="creat_input_prenom" placeholder="${utilisateur.getPrenom()}"
+                                                       class="form-control compte" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <br/>
-                                    <div class="row" style="display: none;">
+                                    <div id="pass_elem" class="row" style="display: none;">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input id="creat_input_passw" placeholder="Mot de passe"  type="password" class="form-control compte" >
+                                                <input id="creat_input_passw" placeholder="Mot de passe" type="password"
+                                                       class="form-control compte">
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="fg-line">
-                                                <input id="creat_input_reppasswd" placeholder="Repeter Mot de Passe"  type="password" class="form-control compte">
+                                                <input id="creat_input_reppasswd" placeholder="Repeter Mot de Passe"
+                                                       type="password" class="form-control compte">
                                             </div>
                                         </div>
                                     </div>
@@ -122,13 +126,15 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input  id="creat_input_email" placeholder="${utilisateur.geteMail()} "type="email" class="form-control compte" readonly>
+                                                <input id="creat_input_email" placeholder="${utilisateur.geteMail()} "
+                                                       type="email" class="form-control compte" readonly>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-8">
                                             <div class="fg-line">
-                                                <input id="creat_input_telephone" placeholder="${utilisateur.getTel()}"  type="tel" class="form-control compte" readonly>
+                                                <input id="creat_input_telephone" placeholder="${utilisateur.getTel()}"
+                                                       type="tel" class="form-control compte" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +145,9 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input id="creat_input_addresse" placeholder="${utilisateur.getAdresse()}" class="form-control compte" readonly>
+                                                <input id="creat_input_addresse"
+                                                       placeholder="${utilisateur.getAdresse()}"
+                                                       class="form-control compte" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -161,21 +169,23 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input id="creat_input_id_user" placeholder="${utilisateur.getId()}"  class="form-control compte" readonly>
+                                                <input id="creat_input_id_user" placeholder="${utilisateur.getId()}"
+                                                       class="form-control compte" readonly>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-8">
                                             <div class="fg-line">
 
-                                                <div style="display: none">
-                                                <select  class="selectpicker"  id="structure-select-section"
-                                                        data-live-search="true" >
-                                                    <option disabled>${utilisateur.getStructure().getCodeStructure()}</option>
-                                                </select>
+                                                <div style="display: none" id="struct_sel">
+                                                    <select class="selectpicker" id="structure-select-section"
+                                                            data-live-search="true">
+                                                        <option disabled>${utilisateur.getStructure().getCodeStructure()}</option>
+                                                    </select>
                                                 </div>
 
-                                                <input   placeholder="${utilisateur.getStructure().getCodeStructure()}" type="email" class="form-control compte" readonly>
+                                                <input id="struct_input" placeholder="${utilisateur.getStructure().getCodeStructure()}"
+                                                       type="email" class="form-control compte" readonly>
 
 
                                             </div>
@@ -184,62 +194,67 @@
 
                                     <div class="row" style="display: none">
 
-                            <a href="gestion_utilisateurs_utilisateurs.html"
-                               class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
-                                    class="zmdi zmdi-arrow-left"></i></a>
-                        </div>
+                                        <a href="gestion_utilisateurs_utilisateurs.html"
+                                           class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
+                                                class="zmdi zmdi-arrow-left"></i></a>
+                                    </div>
 
 
-                    </div>
-                </div>
-
-
-                <div class="card-contenu ">
-                    <div class="panel-group p-l-20" role="tablist" aria-multiselectable="true">
-
-
-                        <div class="panel panel-collapse">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Fonctionnalités
-                                    </a>
-                                </h4>
+                                </div>
                             </div>
-                            <div id="collapseTwo" class="collapse in" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">
 
 
-                                    <div class="row">
-
-                                        <div class="col-sm-4 m-b-20">
-                                            <br/>
-                                            <select class="selectpicker" title="Fonctionnalites" id="fonctionnlaite-select"
-                                                    data-live-search="true" multiple>
-
-                                                <c:forEach begin="0" end="${utilisateur.getFoncts().size()-1}" varStatus="loop">
-                                                    <option disabled>${utilisateur.getFoncts().get(loop.index).getDesignation()}</option>
-                                                </c:forEach>
+                            <div class="card-contenu ">
+                                <div class="panel-group p-l-20" role="tablist" aria-multiselectable="true">
 
 
-                                            </select>
+                                    <div class="panel panel-collapse">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                                                   href="#collapseTwo" aria-expanded="false"
+                                                   aria-controls="collapseTwo">
+                                                    Fonctionnalités
+                                                </a>
+                                            </h4>
                                         </div>
+                                        <div id="collapseTwo" class="collapse in" role="tabpanel"
+                                             aria-labelledby="headingTwo">
+                                            <div class="panel-body">
 
+
+                                                <div class="row">
+
+                                                    <div class="col-sm-4 m-b-20">
+                                                        <br/>
+                                                        <select class="selectpicker" title="Fonctionnalites"
+                                                                id="fonctionnlaite-select"
+                                                                data-live-search="true" multiple>
+
+                                                            <c:forEach begin="0"
+                                                                       end="${utilisateur.getFoncts().size()-1}"
+                                                                       varStatus="loop">
+                                                                <option disabled>${utilisateur.getFoncts().get(loop.index).getDesignation()}</option>
+                                                            </c:forEach>
+
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
                                     </div>
 
 
                                 </div>
                             </div>
                         </div>
-
+                        </c:if>
 
                     </div>
-                </div>
-            </div>
-            </c:if>
-
-        </div>
     </section>
 
 

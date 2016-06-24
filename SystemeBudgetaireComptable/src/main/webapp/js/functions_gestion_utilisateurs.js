@@ -347,7 +347,7 @@ $(document).ready(function () {
                 .done(function (data) {
                     if (JSON.parse(data) == "100") {
                         swal("Succès!", "L'utilisateur est ajouté avec Succès", "success");
-                        window.location.replace("gestion_utilisateurs_utilisateurs");
+                        window.location.replace("gestion_utilisateurs_utilisateurs.html");
                     }
                     else if (JSON.parse(data) == "602")
                         swal("Erreur", "l'utilisateur Existe deja verifier votre Id Utilisateur", "error");

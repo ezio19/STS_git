@@ -135,7 +135,7 @@ public class DemandeController {
 	@RequestMapping(value = "/addDemandePlusieursCompte", method = RequestMethod.GET)
 	public String addDemande1(Model model, HttpSession session) {
 		
-		DemandeTransfert demandeTransfert = (DemandeTransfert) session.getAttribute("demandeTransfert");
+		DemandeTransfert demandeTransfert =new DemandeTransfert();//= (DemandeTransfert) session.getAttribute("demandeTransfert");
 	
 		if(demandeTransfert==null){			
 			demandeTransfert= new DemandeTransfert();

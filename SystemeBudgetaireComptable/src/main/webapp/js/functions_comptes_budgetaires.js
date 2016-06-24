@@ -290,40 +290,7 @@ $('button.compte-create_cancel').on('click', function () {
 
 });
 
-function afficherModifAccountMessage() {
-    var codeChap = $('#edit_input_classes ').val();
-    var designationChap = $('#edit_input_nom').val();
-    swal({
-        title: "Etes Vous Sure ?",
-        text: "Voulez vous valider la modification du compte ?",
-        type: "warning",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        confirmButtonText: "Valider",
-        confirmButtonColor: "#ec6c62"
-    }, function () {
-        $.ajax(
-            {
-                type: "POST",
-                url: "nomenclatures_chapitre_edit.html",
-                data: {code_chapitre: codeChap, designation: designationChap},
-                success: function (data) {
-                    if (data == 100)
-                        swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
-                    else
-                        swal("Erreur", "Le Compte n'est pas modifié", "error");
 
-                }
-            }
-        )
-            .done(function (data) {
-                swal("Succès!", "Les Modifications sont effectuées avec succès", "success");
-            })
-            .error(function (data) {
-                swal("Erreur", "Le Compte n'est pas modifié", "error");
-            });
-    });
-}
 
 function afficherCreateChapitreMessage() {
 
@@ -347,19 +314,19 @@ function afficherCreateChapitreMessage() {
                 type: "POST",
                 url: "nomenclatures_budgetaires_create.html",
                 data: {numero_compte: num_cpt, designation_compte: designation_cpt,type_compte:type_cpt,code_rubrique:rub_cpt,numero_classe:classe_cpt},
-                success: function (data) {
-                    if (JSON.parse(data) == "100")
-                        swal("Succès!", "La Rubrique est ajoutée avec Succès", "success");
-                    else
-                        swal("Erreur", "Le Rubrique n'est pas ajoutée", "error");
-                }
+
             }
         )
             .done(function (data) {
-                swal("Succès!", "La Rubrique est ajoutée avec Succès", "success");
+                if (JSON.parse(data) == "100"){
+                    swal("Succès!", "La Rubrique est ajoutée avec Succès", "success");
+                    window.location.replace("nomenclatures_budgetaires.html");
+                }
+                else
+                    swal("Erreur", "l'Elment n'est pas créé", "error");
             })
             .error(function (data) {
-                swal("Erreur", "Le Rubrique n'est pas ajoutée", "error");
+                swal("Erreur", "l'Elment n'est pas créé", "error");
             });
     });
 }
