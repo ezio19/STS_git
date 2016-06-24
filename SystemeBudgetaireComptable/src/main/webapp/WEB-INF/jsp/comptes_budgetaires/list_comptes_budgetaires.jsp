@@ -1,17 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="card list-sections">
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <div class="card list-sections">
     <!--L'entete de la page' -->
     <div class="card-header">
         <h2>Comptes Budgétaires
             <small>Affichage des Comptes Budgétaires.</small>
         </h2>
     </div>
+        <sec:authorize access="hasAnyAuthority('ROLE_NOMENCLATEUR', 'ROLE_ADMIN')">
     <div class="card-contenu">
         <div class="m-sm-10 ">
             <button class="m-l-20 btn  btn-success  intern waves-effect section-create">Ajouter un Nouveau Compte Budgétaire
             </button>
         </div>
+        </sec:authorize>
 
 
         <!--Le tableau qui affiche la liste des comptes -->

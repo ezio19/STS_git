@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="card list-sections">
     <!--L'entete de la page' -->
     <div class="card-header">
@@ -8,11 +9,13 @@
         </h2>
     </div>
     <div class="card-contenu">
+        <sec:authorize access="hasAnyAuthority('ROLE_NOMENCLATEUR', 'ROLE_ADMIN')">
         <div class="m-sm-10 ">
             <button class="m-l-20 btn  btn-success  intern waves-effect section-create">Ajouter une nouvelle
                 Rubrique
             </button>
         </div>
+        </sec:authorize>
 
 
         <!--Le tableau qui affiche la liste des comptes -->
