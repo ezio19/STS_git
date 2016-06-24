@@ -455,6 +455,7 @@ function afficherCreateChapitreMessage() {
             }
         )
             .done(function(data) {
+                window.location.replace("nomenclatures_comptables.html");
                 swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
             })
             .error(function(data) {

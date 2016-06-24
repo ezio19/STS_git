@@ -53,8 +53,8 @@ public class SectionsController {
         if (structures.size() == 0)
             return "80904";
 
-        Section sections=sectionService.getSectionByCodeSection(codeSection);
-        if(sections!=null)
+        List<Section> sections=sectionService.getListSectionByCodeSection(codeSection);//  getSectionByCodeSection(codeSection);
+        if(sections.size()>0)
             return "103";
 
         Structure structure = structures.get(0);

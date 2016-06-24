@@ -44,7 +44,7 @@
                             <div class=""></div>
                             <button class="btn btn-login compte-modif">Modifier l'Utilisateur</button>
 
-                            <button class="btn btn-login compte-modif">Enregistrer les modification</button>
+
 
                             <button class="btn btn-login compte-modif-enreg" style="display: none">Enregistrer les modification</button>
 
@@ -171,11 +171,11 @@
                                                 <div style="display: none">
                                                 <select  class="selectpicker"  id="structure-select-section"
                                                         data-live-search="true" >
-                                                    <option disabled>${utilisateur.getCodeStructure()}</option>
+                                                    <option disabled>${utilisateur.getStructure().getCodeStructure()}</option>
                                                 </select>
                                                 </div>
 
-                                                <input   placeholder="${utilisateur.getCodeStructure()}" type="email" class="form-control compte" readonly>
+                                                <input   placeholder="${utilisateur.getStructure().getCodeStructure()}" type="email" class="form-control compte" readonly>
 
 
                                             </div>
@@ -196,140 +196,7 @@
 
                 <div class="card-contenu ">
                     <div class="panel-group p-l-20" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-collapse">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                       aria-expanded="false" aria-controls="collapseOne">
-                                        Informations Personnelles
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="creat_input_nom"  placeholder="${utilisateur.getNom()}" class="form-control compte" readonly>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input id="creat_input_prenom" placeholder="${utilisateur.getPrenom()}"class="form-control compte" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div  class="password-zone" class="row"  style="display: none">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="creat_input_passw" placeholder="Mot de passe"  type="password" class="form-control compte" >
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input id="creat_input_reppasswd" placeholder="Repeter Mot de Passe"  type="password" class="form-control compte">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="panel panel-collapse">
-                            <div class="panel-heading" role="tab" id="headingThree">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
-                                       aria-expanded="false" aria-controls="collapseThree">
-                                        Coordonnées
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseThree" class="collapse in" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input  id="creat_input_email" placeholder="${utilisateur.geteMail()} "type="email" class="form-control compte" readonly>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-                                                <input id="creat_input_telephone" placeholder="${utilisateur.getTel()}"  type="tel" class="form-control compte" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <br/>
-
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="creat_input_addresse" placeholder="${utilisateur.getAdresse()}" class="form-control compte" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-collapse">
-                            <div class="panel-heading" role="tab" id="headingFour">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                       href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Informations Professionnelles
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseFour" class="collapse in" role="tabpanel" aria-labelledby="headingFour">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <input id="creat_input_id_user" placeholder="${utilisateur.getId()}"  class="form-control compte" readonly>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-8">
-                                            <div class="fg-line">
-
-                                                <div id="code_struct_mod" style="display: none">
-                                                <select  class="selectpicker"  id="structure-select-section"
-                                                        data-live-search="true" >
-                                                    <option disabled>${utilisateur.getCodeStructure()}</option>
-                                                </select>
-                                                </div>
-
-                                                    <input id="code_struct"  placeholder="${utilisateur.getCodeStructure()}" type="email" class="form-control compte" readonly>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="state_select" class="row" style="display: none">
-
-                                        <br/>
-                                        <div class="col-sm-4">
-                                            <div class="fg-line">
-                                                <select class="selectpicker" title="Etat" id="state-select">
-                                                    <option value="1">Actif</option>
-                                                    <option value="0">Inactif</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="panel panel-collapse">
                             <div class="panel-heading" role="tab" id="headingTwo">

@@ -25,8 +25,11 @@ public interface SectionRepository extends JpaRepository<Section,String> {
 	List<Section> findAllSection();
 
 
-	@Query("SELECT s FROM Section s WHERE s.codeSection = (:code_section)")
+	@Query("SELECT s FROM Section s WHERE LOWER(s.codeSection) = LOWER(:code_section)")
 	public List<Section> getSectionByCodeSection(@Param("code_section") String code_section);
+
+
+
 
 /*
 	@Query("select sec from Section sec where sec.codeSection=?#{code}")

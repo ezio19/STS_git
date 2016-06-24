@@ -159,6 +159,21 @@ public class NomenclaturesBudgetairesController {
 
 
 
+    @RequestMapping(value = "/nommenclatures_get_compte_budgetaire", method = RequestMethod.GET)
+    public String getCompteBudgetaire(@RequestParam("numero_compte") String numero_compte, Model model) {
+
+        List<CompteBudgetaire>  compteBudgetaires=service.getCompteBudgetaireByNumeroCompte(numero_compte);
+
+        if(compteBudgetaires.size() ==0){
+            System.out.println("compte inexistant");
+            return "404";
+        }
+        System.out.println("compte budgetaire Existe   "+compteBudgetaires.get(0).getNumCompte());
+        model.addAttribute("compte", compteBudgetaires.get(0));
+        return "comptes_budgetaires/compte_budgetaire_detail";
+    }
+
+
 
     @RequestMapping(
             value = {"/nomenclatures_comptes_budgetaires_remove"},

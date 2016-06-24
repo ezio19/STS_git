@@ -322,13 +322,19 @@ function afficherCreateChapitreMessage() {
                 data: {code_chapitre: code_chap, designation_chapitre: designation_chap,code_section:code_sect},
                 success: function (data) {
                     if (JSON.parse(data) == "100")
-                        swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
+                            {swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
+
+                        window.location.replace("nomenclatures_chapitres.html");
+
+                    }
+
                     else
                         swal("Erreur", "Le Chapitre n'est pas ajouté", "error");
                 }
             }
         )
             .done(function (data) {
+
                 swal("Succès!", "Le Chapitre est ajoutée avec Succès", "success");
             })
             .error(function (data) {

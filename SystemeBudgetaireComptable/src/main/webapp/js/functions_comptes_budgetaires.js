@@ -115,9 +115,9 @@ $(document).ready(function () {
         .end().find("button.command-edit").on("click", function (e) {
         var rows = Array();
         rows[0] = $(this).data("row-id");
-        var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
-        //window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
-        //alert("you pressed edit on row " + $(this).data("row-id"));
+        var idUtilisateur = $($(this).closest('tr')).find('td').eq(3).text();
+        //alert(idUtilisateur);
+        window.location.replace("nommenclatures_get_compte_budgetaire.html?numero_compte="+idUtilisateur);
     });
 
 
@@ -366,7 +366,7 @@ function afficherCreateChapitreMessage() {
 //url: "nomenclatures_comptes_budgetaires_remove.html",
 function afficherSupprChapitre(code_sect, selectedRow) {
 
-    alert("code sect == num cpt +"+code_sect+"selected row    "+selectedRow);
+    //alert("code sect == num cpt +"+code_sect+"selected row    "+selectedRow);
     swal({
             title: 'Ete Vous Sure ?',
             text: "Voulez vous vraiment supprimer Cette Section!",

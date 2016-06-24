@@ -48,7 +48,7 @@
 
                             </div>
                             <div class="col-sm-3" dir="rtl">
-                                <a href="#"
+                                <a href="nomenclatures_chapitres.html"
                                    class="btn btn-login btn-danger btn-float waves-effect waves-circle waves-float section-return-btn"><i
                                         class="zmdi zmdi-arrow-left"></i></a>
                             </div>

@@ -260,6 +260,7 @@ function afficherCreateSectionMessage() {
         )
             .done(function (data) {
                 swal("Succès!", "La Strcture a été ajoutée avec succès", "success");
+                window.location.replace("nomenclatures_strcutures.html");
             })
             .error(function (data) {
                 swal("Erreur", "La Strcture n'a pas été ajoutée", "error");

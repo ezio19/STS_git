@@ -353,6 +353,7 @@ function afficherCreateChapitreMessage() {
                         confirmButtonText: "OK",
                         confirmButtonColor: "#2196f3"
                     },function () {
+                        
                         window.location.replace("nomenclatures_rubriques.html");
                     });
 
