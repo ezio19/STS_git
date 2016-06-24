@@ -194,7 +194,7 @@ $(document).ready(function () {
 
     }
     
-        ///for commit
+        ///for commi
     function afficherCreateChapitreMessage() {
 
         /* var code_rubr = $('#creat_input_codechap ').val();
