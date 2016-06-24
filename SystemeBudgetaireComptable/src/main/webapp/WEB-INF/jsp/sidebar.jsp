@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  <aside id="sidebar" class="sidebar c-overflow mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;">
@@ -55,7 +57,16 @@
                         </ul>
                     </li>
 
-
+                    <li class="sub-menu">
+                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Dotation</a>
+                        <ul>
+                            <li><a href="index0.html"><i class="zmdi  zmdi-city "></i> Ajouter Decision Intiale </a></li>
+                            <li><a href="index11.html"><i class="zmdi zmdi-view-carousel zmdi-hc-fw"></i> Ajouter Decision Supplementaire</a></li>
+                            <li><a href="AfficherDecisionIntiale.html"><i class="zmdi zmdi-view-day zmdi-hc-fw"></i>Afficher liste Decision Intiale</a></li>
+                            <li><a href="AfficherDecisionSupp.html"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i>Afficher liste Decision Supplementaire </a></li>
+                        </ul>
+                    </li>
+                    
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Transfert</a>
                         <ul>
@@ -86,7 +97,7 @@
                    </li>
 
 
-                    <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
+                    <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
                    <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-view-compact"></i> Opérations</a>
                         <ul>
@@ -99,6 +110,18 @@
                         </ul>
                    </li>
                     </sec:authorize>
+                    
+                   <li class="sub-menu">
+                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Aide</a>
+                        <ul>
+	                        <sec:authorize access="hasAnyAuthority('ROLE_USER')">
+	                            <li ><a href="pdfs/helloworld.pdf"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Guide d'utilisation</a></li>
+	                        </sec:authorize> 
+                            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                            	<li ><a href="pdfs/helloworld.pdf"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Guide d'administration</a></li>
+                        	</sec:authorize>
+                        </ul>
+                   </li>
                    
                    <li><a href="logout"> Deconnexion</a></li>
 
