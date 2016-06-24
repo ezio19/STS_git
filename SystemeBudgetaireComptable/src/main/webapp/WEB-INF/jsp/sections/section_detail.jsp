@@ -25,7 +25,8 @@
     <!--Le contenu central -->
     <section id="content">
         <div class="container">
-            <div class="card section-create" >
+            <c:if test="${section!=null}">
+                <div class="card section-create" >
                 <!--L'entete de la page' -->
 
                 <div class="card-header">
@@ -70,12 +71,12 @@
 
                                         <div class="col-sm-4">
                                             <div class="fg-line">
-                                                <input id="creat_input_code_sect" placeholder="Code Section " class="form-control compte" readonly>
+                                                <input id="creat_input_code_sect" placeholder="${section.getCodeSection()} " class="form-control compte" readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="fg-line">
-                                                <input id="creat_input_designation" placeholder="Désignation" class="form-control compte" readonly>
+                                                <input id="creat_input_designation" placeholder="${section.getDesignation()}" class="form-control compte" readonly>
                                             </div>
                                         </div>
 
@@ -87,7 +88,7 @@
 
                                             <div class="col-sm-8">
                                                 <div class="fg-line">
-                                                    <input id="code_structure" placeholder="${}"class="form-control compte" readonly>
+                                                    <input id="code_structure" placeholder="${section.getStructure().getCodeStructure()}"class="form-control compte" readonly>
                                                 </div>
                                             </div>
 
@@ -102,6 +103,7 @@
                     </div>
                 </div>
             </div>
+            </c:if>
         </div>
     </section>
 </section>
