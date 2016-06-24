@@ -46,7 +46,7 @@
                             <div class="col-sm-4">
                                 <div class="fg-line">
                                     <input id="creat_input_codechap" placeholder="Code Chapitre "
-                                           class="form-control compte">
+                                           class="form-control compte" readonly>
                                 </div>
                             </div>
                             <div class="col-sm-8">
