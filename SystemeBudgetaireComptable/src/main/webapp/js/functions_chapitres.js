@@ -79,7 +79,7 @@ $(document).ready(function () {
         var rows = Array();
         rows[0] = $(this).data("row-id");
         var idUtilisateur = $($(this).closest('tr')).find('td').eq(1).text();
-        //window.location.replace("gestion_utilisateurs_get_utilisateur.html/id_utilisateur/"+idUtilisateur);
+        window.location.replace("nommenclatures_get_chapitre.html?code_chapitre="+idUtilisateur);
         //alert("you pressed edit on row " + $(this).data("row-id"));
     });
 

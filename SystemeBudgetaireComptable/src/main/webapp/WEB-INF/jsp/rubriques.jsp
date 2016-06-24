@@ -33,9 +33,6 @@
 
             </c:import>
 
-            <c:import url="rubriques/rubrique_detail.jsp">
-            </c:import>
-
             <c:import url="rubriques/rubrique_create.jsp">
             </c:import>
 

@@ -67,6 +67,24 @@ public class ChapitresController {
 
 
 
+    @RequestMapping(value = "/nommenclatures_get_chapitre", method = RequestMethod.GET)
+    public String getSection(@RequestParam("code_chapitre") String code_chapitre, Model model) {
+        //List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
+        //Section section=sectionService.getSectionByCodeSection(code_section);
+        List<Chapitre> chapitreList=chapitresService.getChapitreByCodeChapitre(code_chapitre);
+        if(chapitreList.size() ==0){
+            System.out.println("code_chapitre inexistant");
+            return "404";
+        }
+        System.out.println("Chapitre Existe   "+chapitreList.get(0).getCodeChapitre());
+        model.addAttribute("chapitre", chapitreList.get(0));
+        return "chapitres/chapitre_detail";
+    }
+
+
+
+
+
 
     @RequestMapping(
             value = {"/nomenclatures_chapitres"},

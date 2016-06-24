@@ -11,8 +11,7 @@
                 </h2>
 
                 <div class=""></div>
-                <button class="btn btn-login compte-create-submit">Créer la Rubrique
-                </button>
+                <button class="btn btn-login compte-create-submit">Créer la Rubrique</button>
                 <button class="btn btn-login btn-danger compte-create_cancel">Annuler</button>
 
 

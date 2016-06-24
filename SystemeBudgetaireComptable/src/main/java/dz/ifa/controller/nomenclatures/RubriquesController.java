@@ -70,6 +70,22 @@ public class RubriquesController {
 
 
 
+    @RequestMapping(value = "/nommenclatures_get_rubrique", method = RequestMethod.GET)
+    public String getSection(@RequestParam("code_rubrique") String code_rubrique, Model model) {
+        //List<Utilisateur> utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(id_utilisateur);
+        //Section section=sectionService.getSectionByCodeSection(code_section);
+        List<Rubrique> rubriques=rubriqueService.getRubriqueByCodeRubrique(code_rubrique);
+        if(rubriques.size() ==0){
+            System.out.println("rubrique inexistante");
+            return "404";
+        }
+        System.out.println("Rubrique Existe   "+rubriques.get(0).getCodeRubrique());
+        model.addAttribute("rubrique", rubriques.get(0));
+        return "rubriques/rubrique_detail";
+    }
+
+
+
     @RequestMapping(
             value = {"/nomenclatures_rubriques"},
             method = {RequestMethod.GET}

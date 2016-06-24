@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 
     }
-    
+
 
     function afficherCreateSectionMessage() {
 
