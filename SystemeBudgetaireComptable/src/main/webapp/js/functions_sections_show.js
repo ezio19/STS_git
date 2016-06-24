@@ -14,6 +14,8 @@ $(document).ready(function() {
         $("#creat_input_code_sect").prop("readonly", true);
         code_section=$("#creat_input_code_sect").attr('placeholder');
         getStructuresList();
+
+
         //$("#creat_input_code_struct").val(code_str);
 
     });
@@ -45,7 +47,7 @@ $(document).ready(function() {
                 htln += "" + result.structureList[i].nom;
                 htln += '</option>';
             }
-            $("#structure-select")
+            $("#structure-select-section")
                 .html(htln)
                 .selectpicker('refresh');
 
@@ -61,12 +63,7 @@ $(document).ready(function() {
 
 
     }
-
-
-
-
-
-
+    
 
     function afficherCreateSectionMessage() {
 

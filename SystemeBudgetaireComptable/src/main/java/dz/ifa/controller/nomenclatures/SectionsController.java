@@ -85,14 +85,27 @@ public class SectionsController {
                                     @RequestParam("designation_section") String designationSection,
                                     @RequestParam("code_structure") String code_structure) {
 
+        System.out.println("Edit Section");
+        System.out.println("Code Section :: "+codeSection);
+        System.out.println("Code Section :: "+codeSection);
 
-        Section section = sectionService.getSectionByCodeSection(codeSection);
-        if (section==null)
+        //List<Section> sections = sectionService.getListSectionByCodeSection(codeSection);
+        Section section=sectionService.getSectionByCodeSection(codeSection);
+        /*if (sections.size()==0)
+            return "101";*/
+
+        if(section==null){
+            System.out.println("Section Not Found");
             return "101";
+        }
+
         List<Structure> structures=service.getStructureByCodeStructure(code_structure);
         if(structures.size()==0)
-            return "101";
+            return "102";
 
+
+
+        //Section section=sections.get(0);
         section.setDesignation(designationSection);
         section.setStructure(structures.get(0));
 

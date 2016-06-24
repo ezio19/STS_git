@@ -33,8 +33,7 @@
 
             </c:import>
 
-            <c:import url="./chapitres/chapitre_detail.jsp">
-            </c:import>
+
 
             <c:import url="./chapitres/chapitre_create.jsp">
             </c:import>

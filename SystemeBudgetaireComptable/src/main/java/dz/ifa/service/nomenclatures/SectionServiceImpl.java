@@ -37,6 +37,10 @@ public class SectionServiceImpl implements SectionService{
         return sectionRepository.getSectionByCodeSection(code_section).get(0);
     }
 
+    public List<Section> getListSectionByCodeSection(String code_section) {
+         return sectionRepository.getSectionByCodeSection(code_section);
+    }
+
     @Override
     public String removeSection(Section section) {
 

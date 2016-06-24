@@ -15,6 +15,7 @@ public interface SectionService {
 
     public Section getSection(String id);
     public Section getSectionByCodeSection(String code_section);
+    public List<Section> getListSectionByCodeSection(String code_section);
     public String removeSection(Section section);
 
     public List<Section> getAllSections();
