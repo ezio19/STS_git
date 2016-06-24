@@ -6,4 +6,5 @@ import dz.ifa.model.Tier;
 
 public interface TierService {
 	List<Tier> getAllTiers();
+	Tier findTier(Long id);
 }

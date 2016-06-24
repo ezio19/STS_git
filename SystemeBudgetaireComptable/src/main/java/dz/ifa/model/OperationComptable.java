@@ -50,7 +50,7 @@ public class OperationComptable {
 				System.out.println(this.debit+"---------------->debit");
 			}else
 				this.credit+=ecritureComptableElementaire.getMontant();
-			System.out.println(this.credit+"---------------->credit");
+				System.out.println(this.credit+"---------------->credit");
 			}
 		}
 	

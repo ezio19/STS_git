@@ -21,12 +21,14 @@ public interface OperationService {
 	public OperationComptable getOperationComptableByNum(String numOperation);
 	public List<OperationComptable> getListOperationsBrouillard();
 	public void deleteOperationComptById(long id);
-	
+	public OperationComptable getOperationComptableById(long id);
+	public void  validateOperationComptById(long opId);
+	public List<OperationComptable> getValideOperations();
 	
 	//Opération qui concerne les opérations budgétaires
 	public OperationBudgetaire save(OperationBudgetaire operationBudgetaire);
 	public List<OperationBudgetaire> getListOperationsBudgetaires(Date date1,Date date2);
 	public List<OperationBudgetaire> getAllOperationsBudgetaires();
 	public OperationBudgetaire getOperationBudgetaireByNum(String numOperation);
-	
+	public List<OperationBudgetaire> getAllOperationsBudgetairesValides();
 }

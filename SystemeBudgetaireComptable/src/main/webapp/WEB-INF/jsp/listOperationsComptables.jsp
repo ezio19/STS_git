@@ -41,7 +41,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h2>
-								Brouillard<small>Opérations comptables non valider.</small>
+								Les Opérations Comptables<small>Opérations comptables validés.</small>
 							</h2>
 						</div>
 						<div class="card-body card-padding">
@@ -63,8 +63,11 @@
 										<tbody id="tableAddGuide">
 											<c:forEach items="${listOperations}" var="operation" varStatus="status">
 												<tr id="${operation.id}">
-													<td>${operation.numOperation }</td>
-													<td>${operation.dateOperation }</td>		
+													<td><input type="radio" value="${operation.id}" id="radio${status.index} }" name="radios">
+															<i class="input-helper"></i>
+															${operation.numOperation }
+													</td>
+													<td>${operation.dateOperation}</td>		
 													<td>${operation.pieceComptable.objet}</td>
 													<td>${operation.pieceComptable.montantGlobal }</td>
 												</tr>
