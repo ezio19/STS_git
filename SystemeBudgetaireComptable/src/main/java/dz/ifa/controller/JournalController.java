@@ -52,12 +52,13 @@ public class JournalController {
 	}*///,@RequestParam(value="dateFin",required=false, defaultValue="dd-dd-yyyy") Date dateFin,
 		@RequestMapping(value ="/journal")
 		public String listOpsDF(@RequestParam(value="searchOption",required=true, defaultValue="1") int searchOp,@RequestParam(value="dateDeb",required=true, defaultValue="") String dateDeb,@RequestParam(value="dateFin",required=false, defaultValue="") String dateFin,Model md ) {
-			
-			
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+
+			System.out.println("hello");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date dateOperationDeb = new Date();
 			Date dateOperationFin = new Date();
-			
+
+
 			
 			List <OperationBudgetaire> opsBudg ;
 			List <OperationComptable> opsCompt ;
@@ -66,11 +67,13 @@ public class JournalController {
 				try {
 					dateOperationDeb = dateFormat.parse(dateDeb);
 					dateOperationFin = dateFormat.parse(dateFin);
-					System.out.println(dateOperationDeb);
+
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(dateDeb);
+				System.out.println(dateOperationDeb);
 			 opsBudg = operationService.getListOperationsBudgetaires(dateOperationDeb, dateOperationFin);
 			 opsCompt= operationService.getListOperationsComptables(dateOperationDeb, dateOperationFin);
 			 

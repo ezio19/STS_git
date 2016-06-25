@@ -23,6 +23,9 @@
                 <ul class="main-menu">
                     <li ><a href="index.jsp"><i class="zmdi zmdi-home"></i> Acceuil</a></li>
 
+
+                    <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-home"></i> Gestion des Utilisateurs</a>
                         <ul>
@@ -30,6 +33,8 @@
                             <li><a href="gestion_utilisateurs_fonctionnalites.html"><i class="zmdi zmdi-lamp zmdi-hc-fw"></i> Fonctionnalites</a></li>
                         </ul>
                     </li>
+
+                    </sec:authorize>
 
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-view-compact"></i> Nomenclatures</a>
@@ -93,9 +98,7 @@
                             <sec:authorize access="hasAnyAuthority('ROLE_USER')">
                             	<li ><a href="NewGuide.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Ajouter un guide</a></li>
                         	</sec:authorize>
-                            <sec:authorize access="hasAnyAuthority('ROLE_USER')">
-                            	<li ><a href="NewGuide.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Ajouter opération budgétaires</a></li>
-                        	</sec:authorize>
+
                   
                         </ul>
                    </li>
@@ -118,6 +121,7 @@
 
                                     <li ><a href="brouillard.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Brouillard</a></li>
 
+                                <li ><a href="newpiece.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Ajouter une piece</a></li>
 
                                     <li ><a href="journal.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Journal</a></li>
 

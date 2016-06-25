@@ -29,9 +29,6 @@
                 <c:param name="listFonctionnalites" value="${listFonctionnalites}"/>
             </c:import>
 
-            <c:import url="fonctionnalites/fonctionnalite_detail.jsp">
-                <c:param name="listFonctionnalites" value="${listFonctionnalites}"/>
-            </c:import>
 
             <c:import url="fonctionnalites/fonctionnalite_create.jsp">
             </c:import>

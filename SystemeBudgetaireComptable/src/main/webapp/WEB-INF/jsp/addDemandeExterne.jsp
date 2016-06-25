@@ -41,8 +41,9 @@
      <body>
 
      <c:import url="header.jsp"></c:import>
+     <c:import url="sidebar.jsp"></c:import>
      <section id="main">
-         <c:import url="sidebar.jsp"></c:import>
+
             <section id="content">
                 <div class="container">
                     <div class="block-header">
@@ -252,7 +253,7 @@
         
         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
         
         <script src="vendors/bower_components/moment/min/moment.min.js"></script>

@@ -106,7 +106,7 @@ public class OperationsComptablesController {
 			String date = requete.getParameter("dateOperation");
 			System.out.println("le nombre de ligne est:" + date);
 
-			DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date dateOperation;
 			dateOperation = dateFormat.parse(date);
 			operationComptable.setDate(dateOperation);
@@ -222,10 +222,10 @@ public class OperationsComptablesController {
 				operationComptable.setNumOperation(numOperation);
 			
 				try {
-					//Date de l'op�ration
+
 					String date = requete.getParameter("dateOperation");
 
-					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					Date dateOperation;
 					dateOperation = dateFormat.parse(date);
 					operationComptable.setDate(dateOperation);
