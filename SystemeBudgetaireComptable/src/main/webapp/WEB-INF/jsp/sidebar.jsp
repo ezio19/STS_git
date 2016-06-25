@@ -140,13 +140,6 @@
                         	</sec:authorize>
 
 
-                            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-                            	<li ><a href="pdfs/guide_install.pdf"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Guide d'installation</a></li>
-                        	</sec:authorize>
-
-
-
-
                         </ul>
                    </li>
                    
