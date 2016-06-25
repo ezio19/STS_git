@@ -175,30 +175,14 @@
     
     </head>
 <body>
-        <header id="header" class="clearfix" data-current-skin="blue">
-		
-			<ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
+<!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
+<c:import url="./header.jsp"></c:import>
+<!--Le sidebar/navigation drawer (android) -->
+<c:import url="./sidebar.jsp"></c:import>
+<!-- L'interface principale -->
 
-                <li class="logo hidden-xs">
-                    <a href="index-2.html">guide IFA</a>
-                </li>
-				 <!-- Top Search Content -->
-            <div id="top-search-wrap">
-                <div class="tsw-inner">
-                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
-                    <input type="text">
-                </div>
-            </div>
-			</ul>
-        </header>
-		<section id="main">
+
+<section id="main">
 			
    
 			

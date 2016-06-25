@@ -1,6 +1,8 @@
 var idUtilisateur;
 var nomUser;
 var pnomUser;
+var email;
+var addresse;
 
 
 //Initialisation du tableau contenant les sections
@@ -81,6 +83,8 @@ $(document).ready(function () {
     $('button.compte-modif').on('click', function () {
         nomUser=$("#creat_input_nom").attr('placeholder');
         pnomUser=$("#creat_input_prenom").attr('placeholder');
+        email=$("#creat_input_email").attr("placeholder");
+        addresse=$("#creat_input_addresse").attr("placeholder");
 
         $("input.compte").prop("readonly", false);
         $('button.compte-modif-enreg').css('display', '');
@@ -126,11 +130,20 @@ $(document).ready(function () {
             in_prenom=pnomUser;
 
 
+        var in_mail ="";
+        in_mail=$("#creat_input_email").val();
+        if(in_mail==""  || in_mail.length==0 || in_mail==null)
+            in_mail=email;
+
+        var in_adr ="";
+        in_adr=$("#creat_input_addresse").val();
+        if(in_adr=="" ||  in_adr.length==0 || in_adr==null)
+            in_adr=addresse;
+
+
         var in_passw = $("#creat_input_passw").val();
         var in_reppss = $("#creat_input_reppasswd").val();
-        var in_mail = $("#creat_input_email").val();
         var in_tel = $("#creat_input_telephone").val();
-        var in_adr = $("#creat_input_addresse").val();
         var in_id_user = $("#creat_input_id_user").val();
         var in_struct = $("#structure-select-section").val();
         var in_actif = $("#state-select").val();

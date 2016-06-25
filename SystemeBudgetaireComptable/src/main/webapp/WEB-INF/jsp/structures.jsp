@@ -8,7 +8,11 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-select.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+
     <link href="css/malihu-scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
     <link href="css/sweetalert2.css" rel="stylesheet">
     <link href="css/jquery.bootgrid.min.css" rel="stylesheet">
     <link href="css/app.min.1.css" rel="stylesheet">
@@ -49,6 +53,7 @@
 <script type="text/javascript" src="js/typeahead.bundle.js"></script>
 <script type="text/javascript" src="js/sweetalert2.min.js"></script>
 <!--Bibliotheque pour le sidebar -->
+<script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>

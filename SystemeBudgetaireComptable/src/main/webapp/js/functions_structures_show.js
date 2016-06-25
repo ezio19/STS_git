@@ -28,7 +28,7 @@ $(document).ready(function () {
         //var code_struct = $('#creat_input_code_struct ').val();
         var nom_struct = $('#creat_input_nom_struct').val();
         var addresse_struct = $('#creat_input_address_struct').val();
-        alert(code_structure);
+        
         swal({
             title: "Etes Vous Sure ?",
             text: "Voulez vous vraiment Ajouter cette Structure ?",
