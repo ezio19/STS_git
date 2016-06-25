@@ -133,11 +133,20 @@
                         <a href="#"><i class="zmdi zmdi-view-compact"></i> Aide</a>
                         <ul>
 	                        <sec:authorize access="hasAnyAuthority('ROLE_USER')">
-	                            <li ><a href="pdfs/helloworld.pdf"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Guide d'utilisation</a></li>
+	                            <li ><a href="pdfs/guide_util.pdf"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Guide d'utilisation</a></li>
 	                        </sec:authorize> 
                             <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-                            	<li ><a href="pdfs/helloworld.pdf"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Guide d'administration</a></li>
+                            	<li ><a href="pdfs/guide_admin.pdf"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Guide d'administration</a></li>
                         	</sec:authorize>
+
+
+                            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                            	<li ><a href="pdfs/guide_install.pdf"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Guide d'installation</a></li>
+                        	</sec:authorize>
+
+
+
+
                         </ul>
                    </li>
                    
