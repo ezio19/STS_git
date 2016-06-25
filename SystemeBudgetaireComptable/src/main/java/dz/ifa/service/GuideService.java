@@ -17,10 +17,10 @@ public interface GuideService {
 	List<Guide> findAllGuides();
 	
 	Guide findGuidebyId (long id);
-	
-	Guide fingGuideByName(String name);
 
-	
+	 void deleteGuide(Guide guide);	
+	 void deleteGuideById(Long id);
+	 Guide fingGuideByName(String name);
 	
 	
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,276 +29,6 @@
 
 <!-- L'interface principale -->
 <section id="main">
-
-    <!--Le sidebar/navigation drawer (android) -->
-    <aside id="sidebar" class="sidebar c-overflow mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;">
-        <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
-            <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x"
-                 style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
-                <div class="profile-menu">
-                    <a href="#">
-                        <div class="profile-pic">
-                            <img src="img/profile-pics/1.jpg" alt="" class="mCS_img_loaded">
-                        </div>
-
-                        <div class="profile-info">
-                            Malinda Hollaway
-
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </a>
-
-                    <ul class="main-menu">
-                        <li>
-                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-time-restore"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <ul class="main-menu">
-                    <li><a href="index-2.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Headers</a>
-
-                        <ul>
-                            <li><a href="textual-menu.html">Textual menu</a></li>
-                            <li><a href="image-logo.html">Image logo</a></li>
-                            <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-widgets"></i> Widgets</a>
-
-                        <ul>
-                            <li><a href="widget-templates.html">Templates</a></li>
-                            <li><a href="widgets.html">Widgets</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu active toggled">
-                        <a href="#"><i class="zmdi zmdi-view-list"></i> Tables</a>
-
-                        <ul>
-                            <li><a href="tables.html">Normal Tables</a></li>
-                            <li><a class="active" href="data-tables.html">Data Tables</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-collection-text"></i> Forms</a>
-
-                        <ul>
-                            <li><a href="form-elements.html">Basic Form Elements</a></li>
-                            <li><a href="form-components.html">Form Components</a></li>
-                            <li><a href="form-examples.html">Form Examples</a></li>
-                            <li><a href="form-validations.html">Form Validation</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-swap-alt"></i>User Interface</a>
-                        <ul>
-                            <li><a href="colors.html">Colors</a></li>
-                            <li><a href="animations.html">Animations</a></li>
-                            <li><a href="box-shadow.html">Box Shadow</a></li>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="icons.html">Icons</a></li>
-                            <li><a href="alerts.html">Alerts</a></li>
-                            <li><a href="preloaders.html">Preloaders</a></li>
-                            <li><a href="notification-dialog.html">Notifications &amp; Dialogs</a></li>
-                            <li><a href="media.html">Media</a></li>
-                            <li><a href="components.html">Components</a></li>
-                            <li><a href="other-components.html">Others</a></li>
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-trending-up"></i>Charts</a>
-                        <ul>
-                            <li><a href="flot-charts.html">Flot Charts</a></li>
-                            <li><a href="other-charts.html">Other Charts</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="calendar.html"><i class="zmdi zmdi-calendar"></i> Calendar</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-image"></i>Photo Gallery</a>
-                        <ul>
-                            <li><a href="photos.html">Default</a></li>
-                            <li><a href="photo-timeline.html">Timeline</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="generic-classes.html"><i class="zmdi zmdi-layers"></i> Generic Classes</a></li>
-                    <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-collection-item"></i> Sample Pages</a>
-                        <ul>
-
-                            <li><a href="profile-about.html">Profile</a></li>
-                            <li><a href="list-view.html">List View</a></li>
-                            <li><a href="messages.html">Messages</a></li>
-                            <li><a href="pricing-table.html">Pricing Table</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="wall.html">Wall</a></li>
-                            <li><a href="invoice.html">Invoice</a></li>
-                            <li><a href="login.html">Login and Sign Up</a></li>
-                            <li><a href="lockscreen.html">Lockscreen</a></li>
-                            <li><a href="404.html">Error 404</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="form-examples.html"><i class="zmdi zmdi-menu"></i> 3 Level Menu</a>
-
-                        <ul>
-                            <li><a href="form-elements.html">Level 2 link</a></li>
-                            <li><a href="form-components.html">Another level 2 Link</a></li>
-                            <li class="sub-menu">
-                                <a href="form-examples.html">I have children too</a>
-
-                                <ul>
-                                    <li><a href="#">Level 3 link</a></li>
-                                    <li><a href="#">Another Level 3 link</a></li>
-                                    <li><a href="#">Third one</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="form-validations.html">One more 2</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="mCSB_1_scrollbar_vertical"
-             class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
-             style="display: block;">
-            <div class="mCSB_draggerContainer">
-                <div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
-                     style="position: absolute; min-height: 50px; display: block; height: 403px; max-height: 568px;"
-                     oncontextmenu="return false;">
-                    <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
-                </div>
-                <div class="mCSB_draggerRail"></div>
-            </div>
-        </div>
-        <div id="mCSB_1_scrollbar_horizontal"
-             class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal"
-             style="display: none;">
-            <div class="mCSB_draggerContainer">
-                <div id="mCSB_1_dragger_horizontal" class="mCSB_dragger"
-                     style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;">
-                    <div class="mCSB_dragger_bar"></div>
-                </div>
-                <div class="mCSB_draggerRail"></div>
-            </div>
-        </div>
-    </aside>
-
-    <!--Le paneau de chat -->
-    <!--
-    <aside id="chat" class="sidebar c-overflow mCustomScrollbar _mCS_2 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;"><div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
-
-        <div class="chat-search">
-            <div class="fg-line">
-                <input type="text" class="form-control" placeholder="Search People">
-            </div>
-        </div>
-
-        <div class="listview">
-            <a class="lv-item" href="#">
-                <div class="media">
-                    <div class="pull-left p-relative">
-                        <img class="lv-img-sm mCS_img_loaded" src="img/profile-pics/2.jpg" alt="">
-                        <i class="chat-status-busy"></i>
-                    </div>
-                    <div class="media-body">
-                        <div class="lv-title">Jonathan Morris</div>
-                        <small class="lv-small">Available</small>
-                    </div>
-                </div>
-            </a>
-
-            <a class="lv-item" href="#">
-                <div class="media">
-                    <div class="pull-left">
-                        <img class="lv-img-sm mCS_img_loaded" src="img/profile-pics/1.jpg" alt="">
-                    </div>
-                    <div class="media-body">
-                        <div class="lv-title">David Belle</div>
-                        <small class="lv-small">Last seen 3 hours ago</small>
-                    </div>
-                </div>
-            </a>
-
-            <a class="lv-item" href="#">
-                <div class="media">
-                    <div class="pull-left p-relative">
-                        <img class="lv-img-sm mCS_img_loaded" src="img/profile-pics/3.jpg" alt="">
-                        <i class="chat-status-online"></i>
-                    </div>
-                    <div class="media-body">
-                        <div class="lv-title">Fredric Mitchell Jr.</div>
-                        <small class="lv-small">Availble</small>
-                    </div>
-                </div>
-            </a>
-
-            <a class="lv-item" href="#">
-                <div class="media">
-                    <div class="pull-left p-relative">
-                        <img class="lv-img-sm mCS_img_loaded" src="img/profile-pics/4.jpg" alt="">
-                        <i class="chat-status-online"></i>
-                    </div>
-                    <div class="media-body">
-                        <div class="lv-title">Glenn Jecobs</div>
-                        <small class="lv-small">Availble</small>
-                    </div>
-                </div>
-            </a>
-
-            <a class="lv-item" href="#">
-                <div class="media">
-                    <div class="pull-left">
-                        <img class="lv-img-sm mCS_img_loaded" src="img/profile-pics/5.jpg" alt="">
-                    </div>
-                    <div class="media-body">
-                        <div class="lv-title">Bill Phillips</div>
-                        <small class="lv-small">Last seen 3 days ago</small>
-                    </div>
-                </div>
-            </a>
-
-            <a class="lv-item" href="#">
-                <div class="media">
-                    <div class="pull-left">
-                        <img class="lv-img-sm mCS_img_loaded" src="img/profile-pics/6.jpg" alt="">
-                    </div>
-                    <div class="media-body">
-                        <div class="lv-title">Wendy Mitchell</div>
-                        <small class="lv-small">Last seen 2 minutes ago</small>
-                    </div>
-                </div>
-            </a>
-            <a class="lv-item" href="#">
-                <div class="media">
-                    <div class="pull-left p-relative">
-                        <img class="lv-img-sm mCS_img_loaded" src="img/profile-pics/7.jpg" alt="">
-                        <i class="chat-status-busy"></i>
-                    </div>
-                    <div class="media-body">
-                        <div class="lv-title">Teena Bell Ann</div>
-                        <small class="lv-small">Busy</small>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div></div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_2_scrollbar_horizontal" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div></aside>
-    -->
-
 
     <!--Le contenu central -->
     <section id="content">
@@ -476,7 +206,7 @@
                                     <div class="panel-heading active" role="tab" id="headingOne">
                                         <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
-                                                Informations de Compabilit�
+                                                Informations de Compabilité
                                             </a>
                                         </h4>
                                     </div>
@@ -531,7 +261,7 @@
                                     <div class="panel-heading" role="tab" id="headingThree">
                                         <h4 class="panel-title">
                                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                D�tails sur le Compte
+                                                Détails sur le Compte
                                             </a>
                                         </h4>
                                     </div>
@@ -539,12 +269,12 @@
                                         <div class="panel-body">
                                               <div class="row">
                                                 <div class="col-sm-4">
-                                                    <label>N� Compte</label>
+                                                    <label>N Compte</label>
                                                     <input placeholder="6" class="form-control compte"></input>        
                                                 </div>
                                                 
                                                 <div class="col-sm-8">
-                                                    <label>D�signation</label>
+                                                    <label>Désignation</label>
                                                     <input placeholder="6" class="form-control compte"></input>        
                                                 </div>
                                             </div>
@@ -552,7 +282,7 @@
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <label>Type de Compte</label>
-                                                    <input placeholder="Budg�taire" class="form-control compte"></input>        
+                                                    <input placeholder="Budgetaire" class="form-control compte"></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -571,7 +301,7 @@
                                     <div class="panel-heading" role="tab" id="headingThree">
                                         <h4 class="panel-title">
                                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                D�tails sur la d�cision
+                                                Détails sur la décision
                                             </a>
                                         </h4>
                                     </div>

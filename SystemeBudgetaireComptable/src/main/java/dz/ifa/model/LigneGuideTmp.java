@@ -24,6 +24,17 @@ public class LigneGuideTmp {
 
 	private String cpt;
 	
+	private String chaine;
+	
+	
+	public String getChaine() {
+		return chaine;
+	}
+
+	public void setChaine(String chaine) {
+		this.chaine = chaine;
+	}
+
 	private String rolecpt;
 
 	private float pourcentage;

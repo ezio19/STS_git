@@ -44,17 +44,17 @@
                             <li><a href="nomenclatures_chapitres.html"><i class="zmdi zmdi-view-day zmdi-hc-fw"></i> Chapitres</a></li>
                             <li><a href="nomenclatures_rubriques.html"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i> Rubriques</a></li>
                             <li><a href="nomenclatures_comptables.html"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Nomenclatures Comptables</a></li>
-                            <li><a href="nomenclatures_budgetaires.html"><i class="zmdi zmdi-labels zmdi-hc-fw"></i> Comptes Budgetaires</a></li>
+                            <li><a href="nomenclatures_budgetaires.html"><i class="zmdi zmdi-labels zmdi-hc-fw"></i> Comptes </a></li>
                         </ul>
                     </li>
 
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-view-compact"></i> Dotation</a>
                         <ul>
-                            <li><a href="index0.html"><i class="zmdi  zmdi-city "></i> Ajouter Decision Intiale </a></li>
-                            <li><a href="index11.html"><i class="zmdi zmdi-view-carousel zmdi-hc-fw"></i> Ajouter Decision Supplementaire</a></li>
-                            <li><a href="AfficherDecisionIntiale.html"><i class="zmdi zmdi-view-day zmdi-hc-fw"></i>Afficher liste Decision Intiale</a></li>
-                            <li><a href="AfficherDecisionSupp.html"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i>Afficher liste Decision Supplementaire </a></li>
+                            <li><a href="index0.html"><i class="zmdi  zmdi-city "></i> Ajouter Dotation Intiale </a></li>
+                            <li><a href="index11.html"><i class="zmdi zmdi-view-carousel zmdi-hc-fw"></i> Ajouter Dotation Supplementaire</a></li>
+                            <li><a href="AfficherDecisionIntiale.html"><i class="zmdi zmdi-view-day zmdi-hc-fw"></i>Afficher liste Dotation Intiale</a></li>
+                            <li><a href="AfficherDecisionSupp.html"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i>Afficher liste Dotation Supplementaire </a></li>
                         </ul>
                     </li>
 
@@ -105,7 +105,7 @@
 
 
 
-                    <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
+                    <sec:authorize access="hasAnyAuthority('ROLE_USER', 'ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_VALIDER_ECRITURE', 'ROLE_ANNULER_ECRITURE', 'ROLE_ADMIN')">
                         <li class="sub-menu">
                             <a href="#"><i class="zmdi zmdi-view-compact"></i> Opérations</a>
                             <ul>
@@ -118,9 +118,9 @@
 
                                     <li ><a href="operations.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Liste d'opérations</a></li>
 
-
+                        <sec:authorize access="hasAnyAuthority('ROLE_VALIDER_ECRITURE', 'ROLE_ADMIN')">
                                     <li ><a href="brouillard.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Brouillard</a></li>
-
+                        </sec:authorize>
                                 <li ><a href="newpiece.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Ajouter une piece</a></li>
 
                                     <li ><a href="journal.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Journal</a></li>
