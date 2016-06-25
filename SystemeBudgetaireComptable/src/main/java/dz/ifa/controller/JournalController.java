@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.hibernate.tool.schema.extract.spi.ExtractionContext.DatabaseObjectAccess;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,7 @@ public class JournalController {
 
 			System.out.println("hello");
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 			Date dateOperationDeb = new Date();
 			Date dateOperationFin = new Date();
 
@@ -65,8 +67,8 @@ public class JournalController {
 			
 			if (!dateDeb.isEmpty() && !dateFin.isEmpty()){
 				try {
-					dateOperationDeb = dateFormat.parse(dateDeb);
-					dateOperationFin = dateFormat.parse(dateFin);
+					dateOperationDeb = new SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse(dateDeb);
+					dateOperationFin = new SimpleDateFormat("yyyy-MM-dd",Locale.FRENCH).parse(dateFin);
 
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
