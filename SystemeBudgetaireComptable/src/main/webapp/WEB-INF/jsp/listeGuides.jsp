@@ -66,15 +66,12 @@
         </script>
     </head>
 <body>
-
-<!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
-<c:import url="./header.jsp"></c:import>
-<!--Le sidebar/navigation drawer (android) -->
-<c:import url="./sidebar.jsp"></c:import>
-<!-- L'interface principale -->
-
-
-<section id="main">
+        		<!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
+		<c:import url="./header.jsp"></c:import>
+        <!--Le sidebar/navigation drawer (android) -->
+		<c:import url="./sidebar.jsp"></c:import>
+		
+		<section id="main">
 			
          <section id="content">
 				<div class="container">
@@ -176,7 +173,7 @@
         
                 <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
 		
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
@@ -292,6 +289,10 @@
                     closeOnConfirm: false 
                 }, function(){   
                     swal("Supprimer!", "Le guide a été supprimer correctement.", "success"); 
+                    $(document).ready(function() {
+                    	deleteRow();
+                    });
+                    
                 });
             });
             

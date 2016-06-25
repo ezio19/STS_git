@@ -32,7 +32,8 @@
                 <c:param name="listComptesBudgetaires" value="${listComptesBudgetaires}"/>
             </c:import>
 
-
+            <c:import url="comptes_budgetaires/compte_budgetaire_detail.jsp">
+            </c:import>
 
             <c:import url="comptes_budgetaires/compte_budgetaire_create.jsp">
             </c:import>

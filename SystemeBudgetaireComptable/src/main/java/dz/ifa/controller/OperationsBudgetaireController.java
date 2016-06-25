@@ -118,7 +118,8 @@ public class OperationsBudgetaireController {
 		
 					long idPiece = Long.parseLong(requete.getParameterValues("pieceSelection")[0]);
 					PieceComptable pieceComptable = pieceComptableService.findPieceById(idPiece);
-					operationComptable.setPieceComptable(pieceComptable);		
+					operationComptable.setPieceComptable(pieceComptable);	
+					operationComptable.setCreditdebit();
 					operationBudgetaire.setOperationComptable(operationComptable);
 					long engaId = Long.parseLong(requete.getParameterValues("engaSelection")[0]);
 					Engagement engagement = engagementService.findEngagementById(engaId);
@@ -232,7 +233,8 @@ public class OperationsBudgetaireController {
 					}
 					long idPiece = Long.parseLong(requete.getParameterValues("pieceSelection")[0]);
 					PieceComptable pieceComptable = pieceComptableService.findPieceById(idPiece);
-					operationComptable.setPieceComptable(pieceComptable);		
+					operationComptable.setPieceComptable(pieceComptable);	
+					operationComptable.setCreditdebit();
 					operationBudgetaire.setOperationComptable(operationComptable);
 					long engaId = Long.parseLong(requete.getParameterValues("engaSelection")[0]);
 					Engagement engagement = engagementService.findEngagementById(engaId);

@@ -40,6 +40,11 @@ public class EngagementServiceImpl implements EngagementService{
 		long tierId = engagement.getTier().getId();
 		return pieceRepository.findPiecesByTierId(tierId);
 	}
+	@Override
+	public Engagement save(Engagement engagement) {
+		// TODO Auto-generated method stub
+		return engagementRepository.save(engagement);
+	}
 	
 	@Override
 	public Engagement findEngagementById(long engaId) {

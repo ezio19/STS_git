@@ -24,7 +24,7 @@
 		<!--Bibliotheque pour le sidebar -->
 		<script type="text/javascript" src="js/malihu-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 		<script type="text/javascript" src="js/jquery.bootgrid.updated.min.js"></script>
-		<script type="text/javascript" src="js/functions.js"></script>
+
 		<!-- Validation du formulaire -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
@@ -87,9 +87,11 @@
 								<br/>
 								<br/>
 								<div style="position: absolute;bottom: 16px;right: 16px;">
+								 <sec:authorize access="hasAnyAuthority('ROLE_VALIDER_ECRITURE')">
 									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Consulter les écritures</button>
 									<button class="btn btn-danger btn-primary waves-effect" onclick="supprimerOperation()"><i class="zmdi zmdi-close zmdi-hc-fw" ></i>Supprimer l'opération</button>
 									<button class="btn bgm-green btn-primary waves-effect" onclick="validerOperation()"><i class="zmdi zmdi-plus zmdi-hc-fw" ></i> Valider l'opération</button>
+								</sec:authorize>
 								</div>			
 						</div>
 									</div>		
@@ -102,6 +104,26 @@
 
 		</section>
 
+				<!-- Javascript Libraries -->	
+		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+                <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+		
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+		<!---new JS-->
+		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+      <!--   <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script> -->
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>  
+		
+       <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
         <!-- Script de selection -->
@@ -124,7 +146,6 @@
 						}
 					);
 			$.ajaxSetup({async: true});
-			alert(result);
     		if(result)  $('table tr#'+idOp).remove();
         }
         function validerOperation(){
@@ -139,7 +160,6 @@
 						}
 					);
 			$.ajaxSetup({async: true});
-			alert(result);
     		if(result)  $('table tr#'+idOp).remove();
         }
         </script>

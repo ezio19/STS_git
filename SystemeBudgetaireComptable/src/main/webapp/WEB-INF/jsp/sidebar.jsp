@@ -52,24 +52,36 @@
                             <li><a href="AfficherDecisionSupp.html"><i class="zmdi zmdi-view-list-alt zmdi-hc-fw"></i>Afficher liste Decision Supplementaire </a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-mail-send zmdi-hc-fw"></i> Transfert</a>
                         <ul>
-                            <li ><a href="addDemandeTransfert.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a></li>
+                            <li class="sub-menu" >
+                                <a ><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Demande Transfert Interne</a>
+                                <ul>
+                                    <li ><a href="addDemandeTransfert.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Un seul Compte</a></li>
+                                    <li ><a href="addDemandePlusieursCompte.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Plusieurs Comptes</a></li>
+                                </ul>
+                            </li>
+
+
                             <li ><a href="addDemandeTransfertExterne.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i> Demande Transfert Externe</a></li>
                             <sec:authorize access="hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTRA', 'ROLE_ADMIN')">
-                            <li ><a href="AllDemandes.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les Disponibilités Internes</a></li>
+                                <li ><a href="AllDemandes.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Liste des demandes de transfert Interne</a></li>
                             </sec:authorize>
                             <sec:authorize access="hasAnyAuthority('ROLE_VOIR_DISPONIBIITE_INTER', 'ROLE_ADMIN')">
-                            <li ><a href="AllDemandesExterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Voir les Disponibilités Externes</a></li>
+                                <li ><a href="AllDemandesExterne.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> Liste des demandes de transfert externe</a></li>
                             </sec:authorize>
-                            <li ><a href="eng.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Ajouter Engagement</a></li>
-                            <li ><a href="FicheFournisseur.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Ajouter Fournissuer</a></li>
-                            
                         </ul>
                     </li>
 
+                    <li class="sub-menu">
+                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Engagement</a>
+                        <ul>
+                            <li ><a href="eng.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Ajouter Engagement</a></li>
+                            <li ><a href="FicheFournisseur.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Ajouter Fournissuer</a></li>
+                        </ul>
+                    </li>
                
                 
                  <li class="sub-menu">
@@ -89,29 +101,30 @@
                    </li>
 
 
+
                     <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
-                   <li class="sub-menu">
-                        <a href="#"><i class="zmdi zmdi-view-compact"></i> Opérations</a>
-                        <ul>
-	                        <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
-	                            <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Ajouter Opération Budgétaire</a></li>
-	                        </sec:authorize> 
-                            <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
-                            	<li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Ajouter Opération Comptable</a></li>
-                        	</sec:authorize>
-                        	          <sec:authorize access="hasAnyAuthority('ROLE_USER')">
-                            	<li ><a href="operations.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Liste d'opérations</a></li>
-                        	</sec:authorize>
-                            <sec:authorize access="hasAnyAuthority('ROLE_USER')">
-                            	<li ><a href="brouillard.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Brouillard</a></li>
-                        	</sec:authorize>
-                            <sec:authorize access="hasAnyAuthority('ROLE_USER')">
-                            	<li ><a href="journal.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Journal</a></li>
-                        	</sec:authorize>
-                        </ul>
-                   </li>
+                        <li class="sub-menu">
+                            <a href="#"><i class="zmdi zmdi-view-compact"></i> Opérations</a>
+                            <ul>
+                                <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_BUDGETAIRE', 'ROLE_ADMIN')">
+                                    <li ><a href="opbudg.html"><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i>Ajouter Opération Budgétaire</a></li>
+                                </sec:authorize>
+                                <sec:authorize access="hasAnyAuthority('ROLE_CREER_OPERATION_COMPTABLE', 'ROLE_ADMIN')">
+                                    <li ><a href="opcompt.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Ajouter Opération Comptable</a></li>
+                                </sec:authorize>
+
+                                    <li ><a href="operations.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Liste d'opérations</a></li>
+
+
+                                    <li ><a href="brouillard.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Brouillard</a></li>
+
+
+                                    <li ><a href="journal.html"><i class="zmdi zmdi-truck zmdi-hc-fw"></i>Journal</a></li>
+
+                            </ul>
+                        </li>
                     </sec:authorize>
-                    
+
                    <li class="sub-menu">
                         <a href="#"><i class="zmdi zmdi-view-compact"></i> Aide</a>
                         <ul>

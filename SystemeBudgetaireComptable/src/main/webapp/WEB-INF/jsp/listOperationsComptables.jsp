@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h2>
-								Les Opérations Comptables<small>Opérations comptables validés.</small>
+								Les OpÃ©rations<small>Liste des opÃ©rations validÃ©s.</small>
 							</h2>
 						</div>
 						<div class="card-body card-padding">
@@ -53,9 +53,9 @@
 										<table  class="table table-bordered" style="margin-top: 65px;">
 											<thead>
 												<tr>
-													<th data-column-id="id" data-type="numeric">Numéro de l'opération</th>
-													<th data-column-id="date" >Journée comptable</th>
-													<th data-column-id="idPiece">Piece corréspondante</th>
+													<th data-column-id="id" data-type="numeric">NumÃ©ro de l'opÃ©ration</th>
+													<th data-column-id="date" >JournÃ©e comptable</th>
+													<th data-column-id="idPiece">Piece corrÃ©spondante</th>
 													<th data-column-id="montant">Montant global</th>
 
 												</tr>
@@ -79,7 +79,7 @@
 								<br/>
 								<br/>
 								<div style="position: absolute;bottom: 16px;right: 16px;">
-									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Consulter les écritures</button>
+									<button class="btn bgm-gray btn-primary waves-effect" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i>Consulter les Ã©critures</button>
 								</div>			
 						</div>
 									</div>		
@@ -91,7 +91,26 @@
 			</section>
 
 		</section>
-
+				<!-- Javascript Libraries -->	
+		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+                <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+		
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+		<!---new JS-->
+		<script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+      <!--   <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script> -->
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>  
+		
+       <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
         <!-- Script de selection -->
@@ -180,7 +199,7 @@
 
             //Success Message
             $('#sa-success').click(function(){
-                swal("L'ajout s'est bien effectuer !", "L'opération d'ajout de la pièce comptable s'est bien effectué ", "success")
+                swal("L'ajout s'est bien effectuer !", "L'opÃ©ration d'ajout de la piÃ¨ce comptable s'est bien effectuÃ© ", "success")
             });
 
             //Warning Message

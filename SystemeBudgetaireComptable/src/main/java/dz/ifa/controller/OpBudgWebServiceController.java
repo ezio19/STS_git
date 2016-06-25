@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dz.ifa.model.EcritureComptableElementaire;
+import dz.ifa.model.EngagementElementaire;
 import dz.ifa.model.PieceComptable;
 import dz.ifa.service.CompteService;
 import dz.ifa.service.EngagementService;
@@ -81,6 +83,11 @@ public class OpBudgWebServiceController {
 		@RequestMapping(value = "/getMontantPieceById", method = RequestMethod.GET)
 		public double getMontantPieceById(@RequestParam(name="pId") long pId){
 			return pieceComptableService.findPieceById(pId).getMontantGlobal();
+		}
+		
+		@RequestMapping(value = "/getEngaElemById", method = RequestMethod.GET)
+		public List<EngagementElementaire>getEngaElemById(@RequestParam(name="engaId") long engaId){
+			return engagementService.findEngagementById(engaId).getEngagementsElementaires();
 		}
 
 }

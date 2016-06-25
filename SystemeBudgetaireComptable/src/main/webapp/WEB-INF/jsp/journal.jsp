@@ -26,29 +26,10 @@
         <link href="css/app.min.2.css" rel="stylesheet">
     </head>
 <body>
-        <header id="header" class="clearfix" data-current-skin="blue">
-		
-			<ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
-
-                <li class="logo hidden-xs">
-                    <a href="index-2.html">Journal des écritures	</a>
-                </li>
-				 <!-- Top Search Content -->
-            <div id="top-search-wrap">
-                <div class="tsw-inner">
-                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
-                    <input type="text">
-                </div>
-            </div>
-			</ul>
-        </header>
+             		<!--Le header/toolbar la barre en haut qui contient les notification et les traitements generaux  -->
+		<c:import url="./header.jsp"></c:import>
+        <!--Le sidebar/navigation drawer (android) -->
+		<c:import url="./sidebar.jsp"></c:import>
 		<section id="main">
 			
            	
@@ -172,7 +153,7 @@
         
                 <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+      
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
 		
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>

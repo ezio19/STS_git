@@ -1,8 +1,10 @@
 package dz.ifa.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,12 +22,35 @@ public class Engagement {
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="engagementGen")
 	private Long id;
 	private String nom;
+	@Column(name="date")
+	private Date date;
+	@Column(name="numero")
+	private long numero;
 	@ManyToOne
 	@JsonIgnore
 	private Tier tier;
-	//TODO changer le tier par fiche fournisseur
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public long getNumero() {
+		return numero;
+	}
+	public void setNumero(long numero) {
+		this.numero = numero;
+	}
+	public List<EngagementElementaire> getEngagementsElementaires() {
+		return engagementsElementaires;
+	}
+	public void setEngagementsElementaires(List<EngagementElementaire> engagementsElementaires) {
+		this.engagementsElementaires = engagementsElementaires;
+	}
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<EngagementElementaire> engagementsElementaires;
+	
+	
 	public Engagement() {
 		// TODO Auto-generated constructor stub
 	}
@@ -47,6 +72,5 @@ public class Engagement {
 	public void setTier(Tier tier) {
 		this.tier = tier;
 	}
-	
-	
+
 }

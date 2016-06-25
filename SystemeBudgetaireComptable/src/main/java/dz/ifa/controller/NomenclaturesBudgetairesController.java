@@ -1,9 +1,11 @@
 
 package dz.ifa.controller;
 
+import dz.ifa.model.Compte;
 import dz.ifa.model.commun.Structure;
 import dz.ifa.model.gestion_utilisateurs.Utilisateur;
 import dz.ifa.model.nomenclature.*;
+import dz.ifa.repository.CompteRepository;
 import dz.ifa.service.nomenclatures.ChapitresService;
 import dz.ifa.service.nomenclatures.NomenclatureService;
 
@@ -31,6 +33,8 @@ public class NomenclaturesBudgetairesController {
     @Autowired
     RubriqueService rubriqueService;
 
+    @Autowired
+    CompteRepository compteRepository;
 
     public NomenclaturesBudgetairesController() {
     }
@@ -146,7 +150,11 @@ public class NomenclaturesBudgetairesController {
         if(compteComptables.size()==0)
             return "70604";
         CompteComptable compteComptable=compteComptables.get(0);
-
+        try{if(typeCompte.toLowerCase().compareTo("analytique")==0) {
+            Compte compte = new Compte();
+            compte.setNumcpt(numCompte);
+            compte.setDesignation(designationCompte);
+            compteRepository.save(compte);}}catch(Exception e){}
         CompteBudgetaire budgetaire=new CompteBudgetaire(designationCompte,numCompte,rubrique,compteComptable,typeCompte);
         if(service.creerCompteBudgetaire(budgetaire)!=null)
             return "100";

@@ -12,50 +12,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 //@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.NONE, getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Tier {
-	//Champs statiques: 
-	//Type du tier
-	public static final int FOURNISSEUR=1;
-	public static final int INVERSTISSEUR=2;
-	//Nature 
-	public static final int ARTISANAL=1;
-	public static final int COMMERCIALE=2;
-	public static final int INDUSTRIELLE=3;
-	public static final int LIBERALE=4;
-	public static final int AGRICOLE=5;
-	//FormeJuridique
-	public static final int SARL = 1;
-	public static final int EIRL = 2;
-	public static final int EURL = 3;
-	public static final int EI = 4;
-	//Status
-	public static final int ACTIF=1;
-	public static final int INACTIF=2;
-	
 	
 	@TableGenerator(name="tierGen",allocationSize=1)
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="tierGen")
 	private Long id;
 	private String acronyme;
-	private int activitePrincipal=0;
+	private String type;
+	private String activ_princ;
 	private String adresse;
 	private String articImposition;
-	private int codePostal=0;
+	private int cp;
 	private String commune;
 	private String designation;
-	private String eMail;
+	private String email;
 	private String fax;
-	private String NIF;
-	private String NIS;
-	private String regCommerce;
-	private String telephone;
+	private String nif;
+	private String nis;
+	private String registre_commerce;
+	private String tel;
 	private String wilaya;
-	private int formeJuridique=0;
-	private int nature=0;
-	private int statut=0;
-	private int typeTier=0;
+	private String forme_juridique;
+	private String nature;
+	private String statut;
+	private String typeTier;
+	private String article_imposition;
+
 	public Tier() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	public Long getId() {
 		return id;
@@ -69,11 +53,17 @@ public class Tier {
 	public void setAcronyme(String acronyme) {
 		this.acronyme = acronyme;
 	}
-	public int getActivitePrincipal() {
-		return activitePrincipal;
+	public String getType() {
+		return type;
 	}
-	public void setActivitePrincipal(int activitePrincipal) {
-		this.activitePrincipal = activitePrincipal;
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getActiv_princ() {
+		return activ_princ;
+	}
+	public void setActiv_princ(String activ_princ) {
+		this.activ_princ = activ_princ;
 	}
 	public String getAdresse() {
 		return adresse;
@@ -87,11 +77,11 @@ public class Tier {
 	public void setArticImposition(String articImposition) {
 		this.articImposition = articImposition;
 	}
-	public int getCodePostal() {
-		return codePostal;
+	public int getCp() {
+		return cp;
 	}
-	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
+	public void setCp(int cp) {
+		this.cp = cp;
 	}
 	public String getCommune() {
 		return commune;
@@ -105,11 +95,11 @@ public class Tier {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String geteMail() {
-		return eMail;
+	public String getEmail() {
+		return email;
 	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getFax() {
 		return fax;
@@ -117,29 +107,29 @@ public class Tier {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	public String getNIF() {
-		return NIF;
+	public String getNif() {
+		return nif;
 	}
-	public void setNIF(String nIF) {
-		NIF = nIF;
+	public void setNif(String nif) {
+		this.nif = nif;
 	}
-	public String getNIS() {
-		return NIS;
+	public String getNis() {
+		return nis;
 	}
-	public void setNIS(String nIS) {
-		NIS = nIS;
+	public void setNis(String nis) {
+		this.nis = nis;
 	}
-	public String getRegCommerce() {
-		return regCommerce;
+	public String getRegistre_commerce() {
+		return registre_commerce;
 	}
-	public void setRegCommerce(String regCommerce) {
-		this.regCommerce = regCommerce;
+	public void setRegistre_commerce(String registre_commerce) {
+		this.registre_commerce = registre_commerce;
 	}
-	public String getTelephone() {
-		return telephone;
+	public String getTel() {
+		return tel;
 	}
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public String getWilaya() {
 		return wilaya;
@@ -147,31 +137,34 @@ public class Tier {
 	public void setWilaya(String wilaya) {
 		this.wilaya = wilaya;
 	}
-	public int getFormeJuridique() {
-		return formeJuridique;
+	public String getForme_juridique() {
+		return forme_juridique;
 	}
-	public void setFormeJuridique(int formeJuridique) {
-		this.formeJuridique = formeJuridique;
+	public void setForme_juridique(String forme_juridique) {
+		this.forme_juridique = forme_juridique;
 	}
-	public int getNature() {
+	public String getNature() {
 		return nature;
 	}
-	public void setNature(int nature) {
+	public void setNature(String nature) {
 		this.nature = nature;
 	}
-	public int getStatut() {
+	public String getStatut() {
 		return statut;
 	}
-	public void setStatut(int statut) {
+	public void setStatut(String statut) {
 		this.statut = statut;
 	}
-	public int getTypeTier() {
+	public String getTypeTier() {
 		return typeTier;
 	}
-	public void setTypeTier(int typeTier) {
+	public void setTypeTier(String typeTier) {
 		this.typeTier = typeTier;
 	}
-	
-	
-	
+	public String getArticle_imposition() {
+		return article_imposition;
+	}
+	public void setArticle_imposition(String article_imposition) {
+		this.article_imposition = article_imposition;
+	}
 }

@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,29 +33,7 @@
 		<c:import url="./header.jsp"></c:import>
         <!--Le sidebar/navigation drawer (android) -->
 		<c:import url="./sidebar.jsp"></c:import> 
-        <header id="header" class="clearfix" data-current-skin="blue">
-		
-			<ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
-
-                <li class="logo hidden-xs">
-                    <a href="index-2.html">Opération comptable</a>
-                </li>
-				 <!-- Top Search Content -->
-            <div id="top-search-wrap">
-                <div class="tsw-inner">
-                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
-                    <input type="text">
-                </div>
-            </div>
-			</ul>
-        </header>
+ 
 		<section id="main">
 		
 			<section id="content">
@@ -143,7 +122,7 @@
 											<select class="form-control"  id="tierSelection">
 												<option value="0">-- Choisir un fournisseur --</option>
 												<c:forEach items="${listTiers}" var="tier">
-													<option value="${tier.id}">${tier.NIF}-${tier.NIS}</option>
+													<option value="${tier.id}">${tier.acronyme}-${tier.designation}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -166,7 +145,7 @@
 									</div>
 								</div>
 								<div style="display:inline-flex;">
-									<button href="newPiece.html" id="btnAdd" class="btn bgm-teal waves-effect" style="width:200px;"><i class="zmdi zmdi-plus zmdi-hc-fw"></i>Ajouter une piéce</button>
+									<a href="newpiece.html">Ajouter une pice</a><!--<button  id="" class="btn bgm-teal waves-effect" style="width:200px;"><i class="zmdi zmdi-plus zmdi-hc-fw"></i>Ajouter une piéce</button> -->
 								</div>
 
 
@@ -379,7 +358,7 @@
 		    $('.compte').each(function () { 
 		        $(this).rules("add", {
 		            required: true,
-		            minlength:12,
+		            minlength:3,
 		            maxlength:12,
 		            compteNumExists:true,
 		            messages:{

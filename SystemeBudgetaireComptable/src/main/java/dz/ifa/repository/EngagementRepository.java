@@ -10,4 +10,5 @@ import dz.ifa.model.Engagement;
 public interface EngagementRepository extends JpaRepository<Engagement,Long>{
 	@Query("select e from Engagement e where e.tier.id = ?#{[0]}")
 	Engagement findEngageentByTierId(long idTier);	
+	
 }

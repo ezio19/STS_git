@@ -12,6 +12,7 @@ public interface EngagementService {
 	Engagement findEngagementById(long engaId);
 	List<Engagement> recupererListEngagements();
 	List<PieceComptable> findPicesByEngaId(long engaId);
+	public Engagement save(Engagement ebgagement);
 	
 
 }

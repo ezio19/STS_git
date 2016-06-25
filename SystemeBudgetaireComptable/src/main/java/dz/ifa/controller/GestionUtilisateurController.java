@@ -243,7 +243,6 @@ public class GestionUtilisateurController {
         System.out.println("code_structure:" + idUtilisateur);
 
 
-        idUtilisateur="tester";
         List<Utilisateur>utilisateurs=gestionUtilisateursService.getUtilisateurByIdUtilisateur(idUtilisateur);
         if(utilisateurs.size()==0){
             System.out.println("Erreur user n'exite pas");

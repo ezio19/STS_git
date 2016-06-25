@@ -145,7 +145,7 @@ public class OperationsComptablesController {
 			operationComptable.getEcrituresElementaire().add(ecritureElementaire);
 			ecritureElementaire.setOperationComptable(operationComptable);
 		}
-		
+		operationComptable.setCreditdebit();
 		operationService.save(operationComptable);
 		
 		 ModelAndView m= new ModelAndView("redirect:/brouillard.html");
@@ -256,7 +256,7 @@ public class OperationsComptablesController {
 					operationComptable.getEcrituresElementaire().add(ecritureElementaire);
 					ecritureElementaire.setOperationComptable(operationComptable);
 				}
-				
+				operationComptable.setCreditdebit();
 				operationService.save(operationComptable);
 				
 				 ModelAndView m= new ModelAndView("redirect:/brouillard.html");
@@ -278,6 +278,8 @@ public class OperationsComptablesController {
 		requete.setAttribute("listOperations", operationsBudgetaires);
 		return "listOperationsBudgetaires";
 	}
+	
+
 	@RequestMapping(value="brouillard",method=RequestMethod.GET)
 	public String afficherBrouillardOperations(HttpServletRequest requete){
 		requete.setAttribute("listOperations", operationService.getListOperationsBrouillard());

@@ -1,7 +1,5 @@
 package dz.ifa.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,28 +11,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
-
-
-import dz.ifa.model.FicheFournisseur;
-
-import dz.ifa.service.FournisseurService;
+import dz.ifa.model.Tier;
+import dz.ifa.service.TierService;
 
 
 @Controller
 @SessionAttributes("ficheFournisseur")
 public class FournisseurController {
 	@Autowired
-	private FournisseurService FournServe;
+	private TierService FournServe;
 	
 	@RequestMapping(value = "/FicheFournisseur", method = RequestMethod.GET)
 	public String addFournisseur(Model model, HttpSession session) {
 		
-		FicheFournisseur ficheFournisseur = (FicheFournisseur) session.getAttribute("ficheFournisseur");
+		Tier ficheFournisseur = (Tier) session.getAttribute("ficheFournisseur");
 		
 	//	if(ficheFournisseur==null){			
-			ficheFournisseur= new FicheFournisseur();
+			ficheFournisseur= new Tier();
 	//	}
 		
 		model.addAttribute("ficheFournisseur", ficheFournisseur);
@@ -45,7 +39,7 @@ public class FournisseurController {
 	
 	
 	@RequestMapping(value = "/FicheFournisseur", method = RequestMethod.POST)
-	public String updateFournisseur(@Valid @ModelAttribute("ficheFournisseur") FicheFournisseur ficheFournisseur, BindingResult result) {
+	public String updateFournisseur(@Valid @ModelAttribute("ficheFournisseur") Tier ficheFournisseur, BindingResult result) {
 		
 	
 		
@@ -57,21 +51,5 @@ public class FournisseurController {
 		return "redirect:FicheFournisseur.html";
 	}
 	
-	
-	/*
-	@RequestMapping(value = "getDemande", method = RequestMethod.GET)
-	public String getDemande(Model model, long id){
-		List<DemandeTransfert> demandeTransfert = demandeTransfertService.findDemandeById(id);
-		model.addAttribute("demandeTransfert", demandeTransfert);
-		
-		return "getDemande";
-	}
-    @RequestMapping(value="/AllDemandes", method=RequestMethod.GET)
-    public ModelAndView listDemandes() {
-        
-        List <DemandeTransfert> demandes = demandeTransfertService.findAllDemandes();
-            return new ModelAndView("listeDemandes", "demandes", demandes);
-    }
 
-*/
 } 
